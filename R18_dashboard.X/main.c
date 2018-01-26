@@ -31,14 +31,16 @@ void refresh() {
 }
 
 void LED_blink() {
+    INTERRUPT_PeripheralInterruptDisable();
     up_shift_LAT = !up_shift_GetValue();
     down_shift_LAT = !down_shift_GetValue();
+    INTERRUPT_PeripheralInterruptEnable();
 }
 
 void main(void) {   
     Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
     bool timer_started = false;
-    char* message;
+    char* message = "READY";
     int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
     wait2secs(); 
     
