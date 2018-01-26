@@ -68,10 +68,10 @@ void main(void) {
 //    RXF3SIDL = 0x20; //Filter for ID 0x641
     RXF2SIDH = 0xC8;
     RXF2SIDL = 0x40; //Filter for ID 0x642
-    RXM0SIDH = 0xFF;
-    RXM0SIDL = 0b11011111;
-    RXM1SIDH = 0xFF;
-    RXM1SIDL = 0x11011111;
+    RXM0SIDH = 0xFE;
+    RXM0SIDL = 0b00011111;
+    RXM1SIDH = 0xFE;
+    RXM1SIDL = 0x00011111;
     
     // SPI Configuration for LCD
     SSPSTATbits.SMP = 0;
@@ -116,11 +116,14 @@ void main(void) {
             } else if (canMessage.frame.id == 0x643) {
                 if(canMessage.frame.data0 >> 7) {
                     *message = "Radio ON";
-                } else if(canMessage.frame.data0 >> 6) {
+                } else {
+                    *message = "R18";
+                }
+                if(canMessage.frame.data0 >> 6) {
                     *message = "DRS & AutoShift ON";
                 } else {
-                    *message = "R18 ";
-                } 
+                    *message = "R18";
+                }
                 warning_1_LAT = canMessage.frame.data0 >> 5; //coolant temp
                 warning_2_LAT = canMessage.frame.data0 >> 4; // oil temp
                 warning_4_LAT = canMessage.frame.data0 >> 3; // oil pressure
