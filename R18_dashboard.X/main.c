@@ -14,31 +14,22 @@
 #define FT_CORERST 0x68
 
 uCAN_MSG canMessage;
-bool can_msg_received = false;
 bool refresh_screen = false;
+
+typedef struct {
+    int current, current_number, current_int, current_dec, last, last_int, last_dec, best, best_number, best_int, best_dec;
+} Lap_time;
 
 void wait2secs(){
     __delay_ms(2000);
 }
-
-//void ECAN_ISR_ECAN_RXBI(void) {
-//    PIE5bits.RXB0IE = 0;
-//    if(CANSTATbits.ICODE2 & CANSTATbits.ICODE1 & !CANSTATbits.ICODE0) {
-//        can_msg_received = true;
-//        down_shift_SetHigh();
-//    } else {
-//        PIE5bits.RXB0IE = 1;
-//    }
-//    // Not supported yet
-//    // clear the ECAN interrupt flag
-//    PIR5bits.RXB0IF = 0;
-//}
 
 void refresh() {
     refresh_screen = true;
 }
 
 void main(void) {   
+    Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
     int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
     wait2secs(); 
     
@@ -60,12 +51,16 @@ void main(void) {
     
     // CAN FILTER CONFIG
     // RXF5 & 6 not available in mode 0
-    RXF4SIDH = 0xC8;
-    RXF4SIDL = 0x00; //Filter for ID 0x640
-    RXF3SIDH = 0xC8;
-    RXF3SIDL = 0x20; //Filter for ID 0x641
+//    RXF4SIDH = 0xC8;
+//    RXF4SIDL = 0x00; //Filter for ID 0x640
+//    RXF3SIDH = 0xC8;
+//    RXF3SIDL = 0x20; //Filter for ID 0x641
     RXF2SIDH = 0xC8;
     RXF2SIDL = 0x40; //Filter for ID 0x642
+    RXM0SIDH = 0xFF;
+    RXM0SIDL = 0b11011111;
+    RXM1SIDH = 0xFF;
+    RXM1SIDL = 0x11011111;
     
     // SPI Configuration for LCD
     SSPSTATbits.SMP = 0;
@@ -87,8 +82,7 @@ void main(void) {
     
     display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
     
-    TMR1_SetInterruptHandler(&refresh);
-    
+    TMR1_SetInterruptHandler(&refresh); 
     INTERRUPT_GlobalInterruptEnable();
     INTERRUPT_PeripheralInterruptEnable();
     
@@ -101,16 +95,44 @@ void main(void) {
                 tp = canMessage.frame.data6;
                 speed = canMessage.frame.data7;
             } else if (canMessage.frame.id == 0x641) {
-                //oilTemp = canMessage.frame.data0;
                 gear = canMessage.frame.data6;
             } else if (canMessage.frame.id == 0x642) {
                 engTemp = canMessage.frame.data0;
                 oilTemp = canMessage.frame.data1;
                 battVolts = canMessage.frame.data2;
+            } else if (canMessage.frame.id == 0x643) {
+                //buttons & warnings
+            } else if (canMessage.frame.id == 0x644) {
+                lap_time.last = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
+                lap_time.current = ((canMessage.frame.data2 << 8) | canMessage.frame.data3);
+                lap_time.current_number = ((canMessage.frame.data4 << 8) | canMessage.frame.data5);
+                lap_time.last_int = lap_time.last/100;
+                lap_time.last_dec = lap_time.last%100;
+                lap_time.current_int = lap_time.current/100;
+                lap_time.current_dec = lap_time.current%100;
+                if(lap_time.current < lap_time.best) {
+                    lap_time.best = lap_time.current;
+                    lap_time.best_int = lap_time.current_int;
+                    lap_time.best_dec = lap_time.current_dec;
+                }
             }
         }
         if(refresh_screen) {
-            display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
+            display_start();
+            display_labels();
+            display_waterTemp(engTemp);
+            display_oilTemp(oilTemp);
+            display_fuel(4.3);
+            display_battery(battVolts);
+            display_oilPress(oilP);
+            display_gear(gear);
+            display_rpm(rpm);
+            display_speed(speed);
+            display_tp(tp);
+            display_laptime(lap_time.current_int, lap_time.current_dec, lap_time.best_int, lap_time.best_dec,
+                             lap_time.last_int, lap_time.last_dec, lap_time.current_number, lap_time.best_number);
+            display_message("hello");
+            display_end();
             up_shift_SetLow();
             down_shift_SetLow();
             warning_1_SetLow();

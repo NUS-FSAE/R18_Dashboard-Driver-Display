@@ -12,7 +12,6 @@ void display(int rpm, int oilP, int fuelP, int tp, int speed, int gear, int engT
     display_rpm(rpm);
     display_speed(speed);
     display_tp(tp);
-    display_laptime(0, 0, 0, 0);
     display_message("hello");
     display_end();
 }
@@ -70,7 +69,7 @@ void display_message(char* message) {
     cmd_text(240, 222, 28, OPT_CENTER, "R18 ");
 }
 
-void display_laptime(float current, float best, float last, int lap) {
+void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap) {
     cmd(COLOR_RGB(255, 0, 0));
     cmd(BEGIN(EDGE_STRIP_B));
     cmd(VERTEX2II(0, 200, 0, 0));
@@ -92,33 +91,29 @@ void display_laptime(float current, float best, float last, int lap) {
     //lap time labels
     cmd(COLOR_RGB(255, 125, 0));
     cmd_text(5, 207, 27, 0, "LAST");
-    cmd_number(66, 217, 27, OPT_CENTER, 0);
+    cmd_number(66, 217, 27, OPT_CENTER, lap-1);
     cmd_text(448, 207, 27, OPT_RIGHTX, "BEST");
-    cmd_number(475, 207, 27, OPT_RIGHTX, 0);
+    cmd_number(475, 207, 27, OPT_RIGHTX, best_lap);
     cmd_text(240, 165, 27, OPT_CENTER, "LAP");
-    cmd_number(240, 190, 29, OPT_CENTER, 0);
+    cmd_number(240, 190, 29, OPT_CENTER, lap);
 
     // last lap time
     cmd(COLOR_RGB(255, 255, 255));
-    cmd_number(36, 222, 30, OPT_RIGHTX, 0);
+    cmd_number(36, 222, 30, OPT_RIGHTX, last_int);
     cmd_text(39, 238, 28, OPT_CENTER, ":");
-    cmd_number(42, 222, 30, OPT_NODL, 0);
-    cmd_text(79, 238, 28, OPT_CENTER, ":");
-    cmd_number(82, 221, 30, OPT_NODL, 0);
+    cmd_number(42, 222, 30, OPT_NODL, last_dec);
+
 
     // best lap time
-    cmd_number(397, 222, 30, OPT_RIGHTX, 0);
-    cmd_text(400, 239, 28, OPT_CENTER, ":");
-    cmd_number(403, 222, 30, OPT_NODL, 0);
-    cmd_text(439, 239, 28, OPT_CENTER, ":");
-    cmd_number(475, 222, 30, OPT_RIGHTX, 0);
+    cmd_number(434, 222, 30, OPT_RIGHTX, best_int);
+    cmd_text(437, 239, 28, OPT_CENTER, ":");
+    cmd_number(440, 222, 30, OPT_NODL, best_dec);
+
 
     // current lap time
-    cmd_number(217, 237, 30, OPT_RIGHTX, 0);
-    cmd_text(221, 254, 28, OPT_CENTER, ":");
-    cmd_number(240, 255, 30, OPT_CENTER, 0);
-    cmd_text(261, 254, 28, OPT_CENTER, ":");
-    cmd_number(298, 237, 30, OPT_RIGHTX, 0);
+    cmd_number(233, 235, 30, OPT_RIGHTX, current_int);
+    cmd_text(237, 252, 28, OPT_CENTER, ":");
+    cmd_number(240, 235, 30, OPT_NODL, current_dec);
 }
 
 void display_waterTemp(int temp) {

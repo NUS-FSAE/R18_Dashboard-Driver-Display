@@ -33,5 +33,5 @@ void display_rpm(int rpm);
 void display_end();
 void display_speed(int speed);
 void display_tp(int tp);
-void display_laptime(float current, float best, float last, int lap);
+void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
 void display_message(char* message);

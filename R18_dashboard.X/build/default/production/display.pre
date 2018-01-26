@@ -18141,7 +18141,7 @@ void display_rpm(int rpm);
 void display_end();
 void display_speed(int speed);
 void display_tp(int tp);
-void display_laptime(float current, float best, float last, int lap);
+void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
 void display_message(char* message);
 
 # 3 "display.c"
@@ -18157,7 +18157,6 @@ display_gear(gear);
 display_rpm(rpm);
 display_speed(speed);
 display_tp(tp);
-display_laptime(0, 0, 0, 0);
 display_message("hello");
 display_end();
 }
@@ -18215,7 +18214,7 @@ cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
 cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "R18 "));
 }
 
-void display_laptime(float current, float best, float last, int lap) {
+void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap) {
 cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
 cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
 cmd(((2UL<<30)|(((0)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
@@ -18237,33 +18236,29 @@ cmd(((2UL<<30)|(((483)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127
 
 cmd(((4UL<<24)|(((255)&255UL)<<16)|(((125)&255UL)<<8)|(((0)&255UL)<<0)));
 cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "LAST"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 217);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(0);
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 217);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(lap-1);
 cmd(4294967052UL);wr16(1081344UL+cmd_offset, 448);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "BEST"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 475);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(0);
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 475);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(best_lap);
 cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 165);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "LAP"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 190);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(0);
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 190);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(lap);
 
 
 cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 36);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(0);
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 36);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(last_int);
 cmd(4294967052UL);wr16(1081344UL+cmd_offset, 39);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 238);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 42);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(0);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 79);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 238);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 82);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 221);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(0);
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 42);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(last_dec);
 
 
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 397);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(0);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 400);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 239);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 403);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(0);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 439);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 239);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 475);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(0);
+
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 434);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(best_int);
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 437);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 239);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 440);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(best_dec);
 
 
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 217);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 237);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(0);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 221);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 254);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 255);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(0);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 261);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 254);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 298);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 237);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(0);
+
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 233);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 235);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(current_int);
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 237);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 252);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 235);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(current_dec);
 }
 
 void display_waterTemp(int temp) {

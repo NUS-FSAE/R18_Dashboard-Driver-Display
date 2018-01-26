@@ -18141,24 +18141,27 @@ void display_rpm(int rpm);
 void display_end();
 void display_speed(int speed);
 void display_tp(int tp);
-void display_laptime(float current, float best, float last, int lap);
+void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
 void display_message(char* message);
 
 # 16 "main.c"
 uCAN_MSG canMessage;
-bool can_msg_received = 0;
 bool refresh_screen = 0;
+
+typedef struct {
+int current, current_number, current_int, current_dec, last, last_int, last_dec, best, best_number, best_int, best_dec;
+} Lap_time;
 
 void wait2secs(){
 _delay((unsigned long)((2000)*(64000000/4000.0)));
 }
 
-# 37
 void refresh() {
 refresh_screen = 1;
 }
 
 void main(void) {
+Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
 int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
 wait2secs();
 
@@ -18178,14 +18181,13 @@ PIE5bits.RXB1IE = 0;
 PIR5bits.ERRIF = 0;
 PIR5bits.WAKIF = 0;
 
-
-
-RXF4SIDH = 0xC8;
-RXF4SIDL = 0x00;
-RXF3SIDH = 0xC8;
-RXF3SIDL = 0x20;
+# 58
 RXF2SIDH = 0xC8;
 RXF2SIDL = 0x40;
+RXM0SIDH = 0xFF;
+RXM0SIDL = 0b11011111;
+RXM1SIDH = 0xFF;
+RXM1SIDL = 0x11011111;
 
 
 SSPSTATbits.SMP = 0;
@@ -18208,7 +18210,6 @@ do { LATDbits.LATD3 = 1; } while(0);
 display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
 
 TMR1_SetInterruptHandler(&refresh);
-
 (INTCONbits.GIE = 1);
 (INTCONbits.PEIE = 1);
 
@@ -18221,16 +18222,44 @@ fuelP = ((canMessage.frame.data0 << 4) | canMessage.frame.data5);
 tp = canMessage.frame.data6;
 speed = canMessage.frame.data7;
 } else if (canMessage.frame.id == 0x641) {
-
 gear = canMessage.frame.data6;
 } else if (canMessage.frame.id == 0x642) {
 engTemp = canMessage.frame.data0;
 oilTemp = canMessage.frame.data1;
 battVolts = canMessage.frame.data2;
+} else if (canMessage.frame.id == 0x643) {
+
+} else if (canMessage.frame.id == 0x644) {
+lap_time.last = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
+lap_time.current = ((canMessage.frame.data2 << 8) | canMessage.frame.data3);
+lap_time.current_number = ((canMessage.frame.data4 << 8) | canMessage.frame.data5);
+lap_time.last_int = lap_time.last/100;
+lap_time.last_dec = lap_time.last%100;
+lap_time.current_int = lap_time.current/100;
+lap_time.current_dec = lap_time.current%100;
+if(lap_time.current < lap_time.best) {
+lap_time.best = lap_time.current;
+lap_time.best_int = lap_time.current_int;
+lap_time.best_dec = lap_time.current_dec;
+}
 }
 }
 if(refresh_screen) {
-display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
+display_start();
+display_labels();
+display_waterTemp(engTemp);
+display_oilTemp(oilTemp);
+display_fuel(4.3);
+display_battery(battVolts);
+display_oilPress(oilP);
+display_gear(gear);
+display_rpm(rpm);
+display_speed(speed);
+display_tp(tp);
+display_laptime(lap_time.current_int, lap_time.current_dec, lap_time.best_int, lap_time.best_dec,
+lap_time.last_int, lap_time.last_dec, lap_time.current_number, lap_time.best_number);
+display_message("hello");
+display_end();
 do { LATAbits.LATA1 = 0; } while(0);
 do { LATDbits.LATD4 = 0; } while(0);
 do { LATAbits.LATA0 = 0; } while(0);
