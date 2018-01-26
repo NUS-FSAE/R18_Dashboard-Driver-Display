@@ -116,6 +116,7 @@ void SYSTEM_Initialize(void)
     OSCILLATOR_Initialize();
     SPI_Initialize();
     TMR1_Initialize();
+    TMR0_Initialize();
     ECAN_Initialize();
 }
 

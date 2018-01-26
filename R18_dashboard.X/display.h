@@ -28,7 +28,7 @@ void display_waterTemp(int temp);
 void display_oilTemp(int temp);
 void display_fuel(int level);
 void display_battery(int volts);
-void display_oilPress(float pressure);
+void display_oilPress(int pressure);
 void display_rpm(int rpm);
 void display_end();
 void display_speed(int speed);

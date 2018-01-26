@@ -17944,66 +17944,6 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
-# 99 "mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-
-# 128
-void TMR1_StartTimer(void);
-
-# 160
-void TMR1_StopTimer(void);
-
-# 195
-uint16_t TMR1_ReadTimer(void);
-
-# 234
-void TMR1_WriteTimer(uint16_t timerVal);
-
-# 270
-void TMR1_Reload(void);
-
-# 309
-void TMR1_StartSinglePulseAcquisition(void);
-
-# 348
-uint8_t TMR1_CheckGateValueStatus(void);
-
-# 366
-void TMR1_ISR(void);
-
-# 384
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 402
-extern void (*TMR1_InterruptHandler)(void);
-
-# 420
-void TMR1_DefaultInterruptHandler(void);
-
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\__size_t.h"
-typedef unsigned size_t;
-
-# 6 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\stddef.h"
-typedef int ptrdiff_t;
-
-# 116 "mcc_generated_files/spi.h"
-void SPI_Initialize(void);
-
-# 151
-uint8_t SPI_Exchange8bit(uint8_t data);
-
-# 191
-uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-
-# 214
-bool SPI_IsBufferFull(void);
-
-# 239
-bool SPI_HasWriteCollisionOccured(void);
-
-# 263
-void SPI_ClearWriteCollisionStatus(void);
-
 # 67 "mcc_generated_files/ecan.h"
 typedef union {
 
@@ -18047,10 +17987,100 @@ unsigned char CAN_isRXErrorPassive(void);
 # 278
 unsigned char CAN_isTXErrorPassive(void);
 
-# 71 "mcc_generated_files/mcc.h"
+# 99 "mcc_generated_files/tmr1.h"
+void TMR1_Initialize(void);
+
+# 128
+void TMR1_StartTimer(void);
+
+# 160
+void TMR1_StopTimer(void);
+
+# 195
+uint16_t TMR1_ReadTimer(void);
+
+# 234
+void TMR1_WriteTimer(uint16_t timerVal);
+
+# 270
+void TMR1_Reload(void);
+
+# 309
+void TMR1_StartSinglePulseAcquisition(void);
+
+# 348
+uint8_t TMR1_CheckGateValueStatus(void);
+
+# 366
+void TMR1_ISR(void);
+
+# 384
+void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 402
+extern void (*TMR1_InterruptHandler)(void);
+
+# 420
+void TMR1_DefaultInterruptHandler(void);
+
+# 99 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 128
+void TMR0_StartTimer(void);
+
+# 160
+void TMR0_StopTimer(void);
+
+# 196
+uint16_t TMR0_ReadTimer(void);
+
+# 235
+void TMR0_WriteTimer(uint16_t timerVal);
+
+# 271
+void TMR0_Reload(void);
+
+# 289
+void TMR0_ISR(void);
+
+# 308
+void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 326
+extern void (*TMR0_InterruptHandler)(void);
+
+# 344
+void TMR0_DefaultInterruptHandler(void);
+
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\__size_t.h"
+typedef unsigned size_t;
+
+# 6 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\stddef.h"
+typedef int ptrdiff_t;
+
+# 116 "mcc_generated_files/spi.h"
+void SPI_Initialize(void);
+
+# 151
+uint8_t SPI_Exchange8bit(uint8_t data);
+
+# 191
+uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+
+# 214
+bool SPI_IsBufferFull(void);
+
+# 239
+bool SPI_HasWriteCollisionOccured(void);
+
+# 263
+void SPI_ClearWriteCollisionStatus(void);
+
+# 72 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 84
+# 85
 void OSCILLATOR_Initialize(void);
 
 # 8 "FT_DataTypes.h"
@@ -18136,7 +18166,7 @@ void display_waterTemp(int temp);
 void display_oilTemp(int temp);
 void display_fuel(int level);
 void display_battery(int volts);
-void display_oilPress(float pressure);
+void display_oilPress(int pressure);
 void display_rpm(int rpm);
 void display_end();
 void display_speed(int speed);
@@ -18144,9 +18174,10 @@ void display_tp(int tp);
 void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
 void display_message(char* message);
 
-# 16 "main.c"
+# 17 "main.c"
 uCAN_MSG canMessage;
 bool refresh_screen = 0;
+bool up_blink = 0;
 
 typedef struct {
 int current, current_number, current_int, current_dec, last, last_int, last_dec, best, best_number, best_int, best_dec;
@@ -18160,8 +18191,15 @@ void refresh() {
 refresh_screen = 1;
 }
 
+void LED_blink() {
+LATAbits.LATA1 = !PORTAbits.RA1;
+LATDbits.LATD4 = !PORTDbits.RD4;
+}
+
 void main(void) {
 Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
+bool timer_started = 0;
+char* message;
 int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
 wait2secs();
 
@@ -18181,7 +18219,7 @@ PIE5bits.RXB1IE = 0;
 PIR5bits.ERRIF = 0;
 PIR5bits.WAKIF = 0;
 
-# 58
+# 67
 RXF2SIDH = 0xC8;
 RXF2SIDL = 0x40;
 RXM0SIDH = 0xFF;
@@ -18210,6 +18248,8 @@ do { LATDbits.LATD3 = 1; } while(0);
 display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
 
 TMR1_SetInterruptHandler(&refresh);
+TMR0_SetInterruptHandler(*LED_blink);
+TMR0_StopTimer();
 (INTCONbits.GIE = 1);
 (INTCONbits.PEIE = 1);
 
@@ -18218,7 +18258,7 @@ if (CAN_receive(&canMessage)) {
 if (canMessage.frame.id == 0x640) {
 rpm = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
 oilP = ((canMessage.frame.data2 << 8) | canMessage.frame.data3) / 10;
-fuelP = ((canMessage.frame.data0 << 4) | canMessage.frame.data5);
+fuelP = ((canMessage.frame.data4 << 8) | canMessage.frame.data5) / 10;
 tp = canMessage.frame.data6;
 speed = canMessage.frame.data7;
 } else if (canMessage.frame.id == 0x641) {
@@ -18228,6 +18268,17 @@ engTemp = canMessage.frame.data0;
 oilTemp = canMessage.frame.data1;
 battVolts = canMessage.frame.data2;
 } else if (canMessage.frame.id == 0x643) {
+if(canMessage.frame.data0 >> 7) {
+*message = "Radio ON";
+} else if(canMessage.frame.data0 >> 6) {
+*message = "DRS & AutoShift ON";
+} else {
+*message = "R18 ";
+}
+LATAbits.LATA0 = canMessage.frame.data0 >> 5;
+LATBbits.LATB5 = canMessage.frame.data0 >> 4;
+LATDbits.LATD3 = canMessage.frame.data0 >> 3;
+LATDbits.LATD5 = canMessage.frame.data0 >> 2;
 
 } else if (canMessage.frame.id == 0x644) {
 lap_time.last = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
@@ -18258,14 +18309,17 @@ display_speed(speed);
 display_tp(tp);
 display_laptime(lap_time.current_int, lap_time.current_dec, lap_time.best_int, lap_time.best_dec,
 lap_time.last_int, lap_time.last_dec, lap_time.current_number, lap_time.best_number);
-display_message("hello");
+display_message(message);
 display_end();
+if(rpm == 0 && !timer_started) {
+TMR0_StartTimer();
+timer_started = 1;
+} else {
+TMR0_StopTimer();
+timer_started = 0;
 do { LATAbits.LATA1 = 0; } while(0);
 do { LATDbits.LATD4 = 0; } while(0);
-do { LATAbits.LATA0 = 0; } while(0);
-do { LATBbits.LATB5 = 0; } while(0);
-do { LATDbits.LATD5 = 0; } while(0);
-do { LATDbits.LATD3 = 0; } while(0);
+}
 refresh_screen = 0;
 TMR1_Reload();
 }

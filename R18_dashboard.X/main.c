@@ -12,9 +12,11 @@
 #define FT_CLK48M  0x62
 #define FT_CLK36M  0x61
 #define FT_CORERST 0x68
+#define UP_SHIFT_RPM 9000
 
 uCAN_MSG canMessage;
 bool refresh_screen = false;
+    bool up_blink = false;
 
 typedef struct {
     int current, current_number, current_int, current_dec, last, last_int, last_dec, best, best_number, best_int, best_dec;
@@ -28,8 +30,15 @@ void refresh() {
     refresh_screen = true;
 }
 
+void LED_blink() {
+    up_shift_LAT = !up_shift_GetValue();
+    down_shift_LAT = !down_shift_GetValue();
+}
+
 void main(void) {   
     Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
+    bool timer_started = false;
+    char* message;
     int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
     wait2secs(); 
     
@@ -83,6 +92,8 @@ void main(void) {
     display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
     
     TMR1_SetInterruptHandler(&refresh); 
+    TMR0_SetInterruptHandler(*LED_blink);
+    TMR0_StopTimer();
     INTERRUPT_GlobalInterruptEnable();
     INTERRUPT_PeripheralInterruptEnable();
     
@@ -91,7 +102,7 @@ void main(void) {
             if (canMessage.frame.id == 0x640) {
                 rpm = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
                 oilP = ((canMessage.frame.data2 << 8) | canMessage.frame.data3) / 10;
-                fuelP = ((canMessage.frame.data0 << 4) | canMessage.frame.data5);
+                fuelP = ((canMessage.frame.data4 << 8) | canMessage.frame.data5) / 10;
                 tp = canMessage.frame.data6;
                 speed = canMessage.frame.data7;
             } else if (canMessage.frame.id == 0x641) {
@@ -101,7 +112,18 @@ void main(void) {
                 oilTemp = canMessage.frame.data1;
                 battVolts = canMessage.frame.data2;
             } else if (canMessage.frame.id == 0x643) {
-                //buttons & warnings
+                if(canMessage.frame.data0 >> 7) {
+                    *message = "Radio ON";
+                } else if(canMessage.frame.data0 >> 6) {
+                    *message = "DRS & AutoShift ON";
+                } else {
+                    *message = "R18 ";
+                } 
+                warning_1_LAT = canMessage.frame.data0 >> 5; //coolant temp
+                warning_2_LAT = canMessage.frame.data0 >> 4; // oil temp
+                warning_4_LAT = canMessage.frame.data0 >> 3; // oil pressure
+                warning_3_LAT = canMessage.frame.data0 >> 2; // fuel pressure
+
             } else if (canMessage.frame.id == 0x644) {
                 lap_time.last = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
                 lap_time.current = ((canMessage.frame.data2 << 8) | canMessage.frame.data3);
@@ -131,14 +153,17 @@ void main(void) {
             display_tp(tp);
             display_laptime(lap_time.current_int, lap_time.current_dec, lap_time.best_int, lap_time.best_dec,
                              lap_time.last_int, lap_time.last_dec, lap_time.current_number, lap_time.best_number);
-            display_message("hello");
+            display_message(message);
             display_end();
-            up_shift_SetLow();
-            down_shift_SetLow();
-            warning_1_SetLow();
-            warning_2_SetLow();
-            warning_3_SetLow();
-            warning_4_SetLow();
+            if(rpm == 0 && !timer_started) {
+                TMR0_StartTimer();
+                timer_started = true;
+            } else {
+                TMR0_StopTimer();
+                timer_started = false;
+                up_shift_SetLow();
+                down_shift_SetLow();
+            }
             refresh_screen = false;
             TMR1_Reload();
         }

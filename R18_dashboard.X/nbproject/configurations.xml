@@ -13,6 +13,7 @@
         <itemPath>mcc_generated_files/ecan.h</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
+        <itemPath>mcc_generated_files/tmr0.h</itemPath>
       </logicalFolder>
       <itemPath>FT800.c</itemPath>
       <itemPath>FT800.h</itemPath>
@@ -37,6 +38,7 @@
         <itemPath>mcc_generated_files/ecan.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
         <itemPath>mcc_generated_files/mcc.c</itemPath>
+        <itemPath>mcc_generated_files/tmr0.c</itemPath>
       </logicalFolder>
       <itemPath>display.c</itemPath>
       <itemPath>main.c</itemPath>

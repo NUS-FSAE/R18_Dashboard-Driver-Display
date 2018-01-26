@@ -3,12 +3,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTERRUPT_Initialize `(v ~T0 @X0 0 ef ]
 "250 mcc_generated_files/pin_manager.h
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
-"84 mcc_generated_files/mcc.h
+"85 mcc_generated_files/mcc.h
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
 "116 mcc_generated_files/spi.h
 [v _SPI_Initialize `(v ~T0 @X0 0 ef ]
 "99 mcc_generated_files/tmr1.h
 [v _TMR1_Initialize `(v ~T0 @X0 0 ef ]
+"99 mcc_generated_files/tmr0.h
+[v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
 "117 mcc_generated_files/ecan.h
 [v _ECAN_Initialize `(v ~T0 @X0 0 ef ]
 "36246 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
@@ -13706,26 +13708,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
 [; ;interrupt_manager.h: 122: void INTERRUPT_Initialize (void);
-[; ;tmr1.h: 99: void TMR1_Initialize(void);
-[; ;tmr1.h: 128: void TMR1_StartTimer(void);
-[; ;tmr1.h: 160: void TMR1_StopTimer(void);
-[; ;tmr1.h: 195: uint16_t TMR1_ReadTimer(void);
-[; ;tmr1.h: 234: void TMR1_WriteTimer(uint16_t timerVal);
-[; ;tmr1.h: 270: void TMR1_Reload(void);
-[; ;tmr1.h: 309: void TMR1_StartSinglePulseAcquisition(void);
-[; ;tmr1.h: 348: uint8_t TMR1_CheckGateValueStatus(void);
-[; ;tmr1.h: 366: void TMR1_ISR(void);
-[; ;tmr1.h: 384: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr1.h: 402: extern void (*TMR1_InterruptHandler)(void);
-[; ;tmr1.h: 420: void TMR1_DefaultInterruptHandler(void);
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;stddef.h: 6: typedef int ptrdiff_t;
-[; ;spi.h: 116: void SPI_Initialize(void);
-[; ;spi.h: 151: uint8_t SPI_Exchange8bit(uint8_t data);
-[; ;spi.h: 191: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-[; ;spi.h: 214: bool SPI_IsBufferFull(void);
-[; ;spi.h: 239: bool SPI_HasWriteCollisionOccured(void);
-[; ;spi.h: 263: void SPI_ClearWriteCollisionStatus(void);
 [; ;ecan.h: 67: typedef union {
 [; ;ecan.h: 69: struct {
 [; ;ecan.h: 70: unsigned char idType;
@@ -13750,8 +13732,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ecan.h: 230: unsigned char CAN_isBusOff(void);
 [; ;ecan.h: 254: unsigned char CAN_isRXErrorPassive(void);
 [; ;ecan.h: 278: unsigned char CAN_isTXErrorPassive(void);
-[; ;mcc.h: 71: void SYSTEM_Initialize(void);
-[; ;mcc.h: 84: void OSCILLATOR_Initialize(void);
+[; ;tmr1.h: 99: void TMR1_Initialize(void);
+[; ;tmr1.h: 128: void TMR1_StartTimer(void);
+[; ;tmr1.h: 160: void TMR1_StopTimer(void);
+[; ;tmr1.h: 195: uint16_t TMR1_ReadTimer(void);
+[; ;tmr1.h: 234: void TMR1_WriteTimer(uint16_t timerVal);
+[; ;tmr1.h: 270: void TMR1_Reload(void);
+[; ;tmr1.h: 309: void TMR1_StartSinglePulseAcquisition(void);
+[; ;tmr1.h: 348: uint8_t TMR1_CheckGateValueStatus(void);
+[; ;tmr1.h: 366: void TMR1_ISR(void);
+[; ;tmr1.h: 384: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr1.h: 402: extern void (*TMR1_InterruptHandler)(void);
+[; ;tmr1.h: 420: void TMR1_DefaultInterruptHandler(void);
+[; ;tmr0.h: 99: void TMR0_Initialize(void);
+[; ;tmr0.h: 128: void TMR0_StartTimer(void);
+[; ;tmr0.h: 160: void TMR0_StopTimer(void);
+[; ;tmr0.h: 196: uint16_t TMR0_ReadTimer(void);
+[; ;tmr0.h: 235: void TMR0_WriteTimer(uint16_t timerVal);
+[; ;tmr0.h: 271: void TMR0_Reload(void);
+[; ;tmr0.h: 289: void TMR0_ISR(void);
+[; ;tmr0.h: 308: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr0.h: 326: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 344: void TMR0_DefaultInterruptHandler(void);
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stddef.h: 6: typedef int ptrdiff_t;
+[; ;spi.h: 116: void SPI_Initialize(void);
+[; ;spi.h: 151: uint8_t SPI_Exchange8bit(uint8_t data);
+[; ;spi.h: 191: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+[; ;spi.h: 214: bool SPI_IsBufferFull(void);
+[; ;spi.h: 239: bool SPI_HasWriteCollisionOccured(void);
+[; ;spi.h: 263: void SPI_ClearWriteCollisionStatus(void);
+[; ;mcc.h: 72: void SYSTEM_Initialize(void);
+[; ;mcc.h: 85: void OSCILLATOR_Initialize(void);
 "111 mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
 "112
@@ -13775,34 +13787,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 118: TMR1_Initialize();
 "118
 [e ( _TMR1_Initialize ..  ]
-[; ;mcc.c: 119: ECAN_Initialize();
+[; ;mcc.c: 119: TMR0_Initialize();
 "119
-[e ( _ECAN_Initialize ..  ]
-[; ;mcc.c: 120: }
+[e ( _TMR0_Initialize ..  ]
+[; ;mcc.c: 120: ECAN_Initialize();
 "120
+[e ( _ECAN_Initialize ..  ]
+[; ;mcc.c: 121: }
+"121
 [e :UE 1539 ]
 }
-"122
-[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
 "123
+[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
+"124
 {
-[; ;mcc.c: 122: void OSCILLATOR_Initialize(void)
-[; ;mcc.c: 123: {
+[; ;mcc.c: 123: void OSCILLATOR_Initialize(void)
+[; ;mcc.c: 124: {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-[; ;mcc.c: 125: OSCCON = 0x60;
-"125
+[; ;mcc.c: 126: OSCCON = 0x60;
+"126
 [e = _OSCCON -> -> 96 `i `uc ]
-[; ;mcc.c: 127: OSCCON2 = 0x00;
-"127
+[; ;mcc.c: 128: OSCCON2 = 0x00;
+"128
 [e = _OSCCON2 -> -> 0 `i `uc ]
-[; ;mcc.c: 129: OSCTUNE = 0x00;
-"129
+[; ;mcc.c: 130: OSCTUNE = 0x00;
+"130
 [e = _OSCTUNE -> -> 0 `i `uc ]
-[; ;mcc.c: 131: REFOCON = 0x00;
-"131
-[e = _REFOCON -> -> 0 `i `uc ]
-[; ;mcc.c: 132: }
+[; ;mcc.c: 132: REFOCON = 0x00;
 "132
+[e = _REFOCON -> -> 0 `i `uc ]
+[; ;mcc.c: 133: }
+"133
 [e :UE 1540 ]
 }

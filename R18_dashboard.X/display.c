@@ -38,7 +38,7 @@ void display_labels() {
     cmd_text(X_START, y_start += NEWLINE, SMALl_FONT_SIZE, 0, "OIL");
     cmd_text(X_START, y_start += SPACING, SMALl_FONT_SIZE, 0, "TEMP");
     cmd_text(X_START, y_start += NEWLINE, SMALl_FONT_SIZE, 0, "FUEL");
-    cmd_text(X_START, y_start += SPACING, SMALl_FONT_SIZE, 0, "USED");
+    cmd_text(X_START, y_start += SPACING, SMALl_FONT_SIZE, 0, "PRESS");
     cmd_text(X_START, y_start += NEWLINE, SMALl_FONT_SIZE, 0, "BATT");
     cmd_text(X_START, y_start += SPACING, SMALl_FONT_SIZE, 0, "VOLTS");
     cmd_text(X_START, y_start += NEWLINE, SMALl_FONT_SIZE, 0, "OIL");
@@ -66,7 +66,7 @@ void display_message(char* message) {
     cmd(VERTEX2II(350, 215, 0, 0));
     cmd(VERTEX2II(134, 230, 0, 0));
     cmd(COLOR_RGB(255, 255, 255));
-    cmd_text(240, 222, 28, OPT_CENTER, "R18 ");
+    cmd_text(240, 222, 28, OPT_CENTER, message);
 }
 
 void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap) {
@@ -91,11 +91,11 @@ void display_laptime(int current_int, int current_dec, int best_int, int best_de
     //lap time labels
     cmd(COLOR_RGB(255, 125, 0));
     cmd_text(5, 207, 27, 0, "LAST");
-    cmd_number(66, 217, 27, OPT_CENTER, lap-1);
+    cmd_number(66, 217, 27, OPT_CENTER, lap);
     cmd_text(448, 207, 27, OPT_RIGHTX, "BEST");
     cmd_number(475, 207, 27, OPT_RIGHTX, best_lap);
     cmd_text(240, 165, 27, OPT_CENTER, "LAP");
-    cmd_number(240, 190, 29, OPT_CENTER, lap);
+    cmd_number(240, 190, 29, OPT_CENTER, lap+1);
 
     // last lap time
     cmd(COLOR_RGB(255, 255, 255));
@@ -126,9 +126,7 @@ void display_oilTemp(int temp) {
 }
 
 void display_fuel(int level) {
-    cmd_number(66, 89, 28, 0, 3);
-    cmd_text(78, 90, 28, 0, ".");
-    cmd_number(83, 89, 28, 0, 3);
+    cmd_number(66, 89, 28, 0, level);
 }
 
 void display_battery(int volts) {
@@ -137,7 +135,7 @@ void display_battery(int volts) {
     cmd_number(96, 130, 28, 0, volts%10);
 }
 
-void display_oilPress(float pressure) {
+void display_oilPress(int pressure) {
     cmd_number(66, 171, 28, 0, pressure);
 }
 

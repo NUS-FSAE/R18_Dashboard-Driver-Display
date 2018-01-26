@@ -17975,66 +17975,6 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
-# 99 "mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-
-# 128
-void TMR1_StartTimer(void);
-
-# 160
-void TMR1_StopTimer(void);
-
-# 195
-uint16_t TMR1_ReadTimer(void);
-
-# 234
-void TMR1_WriteTimer(uint16_t timerVal);
-
-# 270
-void TMR1_Reload(void);
-
-# 309
-void TMR1_StartSinglePulseAcquisition(void);
-
-# 348
-uint8_t TMR1_CheckGateValueStatus(void);
-
-# 366
-void TMR1_ISR(void);
-
-# 384
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 402
-extern void (*TMR1_InterruptHandler)(void);
-
-# 420
-void TMR1_DefaultInterruptHandler(void);
-
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\__size_t.h"
-typedef unsigned size_t;
-
-# 6 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\stddef.h"
-typedef int ptrdiff_t;
-
-# 116 "mcc_generated_files/spi.h"
-void SPI_Initialize(void);
-
-# 151
-uint8_t SPI_Exchange8bit(uint8_t data);
-
-# 191
-uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-
-# 214
-bool SPI_IsBufferFull(void);
-
-# 239
-bool SPI_HasWriteCollisionOccured(void);
-
-# 263
-void SPI_ClearWriteCollisionStatus(void);
-
 # 67 "mcc_generated_files/ecan.h"
 typedef union {
 
@@ -18078,10 +18018,100 @@ unsigned char CAN_isRXErrorPassive(void);
 # 278
 unsigned char CAN_isTXErrorPassive(void);
 
-# 71 "mcc_generated_files/mcc.h"
+# 99 "mcc_generated_files/tmr1.h"
+void TMR1_Initialize(void);
+
+# 128
+void TMR1_StartTimer(void);
+
+# 160
+void TMR1_StopTimer(void);
+
+# 195
+uint16_t TMR1_ReadTimer(void);
+
+# 234
+void TMR1_WriteTimer(uint16_t timerVal);
+
+# 270
+void TMR1_Reload(void);
+
+# 309
+void TMR1_StartSinglePulseAcquisition(void);
+
+# 348
+uint8_t TMR1_CheckGateValueStatus(void);
+
+# 366
+void TMR1_ISR(void);
+
+# 384
+void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 402
+extern void (*TMR1_InterruptHandler)(void);
+
+# 420
+void TMR1_DefaultInterruptHandler(void);
+
+# 99 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 128
+void TMR0_StartTimer(void);
+
+# 160
+void TMR0_StopTimer(void);
+
+# 196
+uint16_t TMR0_ReadTimer(void);
+
+# 235
+void TMR0_WriteTimer(uint16_t timerVal);
+
+# 271
+void TMR0_Reload(void);
+
+# 289
+void TMR0_ISR(void);
+
+# 308
+void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 326
+extern void (*TMR0_InterruptHandler)(void);
+
+# 344
+void TMR0_DefaultInterruptHandler(void);
+
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\__size_t.h"
+typedef unsigned size_t;
+
+# 6 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\stddef.h"
+typedef int ptrdiff_t;
+
+# 116 "mcc_generated_files/spi.h"
+void SPI_Initialize(void);
+
+# 151
+uint8_t SPI_Exchange8bit(uint8_t data);
+
+# 191
+uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+
+# 214
+bool SPI_IsBufferFull(void);
+
+# 239
+bool SPI_HasWriteCollisionOccured(void);
+
+# 263
+void SPI_ClearWriteCollisionStatus(void);
+
+# 72 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 84
+# 85
 void OSCILLATOR_Initialize(void);
 
 # 21 "FT800.h"

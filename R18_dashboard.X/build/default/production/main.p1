@@ -9,11 +9,55 @@ Version 3.2 HI-TECH Software Intermediate Code
 "164 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18.h
 [v __delay `JF15059 ~T0 @X0 0 e ]
 [p i __delay ]
+"30496 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
+[s S1156 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1156 . LATA0 LATA1 LATA2 LATA3 . LATA5 LATA6 LATA7 ]
+"30506
+[s S1157 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1157 . LA0 LA1 LA2 LA3 . LA5 LA6 LA7 ]
+"30495
+[u S1155 `S1156 1 `S1157 1 ]
+[n S1155 . . . ]
+"30517
+[v _LATAbits `VS1155 ~T0 @X0 0 e@3977 ]
+"29999
+[s S1133 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1133 . RA0 RA1 RA2 RA3 . RA5 RA6 RA7 ]
+"30009
+[s S1134 :1 `uc 1 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1134 . ULPWUIN . LVDIN . RJPU ]
+"29998
+[u S1132 `S1133 1 `S1134 1 ]
+[n S1132 . . . ]
+"30017
+[v _PORTAbits `VS1132 ~T0 @X0 0 e@3968 ]
+"30822
+[s S1165 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1165 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"30832
+[s S1166 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1166 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"30821
+[u S1164 `S1165 1 `S1166 1 ]
+[n S1164 . . . ]
+"30843
+[v _LATDbits `VS1164 ~T0 @X0 0 e@3980 ]
+"30235
+[s S1143 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1143 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"30245
+[s S1144 :7 `uc 1 :1 `uc 1 ]
+[n S1144 . . SS2 ]
+"30234
+[u S1142 `S1143 1 `S1144 1 ]
+[n S1142 . . . ]
+"30250
+[v _PORTDbits `VS1142 ~T0 @X0 0 e@3971 ]
 [p mainexit ]
-"19 main.c
+"21 main.c
 [s S1540 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 ]
 [n S1540 . current current_number current_int current_dec last last_int last_dec best best_number best_int best_dec ]
-"71 mcc_generated_files/mcc.h
+"72 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "29260 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
 [s S1092 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -129,32 +173,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1372 . . . ]
 "35223
 [v _SSPCON1bits `VS1372 ~T0 @X0 0 e@4038 ]
-[v F15222 `(v ~T0 @X0 1 tf ]
+[v F15245 `(v ~T0 @X0 1 tf ]
 "314 FT800.h
-[v _FT800_Init `TF15222 ~T0 @X0 0 e ]
-"30496 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
-[s S1156 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1156 . LATA0 LATA1 LATA2 LATA3 . LATA5 LATA6 LATA7 ]
-"30506
-[s S1157 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1157 . LA0 LA1 LA2 LA3 . LA5 LA6 LA7 ]
-"30495
-[u S1155 `S1156 1 `S1157 1 ]
-[n S1155 . . . ]
-"30517
-[v _LATAbits `VS1155 ~T0 @X0 0 e@3977 ]
-"30822
-[s S1165 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1165 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
-"30832
-[s S1166 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1166 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
-"30821
-[u S1164 `S1165 1 `S1166 1 ]
-[n S1164 . . . ]
-"30843
-[v _LATDbits `VS1164 ~T0 @X0 0 e@3980 ]
-"30598
+[v _FT800_Init `TF15245 ~T0 @X0 0 e ]
+"30598 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
 [s S1159 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1159 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
 "30608
@@ -167,9 +189,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATBbits `VS1158 ~T0 @X0 0 e@3978 ]
 "23 display.h
 [v _display `(v ~T0 @X0 0 ef9`i`i`i`i`i`i`i`i`i ]
-[v F15118 `(v ~T0 @X0 0 tf ]
+[v F15150 `(v ~T0 @X0 0 tf ]
 "384 mcc_generated_files/tmr1.h
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F15118 ]
+[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F15150 ]
+[v F15173 `(v ~T0 @X0 0 tf ]
+"308 mcc_generated_files/tmr0.h
+[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F15173 ]
+"160
+[v _TMR0_StopTimer `(v ~T0 @X0 0 ef ]
 "37208 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
 [s S1503 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1503 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
@@ -199,7 +226,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "30
 [v _display_battery `(v ~T0 @X0 0 ef1`i ]
 "31
-[v _display_oilPress `(v ~T0 @X0 0 ef1`f ]
+[v _display_oilPress `(v ~T0 @X0 0 ef1`i ]
 "26
 [v _display_gear `(v ~T0 @X0 0 ef1`i ]
 "32
@@ -214,6 +241,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _display_message `(v ~T0 @X0 0 ef1`*uc ]
 "33
 [v _display_end `(v ~T0 @X0 0 ef ]
+"128 mcc_generated_files/tmr0.h
+[v _TMR0_StartTimer `(v ~T0 @X0 0 ef ]
 "270 mcc_generated_files/tmr1.h
 [v _TMR1_Reload `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
@@ -13829,26 +13858,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
 [; ;interrupt_manager.h: 122: void INTERRUPT_Initialize (void);
-[; ;tmr1.h: 99: void TMR1_Initialize(void);
-[; ;tmr1.h: 128: void TMR1_StartTimer(void);
-[; ;tmr1.h: 160: void TMR1_StopTimer(void);
-[; ;tmr1.h: 195: uint16_t TMR1_ReadTimer(void);
-[; ;tmr1.h: 234: void TMR1_WriteTimer(uint16_t timerVal);
-[; ;tmr1.h: 270: void TMR1_Reload(void);
-[; ;tmr1.h: 309: void TMR1_StartSinglePulseAcquisition(void);
-[; ;tmr1.h: 348: uint8_t TMR1_CheckGateValueStatus(void);
-[; ;tmr1.h: 366: void TMR1_ISR(void);
-[; ;tmr1.h: 384: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr1.h: 402: extern void (*TMR1_InterruptHandler)(void);
-[; ;tmr1.h: 420: void TMR1_DefaultInterruptHandler(void);
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;stddef.h: 6: typedef int ptrdiff_t;
-[; ;spi.h: 116: void SPI_Initialize(void);
-[; ;spi.h: 151: uint8_t SPI_Exchange8bit(uint8_t data);
-[; ;spi.h: 191: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-[; ;spi.h: 214: bool SPI_IsBufferFull(void);
-[; ;spi.h: 239: bool SPI_HasWriteCollisionOccured(void);
-[; ;spi.h: 263: void SPI_ClearWriteCollisionStatus(void);
 [; ;ecan.h: 67: typedef union {
 [; ;ecan.h: 69: struct {
 [; ;ecan.h: 70: unsigned char idType;
@@ -13873,8 +13882,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ecan.h: 230: unsigned char CAN_isBusOff(void);
 [; ;ecan.h: 254: unsigned char CAN_isRXErrorPassive(void);
 [; ;ecan.h: 278: unsigned char CAN_isTXErrorPassive(void);
-[; ;mcc.h: 71: void SYSTEM_Initialize(void);
-[; ;mcc.h: 84: void OSCILLATOR_Initialize(void);
+[; ;tmr1.h: 99: void TMR1_Initialize(void);
+[; ;tmr1.h: 128: void TMR1_StartTimer(void);
+[; ;tmr1.h: 160: void TMR1_StopTimer(void);
+[; ;tmr1.h: 195: uint16_t TMR1_ReadTimer(void);
+[; ;tmr1.h: 234: void TMR1_WriteTimer(uint16_t timerVal);
+[; ;tmr1.h: 270: void TMR1_Reload(void);
+[; ;tmr1.h: 309: void TMR1_StartSinglePulseAcquisition(void);
+[; ;tmr1.h: 348: uint8_t TMR1_CheckGateValueStatus(void);
+[; ;tmr1.h: 366: void TMR1_ISR(void);
+[; ;tmr1.h: 384: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr1.h: 402: extern void (*TMR1_InterruptHandler)(void);
+[; ;tmr1.h: 420: void TMR1_DefaultInterruptHandler(void);
+[; ;tmr0.h: 99: void TMR0_Initialize(void);
+[; ;tmr0.h: 128: void TMR0_StartTimer(void);
+[; ;tmr0.h: 160: void TMR0_StopTimer(void);
+[; ;tmr0.h: 196: uint16_t TMR0_ReadTimer(void);
+[; ;tmr0.h: 235: void TMR0_WriteTimer(uint16_t timerVal);
+[; ;tmr0.h: 271: void TMR0_Reload(void);
+[; ;tmr0.h: 289: void TMR0_ISR(void);
+[; ;tmr0.h: 308: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr0.h: 326: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 344: void TMR0_DefaultInterruptHandler(void);
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stddef.h: 6: typedef int ptrdiff_t;
+[; ;spi.h: 116: void SPI_Initialize(void);
+[; ;spi.h: 151: uint8_t SPI_Exchange8bit(uint8_t data);
+[; ;spi.h: 191: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+[; ;spi.h: 214: bool SPI_IsBufferFull(void);
+[; ;spi.h: 239: bool SPI_HasWriteCollisionOccured(void);
+[; ;spi.h: 263: void SPI_ClearWriteCollisionStatus(void);
+[; ;mcc.h: 72: void SYSTEM_Initialize(void);
+[; ;mcc.h: 85: void OSCILLATOR_Initialize(void);
 [; ;FT_DataTypes.h: 8: typedef unsigned char ft_uint8_t;
 [; ;FT_DataTypes.h: 9: typedef char ft_char8_t;
 [; ;FT_DataTypes.h: 10: typedef signed char ft_schar8_t;
@@ -13916,62 +13955,84 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display.h: 28: void display_oilTemp(int temp);
 [; ;display.h: 29: void display_fuel(int level);
 [; ;display.h: 30: void display_battery(int volts);
-[; ;display.h: 31: void display_oilPress(float pressure);
+[; ;display.h: 31: void display_oilPress(int pressure);
 [; ;display.h: 32: void display_rpm(int rpm);
 [; ;display.h: 33: void display_end();
 [; ;display.h: 34: void display_speed(int speed);
 [; ;display.h: 35: void display_tp(int tp);
 [; ;display.h: 36: void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
 [; ;display.h: 37: void display_message(char* message);
-"16 main.c
+"17 main.c
 [v _canMessage `S1537 ~T0 @X0 1 e ]
-[; ;main.c: 16: uCAN_MSG canMessage;
-"17
+[; ;main.c: 17: uCAN_MSG canMessage;
+"18
 [v _refresh_screen `uc ~T0 @X0 1 e ]
 [i _refresh_screen
 -> -> 0 `i `uc
 ]
-[; ;main.c: 17: bool refresh_screen = 0;
-[; ;main.c: 19: typedef struct {
-[; ;main.c: 20: int current, current_number, current_int, current_dec, last, last_int, last_dec, best, best_number, best_int, best_dec;
-[; ;main.c: 21: } Lap_time;
-"23
+[; ;main.c: 18: bool refresh_screen = 0;
+"19
+[v _up_blink `uc ~T0 @X0 1 e ]
+[i _up_blink
+-> -> 0 `i `uc
+]
+[; ;main.c: 19: bool up_blink = 0;
+[; ;main.c: 21: typedef struct {
+[; ;main.c: 22: int current, current_number, current_int, current_dec, last, last_int, last_dec, best, best_number, best_int, best_dec;
+[; ;main.c: 23: } Lap_time;
+"25
 [v _wait2secs `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 23: void wait2secs(){
+[; ;main.c: 25: void wait2secs(){
 [e :U _wait2secs ]
 [f ]
-[; ;main.c: 24: _delay((unsigned long)((2000)*(64000000/4000.0)));
-"24
+[; ;main.c: 26: _delay((unsigned long)((2000)*(64000000/4000.0)));
+"26
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[; ;main.c: 25: }
-"25
+[; ;main.c: 27: }
+"27
 [e :UE 1541 ]
 }
-"27
+"29
 [v _refresh `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 27: void refresh() {
+[; ;main.c: 29: void refresh() {
 [e :U _refresh ]
 [f ]
-[; ;main.c: 28: refresh_screen = 1;
-"28
+[; ;main.c: 30: refresh_screen = 1;
+"30
 [e = _refresh_screen -> -> 1 `i `uc ]
-[; ;main.c: 29: }
-"29
+[; ;main.c: 31: }
+"31
 [e :UE 1542 ]
 }
+"33
+[v _LED_blink `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 33: void LED_blink() {
+[e :U _LED_blink ]
+[f ]
+[; ;main.c: 34: LATAbits.LATA1 = !PORTAbits.RA1;
+"34
+[e = . . _LATAbits 0 1 -> -> ! != -> . . _PORTAbits 0 1 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[; ;main.c: 35: LATDbits.LATD4 = !PORTDbits.RD4;
+"35
+[e = . . _LATDbits 0 4 -> -> ! != -> . . _PORTDbits 0 4 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[; ;main.c: 36: }
+"36
+[e :UE 1543 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"31
+"38
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 31: void main(void) {
+[; ;main.c: 38: void main(void) {
 [e :U _main ]
 [f ]
-"32
+"39
 [v _lap_time `S1540 ~T0 @X0 1 a ]
-[v F15287 `S1540 ~T0 @X0 1 s ]
-[i F15287
+[v F15312 `S1540 ~T0 @X0 1 s ]
+[i F15312
 :U ..
 :U ..
 -> 0 `i
@@ -13988,11 +14049,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 32: Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
-[e = _lap_time F15287 ]
-"33
+[; ;main.c: 39: Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
+[e = _lap_time F15312 ]
+"40
+[v _timer_started `uc ~T0 @X0 1 a ]
+[; ;main.c: 40: bool timer_started = 0;
+[e = _timer_started -> -> 0 `i `uc ]
+"41
+[v _message `*uc ~T0 @X0 1 a ]
+"42
 [v _rpm `i ~T0 @X0 1 a ]
-[; ;main.c: 33: int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
+[; ;main.c: 41: char* message;
+[; ;main.c: 42: int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
 [e = _rpm -> 0 `i ]
 [v _oilP `i ~T0 @X0 1 a ]
 [e = _oilP -> 0 `i ]
@@ -14010,367 +14078,415 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _oilTemp -> 0 `i ]
 [v _battVolts `i ~T0 @X0 1 a ]
 [e = _battVolts -> 0 `i ]
-[; ;main.c: 34: wait2secs();
-"34
-[e ( _wait2secs ..  ]
-[; ;main.c: 37: SYSTEM_Initialize();
-"37
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 40: CIOCONbits.CLKSEL = 1;
-"40
-[e = . . _CIOCONbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 41: CIOCONbits.ENDRHI = 1;
-"41
-[e = . . _CIOCONbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 42: CIOCONbits.TX2SRC = 0;
-"42
-[e = . . _CIOCONbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 43: CIOCONbits.TX2EN = 1;
+[; ;main.c: 43: wait2secs();
 "43
-[e = . . _CIOCONbits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 44: RXB0CONbits.RXM0 = 1;
-"44
-[e = . . _RXB0CONbits 2 5 -> -> 1 `i `uc ]
-[; ;main.c: 45: RXB0CONbits.RXM1 = 0;
-"45
-[e = . . _RXB0CONbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 46: RXB0CONbits.RB0DBEN = 0;
-"46
-[e = . . _RXB0CONbits 1 2 -> -> 0 `i `uc ]
-[; ;main.c: 47: PIE5bits.RXB0IE = 0;
-"47
-[e = . . _PIE5bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 48: PIE5bits.RXB1IE = 0;
-"48
-[e = . . _PIE5bits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 49: PIR5bits.ERRIF = 0;
-"49
-[e = . . _PIR5bits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 50: PIR5bits.WAKIF = 0;
-"50
-[e = . . _PIR5bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 58: RXF2SIDH = 0xC8;
-"58
-[e = _RXF2SIDH -> -> 200 `i `uc ]
-[; ;main.c: 59: RXF2SIDL = 0x40;
-"59
-[e = _RXF2SIDL -> -> 64 `i `uc ]
-[; ;main.c: 60: RXM0SIDH = 0xFF;
-"60
-[e = _RXM0SIDH -> -> 255 `i `uc ]
-[; ;main.c: 61: RXM0SIDL = 0b11011111;
-"61
-[e = _RXM0SIDL -> -> 223 `i `uc ]
-[; ;main.c: 62: RXM1SIDH = 0xFF;
-"62
-[e = _RXM1SIDH -> -> 255 `i `uc ]
-[; ;main.c: 63: RXM1SIDL = 0x11011111;
-"63
-[e = _RXM1SIDL -> -> 285282577 `l `uc ]
-[; ;main.c: 66: SSPSTATbits.SMP = 0;
-"66
-[e = . . _SSPSTATbits 2 7 -> -> 0 `i `uc ]
-[; ;main.c: 67: SSPSTATbits.CKE = 1;
-"67
-[e = . . _SSPSTATbits 2 6 -> -> 1 `i `uc ]
-[; ;main.c: 68: SSPCON1bits.SSPEN = 1;
-"68
-[e = . . _SSPCON1bits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 69: SSPCON1bits.CKP = 1;
-"69
-[e = . . _SSPCON1bits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 70: SSPCON1bits.SSPM = 0b0010;
-"70
-[e = . . _SSPCON1bits 0 0 -> -> 2 `i `uc ]
-[; ;main.c: 71: FT800_Init();
-"71
-[e ( _FT800_Init ..  ]
-[; ;main.c: 73: wait2secs();
-"73
 [e ( _wait2secs ..  ]
-[; ;main.c: 74: SSPCON1bits.SSPM = 0b0001;
-"74
-[e = . . _SSPCON1bits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 76: do { LATAbits.LATA1 = 0; } while(0);
+[; ;main.c: 46: SYSTEM_Initialize();
+"46
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 49: CIOCONbits.CLKSEL = 1;
+"49
+[e = . . _CIOCONbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 50: CIOCONbits.ENDRHI = 1;
+"50
+[e = . . _CIOCONbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 51: CIOCONbits.TX2SRC = 0;
+"51
+[e = . . _CIOCONbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 52: CIOCONbits.TX2EN = 1;
+"52
+[e = . . _CIOCONbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 53: RXB0CONbits.RXM0 = 1;
+"53
+[e = . . _RXB0CONbits 2 5 -> -> 1 `i `uc ]
+[; ;main.c: 54: RXB0CONbits.RXM1 = 0;
+"54
+[e = . . _RXB0CONbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 55: RXB0CONbits.RB0DBEN = 0;
+"55
+[e = . . _RXB0CONbits 1 2 -> -> 0 `i `uc ]
+[; ;main.c: 56: PIE5bits.RXB0IE = 0;
+"56
+[e = . . _PIE5bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 57: PIE5bits.RXB1IE = 0;
+"57
+[e = . . _PIE5bits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 58: PIR5bits.ERRIF = 0;
+"58
+[e = . . _PIR5bits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 59: PIR5bits.WAKIF = 0;
+"59
+[e = . . _PIR5bits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 67: RXF2SIDH = 0xC8;
+"67
+[e = _RXF2SIDH -> -> 200 `i `uc ]
+[; ;main.c: 68: RXF2SIDL = 0x40;
+"68
+[e = _RXF2SIDL -> -> 64 `i `uc ]
+[; ;main.c: 69: RXM0SIDH = 0xFF;
+"69
+[e = _RXM0SIDH -> -> 255 `i `uc ]
+[; ;main.c: 70: RXM0SIDL = 0b11011111;
+"70
+[e = _RXM0SIDL -> -> 223 `i `uc ]
+[; ;main.c: 71: RXM1SIDH = 0xFF;
+"71
+[e = _RXM1SIDH -> -> 255 `i `uc ]
+[; ;main.c: 72: RXM1SIDL = 0x11011111;
+"72
+[e = _RXM1SIDL -> -> 285282577 `l `uc ]
+[; ;main.c: 75: SSPSTATbits.SMP = 0;
+"75
+[e = . . _SSPSTATbits 2 7 -> -> 0 `i `uc ]
+[; ;main.c: 76: SSPSTATbits.CKE = 1;
 "76
-[e :U 1546 ]
+[e = . . _SSPSTATbits 2 6 -> -> 1 `i `uc ]
+[; ;main.c: 77: SSPCON1bits.SSPEN = 1;
+"77
+[e = . . _SSPCON1bits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 78: SSPCON1bits.CKP = 1;
+"78
+[e = . . _SSPCON1bits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 79: SSPCON1bits.SSPM = 0b0010;
+"79
+[e = . . _SSPCON1bits 0 0 -> -> 2 `i `uc ]
+[; ;main.c: 80: FT800_Init();
+"80
+[e ( _FT800_Init ..  ]
+[; ;main.c: 82: wait2secs();
+"82
+[e ( _wait2secs ..  ]
+[; ;main.c: 83: SSPCON1bits.SSPM = 0b0001;
+"83
+[e = . . _SSPCON1bits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 85: do { LATAbits.LATA1 = 0; } while(0);
+"85
+[e :U 1547 ]
 {
 [e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 1545 ]
-[; ;main.c: 77: do { LATDbits.LATD4 = 0; } while(0);
-"77
-[e :U 1549 ]
+[e :U 1546 ]
+[; ;main.c: 86: do { LATDbits.LATD4 = 0; } while(0);
+"86
+[e :U 1550 ]
 {
 [e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 1548 ]
-[; ;main.c: 78: do { LATAbits.LATA0 = 0; } while(0);
-"78
-[e :U 1552 ]
+[e :U 1549 ]
+[; ;main.c: 87: do { LATAbits.LATA0 = 0; } while(0);
+"87
+[e :U 1553 ]
 {
 [e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 1551 ]
-[; ;main.c: 79: do { LATBbits.LATB5 = 1; } while(0);
-"79
-[e :U 1555 ]
+[e :U 1552 ]
+[; ;main.c: 88: do { LATBbits.LATB5 = 1; } while(0);
+"88
+[e :U 1556 ]
 {
 [e = . . _LATBbits 0 5 -> -> 1 `i `uc ]
 }
-[e :U 1554 ]
-[; ;main.c: 80: do { LATDbits.LATD5 = 0; } while(0);
-"80
-[e :U 1558 ]
+[e :U 1555 ]
+[; ;main.c: 89: do { LATDbits.LATD5 = 0; } while(0);
+"89
+[e :U 1559 ]
 {
 [e = . . _LATDbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 1557 ]
-[; ;main.c: 81: do { LATDbits.LATD3 = 1; } while(0);
-"81
-[e :U 1561 ]
+[e :U 1558 ]
+[; ;main.c: 90: do { LATDbits.LATD3 = 1; } while(0);
+"90
+[e :U 1562 ]
 {
 [e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
 }
-[e :U 1560 ]
-[; ;main.c: 83: display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
-"83
-[e ( _display (4 , , , , , , , , _rpm _oilP _fuelP _tp _speed _gear _engTemp _oilTemp _battVolts ]
-[; ;main.c: 85: TMR1_SetInterruptHandler(&refresh);
-"85
-[e ( _TMR1_SetInterruptHandler (1 &U _refresh ]
-[; ;main.c: 86: (INTCONbits.GIE = 1);
-"86
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 87: (INTCONbits.PEIE = 1);
-"87
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 89: while (1) {
-"89
-[e :U 1563 ]
-{
-[; ;main.c: 90: if (CAN_receive(&canMessage)) {
-"90
-[e $ ! != -> ( _CAN_receive (1 &U _canMessage `i -> -> -> 0 `i `uc `i 1565  ]
-{
-[; ;main.c: 91: if (canMessage.frame.id == 0x640) {
-"91
-[e $ ! == . . _canMessage 0 1 -> -> -> 1600 `i `l `ul 1566  ]
-{
-[; ;main.c: 92: rpm = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
+[e :U 1561 ]
+[; ;main.c: 92: display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
 "92
-[e = _rpm | << -> . . _canMessage 0 3 `i -> 8 `i -> . . _canMessage 0 4 `i ]
-[; ;main.c: 93: oilP = ((canMessage.frame.data2 << 8) | canMessage.frame.data3) / 10;
-"93
-[e = _oilP / | << -> . . _canMessage 0 5 `i -> 8 `i -> . . _canMessage 0 6 `i -> 10 `i ]
-[; ;main.c: 94: fuelP = ((canMessage.frame.data0 << 4) | canMessage.frame.data5);
+[e ( _display (4 , , , , , , , , _rpm _oilP _fuelP _tp _speed _gear _engTemp _oilTemp _battVolts ]
+[; ;main.c: 94: TMR1_SetInterruptHandler(&refresh);
 "94
-[e = _fuelP | << -> . . _canMessage 0 3 `i -> 4 `i -> . . _canMessage 0 8 `i ]
-[; ;main.c: 95: tp = canMessage.frame.data6;
+[e ( _TMR1_SetInterruptHandler (1 &U _refresh ]
+[; ;main.c: 95: TMR0_SetInterruptHandler(*LED_blink);
 "95
-[e = _tp -> . . _canMessage 0 9 `i ]
-[; ;main.c: 96: speed = canMessage.frame.data7;
+[e ( _TMR0_SetInterruptHandler (1 &U *U &U _LED_blink ]
+[; ;main.c: 96: TMR0_StopTimer();
 "96
-[e = _speed -> . . _canMessage 0 10 `i ]
+[e ( _TMR0_StopTimer ..  ]
+[; ;main.c: 97: (INTCONbits.GIE = 1);
 "97
-}
-[; ;main.c: 97: } else if (canMessage.frame.id == 0x641) {
-[e $U 1567  ]
-[e :U 1566 ]
-[e $ ! == . . _canMessage 0 1 -> -> -> 1601 `i `l `ul 1568  ]
-{
-[; ;main.c: 98: gear = canMessage.frame.data6;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 98: (INTCONbits.PEIE = 1);
 "98
-[e = _gear -> . . _canMessage 0 9 `i ]
-"99
-}
-[; ;main.c: 99: } else if (canMessage.frame.id == 0x642) {
-[e $U 1569  ]
-[e :U 1568 ]
-[e $ ! == . . _canMessage 0 1 -> -> -> 1602 `i `l `ul 1570  ]
-{
-[; ;main.c: 100: engTemp = canMessage.frame.data0;
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 100: while (1) {
 "100
-[e = _engTemp -> . . _canMessage 0 3 `i ]
-[; ;main.c: 101: oilTemp = canMessage.frame.data1;
+[e :U 1564 ]
+{
+[; ;main.c: 101: if (CAN_receive(&canMessage)) {
 "101
-[e = _oilTemp -> . . _canMessage 0 4 `i ]
-[; ;main.c: 102: battVolts = canMessage.frame.data2;
+[e $ ! != -> ( _CAN_receive (1 &U _canMessage `i -> -> -> 0 `i `uc `i 1566  ]
+{
+[; ;main.c: 102: if (canMessage.frame.id == 0x640) {
 "102
-[e = _battVolts -> . . _canMessage 0 5 `i ]
+[e $ ! == . . _canMessage 0 1 -> -> -> 1600 `i `l `ul 1567  ]
+{
+[; ;main.c: 103: rpm = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
 "103
-}
-[; ;main.c: 103: } else if (canMessage.frame.id == 0x643) {
-[e $U 1571  ]
-[e :U 1570 ]
-[e $ ! == . . _canMessage 0 1 -> -> -> 1603 `i `l `ul 1572  ]
-{
+[e = _rpm | << -> . . _canMessage 0 3 `i -> 8 `i -> . . _canMessage 0 4 `i ]
+[; ;main.c: 104: oilP = ((canMessage.frame.data2 << 8) | canMessage.frame.data3) / 10;
+"104
+[e = _oilP / | << -> . . _canMessage 0 5 `i -> 8 `i -> . . _canMessage 0 6 `i -> 10 `i ]
+[; ;main.c: 105: fuelP = ((canMessage.frame.data4 << 8) | canMessage.frame.data5) / 10;
 "105
-}
-[; ;main.c: 105: } else if (canMessage.frame.id == 0x644) {
-[e $U 1573  ]
-[e :U 1572 ]
-[e $ ! == . . _canMessage 0 1 -> -> -> 1604 `i `l `ul 1574  ]
-{
-[; ;main.c: 106: lap_time.last = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
+[e = _fuelP / | << -> . . _canMessage 0 7 `i -> 8 `i -> . . _canMessage 0 8 `i -> 10 `i ]
+[; ;main.c: 106: tp = canMessage.frame.data6;
 "106
-[e = . _lap_time 4 | << -> . . _canMessage 0 3 `i -> 8 `i -> . . _canMessage 0 4 `i ]
-[; ;main.c: 107: lap_time.current = ((canMessage.frame.data2 << 8) | canMessage.frame.data3);
+[e = _tp -> . . _canMessage 0 9 `i ]
+[; ;main.c: 107: speed = canMessage.frame.data7;
 "107
-[e = . _lap_time 0 | << -> . . _canMessage 0 5 `i -> 8 `i -> . . _canMessage 0 6 `i ]
-[; ;main.c: 108: lap_time.current_number = ((canMessage.frame.data4 << 8) | canMessage.frame.data5);
+[e = _speed -> . . _canMessage 0 10 `i ]
 "108
-[e = . _lap_time 1 | << -> . . _canMessage 0 7 `i -> 8 `i -> . . _canMessage 0 8 `i ]
-[; ;main.c: 109: lap_time.last_int = lap_time.last/100;
-"109
-[e = . _lap_time 5 / . _lap_time 4 -> 100 `i ]
-[; ;main.c: 110: lap_time.last_dec = lap_time.last%100;
-"110
-[e = . _lap_time 6 % . _lap_time 4 -> 100 `i ]
-[; ;main.c: 111: lap_time.current_int = lap_time.current/100;
-"111
-[e = . _lap_time 2 / . _lap_time 0 -> 100 `i ]
-[; ;main.c: 112: lap_time.current_dec = lap_time.current%100;
-"112
-[e = . _lap_time 3 % . _lap_time 0 -> 100 `i ]
-[; ;main.c: 113: if(lap_time.current < lap_time.best) {
-"113
-[e $ ! < . _lap_time 0 . _lap_time 7 1575  ]
+}
+[; ;main.c: 108: } else if (canMessage.frame.id == 0x641) {
+[e $U 1568  ]
+[e :U 1567 ]
+[e $ ! == . . _canMessage 0 1 -> -> -> 1601 `i `l `ul 1569  ]
 {
-[; ;main.c: 114: lap_time.best = lap_time.current;
+[; ;main.c: 109: gear = canMessage.frame.data6;
+"109
+[e = _gear -> . . _canMessage 0 9 `i ]
+"110
+}
+[; ;main.c: 110: } else if (canMessage.frame.id == 0x642) {
+[e $U 1570  ]
+[e :U 1569 ]
+[e $ ! == . . _canMessage 0 1 -> -> -> 1602 `i `l `ul 1571  ]
+{
+[; ;main.c: 111: engTemp = canMessage.frame.data0;
+"111
+[e = _engTemp -> . . _canMessage 0 3 `i ]
+[; ;main.c: 112: oilTemp = canMessage.frame.data1;
+"112
+[e = _oilTemp -> . . _canMessage 0 4 `i ]
+[; ;main.c: 113: battVolts = canMessage.frame.data2;
+"113
+[e = _battVolts -> . . _canMessage 0 5 `i ]
 "114
-[e = . _lap_time 7 . _lap_time 0 ]
-[; ;main.c: 115: lap_time.best_int = lap_time.current_int;
+}
+[; ;main.c: 114: } else if (canMessage.frame.id == 0x643) {
+[e $U 1572  ]
+[e :U 1571 ]
+[e $ ! == . . _canMessage 0 1 -> -> -> 1603 `i `l `ul 1573  ]
+{
+[; ;main.c: 115: if(canMessage.frame.data0 >> 7) {
 "115
-[e = . _lap_time 9 . _lap_time 2 ]
-[; ;main.c: 116: lap_time.best_dec = lap_time.current_dec;
+[e $ ! != >> -> . . _canMessage 0 3 `i -> 7 `i -> 0 `i 1574  ]
+{
+[; ;main.c: 116: *message = "Radio ON";
 "116
-[e = . _lap_time 10 . _lap_time 3 ]
+[e = *U _message -> :s 1C `uc ]
 "117
 }
-[e :U 1575 ]
-"118
-}
+[; ;main.c: 117: } else if(canMessage.frame.data0 >> 6) {
+[e $U 1575  ]
 [e :U 1574 ]
-"119
-[e :U 1573 ]
-[e :U 1571 ]
-[e :U 1569 ]
-[e :U 1567 ]
-}
-[e :U 1565 ]
-[; ;main.c: 117: }
-[; ;main.c: 118: }
-[; ;main.c: 119: }
-[; ;main.c: 120: if(refresh_screen) {
-"120
-[e $ ! != -> _refresh_screen `i -> -> -> 0 `i `uc `i 1576  ]
+[e $ ! != >> -> . . _canMessage 0 3 `i -> 6 `i -> 0 `i 1576  ]
 {
-[; ;main.c: 121: display_start();
+[; ;main.c: 118: *message = "DRS & AutoShift ON";
+"118
+[e = *U _message -> :s 2C `uc ]
+"119
+}
+[; ;main.c: 119: } else {
+[e $U 1577  ]
+[e :U 1576 ]
+{
+[; ;main.c: 120: *message = "R18 ";
+"120
+[e = *U _message -> :s 3C `uc ]
 "121
-[e ( _display_start ..  ]
-[; ;main.c: 122: display_labels();
+}
+[e :U 1577 ]
+[e :U 1575 ]
+[; ;main.c: 121: }
+[; ;main.c: 122: LATAbits.LATA0 = canMessage.frame.data0 >> 5;
 "122
-[e ( _display_labels ..  ]
-[; ;main.c: 123: display_waterTemp(engTemp);
+[e = . . _LATAbits 0 0 -> >> -> . . _canMessage 0 3 `i -> 5 `i `uc ]
+[; ;main.c: 123: LATBbits.LATB5 = canMessage.frame.data0 >> 4;
 "123
-[e ( _display_waterTemp (1 _engTemp ]
-[; ;main.c: 124: display_oilTemp(oilTemp);
+[e = . . _LATBbits 0 5 -> >> -> . . _canMessage 0 3 `i -> 4 `i `uc ]
+[; ;main.c: 124: LATDbits.LATD3 = canMessage.frame.data0 >> 3;
 "124
-[e ( _display_oilTemp (1 _oilTemp ]
-[; ;main.c: 125: display_fuel(4.3);
+[e = . . _LATDbits 0 3 -> >> -> . . _canMessage 0 3 `i -> 3 `i `uc ]
+[; ;main.c: 125: LATDbits.LATD5 = canMessage.frame.data0 >> 2;
 "125
-[e ( _display_fuel (1 -> .4.3 `i ]
-[; ;main.c: 126: display_battery(battVolts);
-"126
-[e ( _display_battery (1 _battVolts ]
-[; ;main.c: 127: display_oilPress(oilP);
+[e = . . _LATDbits 0 5 -> >> -> . . _canMessage 0 3 `i -> 2 `i `uc ]
 "127
-[e ( _display_oilPress (1 -> _oilP `f ]
-[; ;main.c: 128: display_gear(gear);
+}
+[; ;main.c: 127: } else if (canMessage.frame.id == 0x644) {
+[e $U 1578  ]
+[e :U 1573 ]
+[e $ ! == . . _canMessage 0 1 -> -> -> 1604 `i `l `ul 1579  ]
+{
+[; ;main.c: 128: lap_time.last = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
 "128
-[e ( _display_gear (1 _gear ]
-[; ;main.c: 129: display_rpm(rpm);
+[e = . _lap_time 4 | << -> . . _canMessage 0 3 `i -> 8 `i -> . . _canMessage 0 4 `i ]
+[; ;main.c: 129: lap_time.current = ((canMessage.frame.data2 << 8) | canMessage.frame.data3);
 "129
-[e ( _display_rpm (1 _rpm ]
-[; ;main.c: 130: display_speed(speed);
+[e = . _lap_time 0 | << -> . . _canMessage 0 5 `i -> 8 `i -> . . _canMessage 0 6 `i ]
+[; ;main.c: 130: lap_time.current_number = ((canMessage.frame.data4 << 8) | canMessage.frame.data5);
 "130
-[e ( _display_speed (1 _speed ]
-[; ;main.c: 131: display_tp(tp);
+[e = . _lap_time 1 | << -> . . _canMessage 0 7 `i -> 8 `i -> . . _canMessage 0 8 `i ]
+[; ;main.c: 131: lap_time.last_int = lap_time.last/100;
 "131
-[e ( _display_tp (1 _tp ]
-[; ;main.c: 132: display_laptime(lap_time.current_int, lap_time.current_dec, lap_time.best_int, lap_time.best_dec,
-[; ;main.c: 133: lap_time.last_int, lap_time.last_dec, lap_time.current_number, lap_time.best_number);
+[e = . _lap_time 5 / . _lap_time 4 -> 100 `i ]
+[; ;main.c: 132: lap_time.last_dec = lap_time.last%100;
+"132
+[e = . _lap_time 6 % . _lap_time 4 -> 100 `i ]
+[; ;main.c: 133: lap_time.current_int = lap_time.current/100;
 "133
-[e ( _display_laptime (4 , , , , , , , . _lap_time 2 . _lap_time 3 . _lap_time 9 . _lap_time 10 . _lap_time 5 . _lap_time 6 . _lap_time 1 . _lap_time 8 ]
-[; ;main.c: 134: display_message("hello");
+[e = . _lap_time 2 / . _lap_time 0 -> 100 `i ]
+[; ;main.c: 134: lap_time.current_dec = lap_time.current%100;
 "134
-[e ( _display_message (1 -> :s 1C `*uc ]
-[; ;main.c: 135: display_end();
+[e = . _lap_time 3 % . _lap_time 0 -> 100 `i ]
+[; ;main.c: 135: if(lap_time.current < lap_time.best) {
 "135
-[e ( _display_end ..  ]
-[; ;main.c: 136: do { LATAbits.LATA1 = 0; } while(0);
+[e $ ! < . _lap_time 0 . _lap_time 7 1580  ]
+{
+[; ;main.c: 136: lap_time.best = lap_time.current;
 "136
+[e = . _lap_time 7 . _lap_time 0 ]
+[; ;main.c: 137: lap_time.best_int = lap_time.current_int;
+"137
+[e = . _lap_time 9 . _lap_time 2 ]
+[; ;main.c: 138: lap_time.best_dec = lap_time.current_dec;
+"138
+[e = . _lap_time 10 . _lap_time 3 ]
+"139
+}
+[e :U 1580 ]
+"140
+}
 [e :U 1579 ]
+"141
+[e :U 1578 ]
+[e :U 1572 ]
+[e :U 1570 ]
+[e :U 1568 ]
+}
+[e :U 1566 ]
+[; ;main.c: 139: }
+[; ;main.c: 140: }
+[; ;main.c: 141: }
+[; ;main.c: 142: if(refresh_screen) {
+"142
+[e $ ! != -> _refresh_screen `i -> -> -> 0 `i `uc `i 1581  ]
+{
+[; ;main.c: 143: display_start();
+"143
+[e ( _display_start ..  ]
+[; ;main.c: 144: display_labels();
+"144
+[e ( _display_labels ..  ]
+[; ;main.c: 145: display_waterTemp(engTemp);
+"145
+[e ( _display_waterTemp (1 _engTemp ]
+[; ;main.c: 146: display_oilTemp(oilTemp);
+"146
+[e ( _display_oilTemp (1 _oilTemp ]
+[; ;main.c: 147: display_fuel(4.3);
+"147
+[e ( _display_fuel (1 -> .4.3 `i ]
+[; ;main.c: 148: display_battery(battVolts);
+"148
+[e ( _display_battery (1 _battVolts ]
+[; ;main.c: 149: display_oilPress(oilP);
+"149
+[e ( _display_oilPress (1 _oilP ]
+[; ;main.c: 150: display_gear(gear);
+"150
+[e ( _display_gear (1 _gear ]
+[; ;main.c: 151: display_rpm(rpm);
+"151
+[e ( _display_rpm (1 _rpm ]
+[; ;main.c: 152: display_speed(speed);
+"152
+[e ( _display_speed (1 _speed ]
+[; ;main.c: 153: display_tp(tp);
+"153
+[e ( _display_tp (1 _tp ]
+[; ;main.c: 154: display_laptime(lap_time.current_int, lap_time.current_dec, lap_time.best_int, lap_time.best_dec,
+[; ;main.c: 155: lap_time.last_int, lap_time.last_dec, lap_time.current_number, lap_time.best_number);
+"155
+[e ( _display_laptime (4 , , , , , , , . _lap_time 2 . _lap_time 3 . _lap_time 9 . _lap_time 10 . _lap_time 5 . _lap_time 6 . _lap_time 1 . _lap_time 8 ]
+[; ;main.c: 156: display_message(message);
+"156
+[e ( _display_message (1 _message ]
+[; ;main.c: 157: display_end();
+"157
+[e ( _display_end ..  ]
+[; ;main.c: 158: if(rpm == 0 && !timer_started) {
+"158
+[e $ ! && == _rpm -> 0 `i ! != -> _timer_started `i -> -> -> 0 `i `uc `i 1582  ]
+{
+[; ;main.c: 159: TMR0_StartTimer();
+"159
+[e ( _TMR0_StartTimer ..  ]
+[; ;main.c: 160: timer_started = 1;
+"160
+[e = _timer_started -> -> 1 `i `uc ]
+"161
+}
+[; ;main.c: 161: } else {
+[e $U 1583  ]
+[e :U 1582 ]
+{
+[; ;main.c: 162: TMR0_StopTimer();
+"162
+[e ( _TMR0_StopTimer ..  ]
+[; ;main.c: 163: timer_started = 0;
+"163
+[e = _timer_started -> -> 0 `i `uc ]
+[; ;main.c: 164: do { LATAbits.LATA1 = 0; } while(0);
+"164
+[e :U 1586 ]
 {
 [e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 1578 ]
-[; ;main.c: 137: do { LATDbits.LATD4 = 0; } while(0);
-"137
-[e :U 1582 ]
+[e :U 1585 ]
+[; ;main.c: 165: do { LATDbits.LATD4 = 0; } while(0);
+"165
+[e :U 1589 ]
 {
 [e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 1581 ]
-[; ;main.c: 138: do { LATAbits.LATA0 = 0; } while(0);
-"138
-[e :U 1585 ]
-{
-[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
-}
-[e :U 1584 ]
-[; ;main.c: 139: do { LATBbits.LATB5 = 0; } while(0);
-"139
 [e :U 1588 ]
-{
-[e = . . _LATBbits 0 5 -> -> 0 `i `uc ]
+"166
 }
-[e :U 1587 ]
-[; ;main.c: 140: do { LATDbits.LATD5 = 0; } while(0);
-"140
-[e :U 1591 ]
-{
-[e = . . _LATDbits 0 5 -> -> 0 `i `uc ]
-}
-[e :U 1590 ]
-[; ;main.c: 141: do { LATDbits.LATD3 = 0; } while(0);
-"141
-[e :U 1594 ]
-{
-[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-}
-[e :U 1593 ]
-[; ;main.c: 142: refresh_screen = 0;
-"142
+[e :U 1583 ]
+[; ;main.c: 166: }
+[; ;main.c: 167: refresh_screen = 0;
+"167
 [e = _refresh_screen -> -> 0 `i `uc ]
-[; ;main.c: 143: TMR1_Reload();
-"143
+[; ;main.c: 168: TMR1_Reload();
+"168
 [e ( _TMR1_Reload ..  ]
-"144
+"169
 }
-[e :U 1576 ]
-"145
+[e :U 1581 ]
+"170
 }
-[e :U 1562 ]
-"89
-[e $U 1563  ]
-[e :U 1564 ]
-[; ;main.c: 144: }
-[; ;main.c: 145: }
-[; ;main.c: 146: }
-"146
-[e :UE 1543 ]
+[e :U 1563 ]
+"100
+[e $U 1564  ]
+[e :U 1565 ]
+[; ;main.c: 169: }
+[; ;main.c: 170: }
+[; ;main.c: 171: }
+"171
+[e :UE 1544 ]
 }
-[a 1C 104 101 108 108 111 0 ]
-
+[a 2C 68 82 83 32 38 32 65 117 116 111 83 104 105 102 116 32 79 78 0 ]
+[a 1C 82 97 100 105 111 32 79 78 0 ]
+[a 3C 82 49 56 32 0 ]
