@@ -1,29 +1,25 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"24 display.h
+"30 display.h
 [v _display_start `(v ~T0 @X0 0 ef ]
-"25
-[v _display_labels `(v ~T0 @X0 0 ef ]
-"27
-[v _display_waterTemp `(v ~T0 @X0 0 ef1`i ]
-"28
-[v _display_oilTemp `(v ~T0 @X0 0 ef1`i ]
-"29
-[v _display_fuel `(v ~T0 @X0 0 ef1`i ]
-"30
-[v _display_battery `(v ~T0 @X0 0 ef1`i ]
-"31
-[v _display_oilPress `(v ~T0 @X0 0 ef1`i ]
-"26
-[v _display_gear `(v ~T0 @X0 0 ef1`i ]
-"32
+"38
 [v _display_rpm `(v ~T0 @X0 0 ef1`i ]
-"34
+"44
+[v _display_bottom_section `(v ~T0 @X0 0 ef ]
+"31
+[v _display_labels `(v ~T0 @X0 0 ef ]
+"40
 [v _display_speed `(v ~T0 @X0 0 ef1`i ]
-"35
-[v _display_tp `(v ~T0 @X0 0 ef1`i ]
-"37
-[v _display_message `(v ~T0 @X0 0 ef1`*uc ]
 "33
+[v _display_waterTemp `(v ~T0 @X0 0 ef1`i ]
+"34
+[v _display_oilTemp `(v ~T0 @X0 0 ef1`i ]
+"32
+[v _display_gear `(v ~T0 @X0 0 ef1`i ]
+"36
+[v _display_battery `(v ~T0 @X0 0 ef1`i ]
+"41
+[v _display_tp `(v ~T0 @X0 0 ef1`i ]
+"39
 [v _display_end `(v ~T0 @X0 0 ef ]
 "39 FT800.h
 [v _cmd `(v ~T0 @X0 0 ef1`ul ]
@@ -13648,6 +13644,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
 [; ;interrupt_manager.h: 122: void INTERRUPT_Initialize (void);
+[; ;tmr0.h: 99: void TMR0_Initialize(void);
+[; ;tmr0.h: 128: void TMR0_StartTimer(void);
+[; ;tmr0.h: 160: void TMR0_StopTimer(void);
+[; ;tmr0.h: 196: uint16_t TMR0_ReadTimer(void);
+[; ;tmr0.h: 235: void TMR0_WriteTimer(uint16_t timerVal);
+[; ;tmr0.h: 271: void TMR0_Reload(void);
+[; ;tmr0.h: 289: void TMR0_ISR(void);
+[; ;tmr0.h: 308: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr0.h: 326: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 344: void TMR0_DefaultInterruptHandler(void);
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stddef.h: 6: typedef int ptrdiff_t;
+[; ;spi.h: 116: void SPI_Initialize(void);
+[; ;spi.h: 151: uint8_t SPI_Exchange8bit(uint8_t data);
+[; ;spi.h: 191: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+[; ;spi.h: 214: bool SPI_IsBufferFull(void);
+[; ;spi.h: 239: bool SPI_HasWriteCollisionOccured(void);
+[; ;spi.h: 263: void SPI_ClearWriteCollisionStatus(void);
 [; ;ecan.h: 67: typedef union {
 [; ;ecan.h: 69: struct {
 [; ;ecan.h: 70: unsigned char idType;
@@ -13672,36 +13686,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ecan.h: 230: unsigned char CAN_isBusOff(void);
 [; ;ecan.h: 254: unsigned char CAN_isRXErrorPassive(void);
 [; ;ecan.h: 278: unsigned char CAN_isTXErrorPassive(void);
-[; ;tmr1.h: 99: void TMR1_Initialize(void);
-[; ;tmr1.h: 128: void TMR1_StartTimer(void);
-[; ;tmr1.h: 160: void TMR1_StopTimer(void);
-[; ;tmr1.h: 195: uint16_t TMR1_ReadTimer(void);
-[; ;tmr1.h: 234: void TMR1_WriteTimer(uint16_t timerVal);
-[; ;tmr1.h: 270: void TMR1_Reload(void);
-[; ;tmr1.h: 309: void TMR1_StartSinglePulseAcquisition(void);
-[; ;tmr1.h: 348: uint8_t TMR1_CheckGateValueStatus(void);
-[; ;tmr1.h: 366: void TMR1_ISR(void);
-[; ;tmr1.h: 384: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr1.h: 402: extern void (*TMR1_InterruptHandler)(void);
-[; ;tmr1.h: 420: void TMR1_DefaultInterruptHandler(void);
-[; ;tmr0.h: 99: void TMR0_Initialize(void);
-[; ;tmr0.h: 128: void TMR0_StartTimer(void);
-[; ;tmr0.h: 160: void TMR0_StopTimer(void);
-[; ;tmr0.h: 196: uint16_t TMR0_ReadTimer(void);
-[; ;tmr0.h: 235: void TMR0_WriteTimer(uint16_t timerVal);
-[; ;tmr0.h: 271: void TMR0_Reload(void);
-[; ;tmr0.h: 289: void TMR0_ISR(void);
-[; ;tmr0.h: 308: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr0.h: 326: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 344: void TMR0_DefaultInterruptHandler(void);
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;stddef.h: 6: typedef int ptrdiff_t;
-[; ;spi.h: 116: void SPI_Initialize(void);
-[; ;spi.h: 151: uint8_t SPI_Exchange8bit(uint8_t data);
-[; ;spi.h: 191: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-[; ;spi.h: 214: bool SPI_IsBufferFull(void);
-[; ;spi.h: 239: bool SPI_HasWriteCollisionOccured(void);
-[; ;spi.h: 263: void SPI_ClearWriteCollisionStatus(void);
+[; ;tmr1.h: 100: void TMR1_Initialize(void);
+[; ;tmr1.h: 129: void TMR1_StartTimer(void);
+[; ;tmr1.h: 161: void TMR1_StopTimer(void);
+[; ;tmr1.h: 196: uint16_t TMR1_ReadTimer(void);
+[; ;tmr1.h: 235: void TMR1_WriteTimer(uint16_t timerVal);
+[; ;tmr1.h: 271: void TMR1_Reload(void);
+[; ;tmr1.h: 310: void TMR1_StartSinglePulseAcquisition(void);
+[; ;tmr1.h: 349: uint8_t TMR1_CheckGateValueStatus(void);
+[; ;tmr1.h: 367: void TMR1_ISR(void);
+[; ;tmr1.h: 384: void TMR1_CallBack(void);
+[; ;tmr1.h: 402: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr1.h: 420: extern void (*TMR1_InterruptHandler)(void);
+[; ;tmr1.h: 438: void TMR1_DefaultInterruptHandler(void);
 [; ;mcc.h: 72: void SYSTEM_Initialize(void);
 [; ;mcc.h: 85: void OSCILLATOR_Initialize(void);
 [; ;FT_DataTypes.h: 8: typedef unsigned char ft_uint8_t;
@@ -13737,21 +13734,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;FT800.h: 304: ft_uint8_t wr8s(unsigned short long addr, const ft_char8_t *s);
 [; ;FT800.h: 314: inline void FT800_Init();
 [; ;FT800.h: 318: void off_display();
-[; ;display.h: 23: void display(int rpm, int oilP, int fuelP, int tp, int speed, int gear, int engTemp, int oilTemp, int battVolts);
-[; ;display.h: 24: void display_start();
-[; ;display.h: 25: void display_labels();
-[; ;display.h: 26: void display_gear(int gear);
-[; ;display.h: 27: void display_waterTemp(int temp);
-[; ;display.h: 28: void display_oilTemp(int temp);
-[; ;display.h: 29: void display_fuel(int level);
-[; ;display.h: 30: void display_battery(int volts);
-[; ;display.h: 31: void display_oilPress(int pressure);
-[; ;display.h: 32: void display_rpm(int rpm);
-[; ;display.h: 33: void display_end();
-[; ;display.h: 34: void display_speed(int speed);
-[; ;display.h: 35: void display_tp(int tp);
-[; ;display.h: 36: void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
-[; ;display.h: 37: void display_message(char* message);
+[; ;display.h: 29: void display(int rpm, int oilP, int fuelP, int tp, int speed, int gear, int engTemp, int oilTemp, int battVolts);
+[; ;display.h: 30: void display_start();
+[; ;display.h: 31: void display_labels();
+[; ;display.h: 32: void display_gear(int gear);
+[; ;display.h: 33: void display_waterTemp(int temp);
+[; ;display.h: 34: void display_oilTemp(int temp);
+[; ;display.h: 35: void display_fuel(int level);
+[; ;display.h: 36: void display_battery(int volts);
+[; ;display.h: 37: void display_oilPress(int pressure);
+[; ;display.h: 38: void display_rpm(int rpm);
+[; ;display.h: 39: void display_end();
+[; ;display.h: 40: void display_speed(int speed);
+[; ;display.h: 41: void display_tp(int tp);
+[; ;display.h: 42: void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
+[; ;display.h: 43: void display_status(bool launch, bool autoShift, bool clutch, bool drs, bool radio);
+[; ;display.h: 44: void display_bottom_section();
+[; ;display.h: 45: void display_brake_bias(int bias);
 "3 display.c
 [v _display `(v ~T0 @X0 1 ef9`i`i`i`i`i`i`i`i`i ]
 {
@@ -13770,332 +13769,563 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display.c: 4: display_start();
 "4
 [e ( _display_start ..  ]
-[; ;display.c: 5: display_labels();
+[; ;display.c: 5: display_rpm(rpm);
 "5
-[e ( _display_labels ..  ]
-[; ;display.c: 6: display_waterTemp(engTemp);
+[e ( _display_rpm (1 _rpm ]
+[; ;display.c: 6: display_bottom_section();
 "6
-[e ( _display_waterTemp (1 _engTemp ]
-[; ;display.c: 7: display_oilTemp(oilTemp);
+[e ( _display_bottom_section ..  ]
+[; ;display.c: 7: display_labels();
 "7
-[e ( _display_oilTemp (1 _oilTemp ]
-[; ;display.c: 8: display_fuel(4.3);
+[e ( _display_labels ..  ]
+[; ;display.c: 8: display_speed(speed);
 "8
-[e ( _display_fuel (1 -> .4.3 `i ]
-[; ;display.c: 9: display_battery(battVolts);
+[e ( _display_speed (1 _speed ]
+[; ;display.c: 9: display_waterTemp(engTemp);
 "9
-[e ( _display_battery (1 _battVolts ]
-[; ;display.c: 10: display_oilPress(oilP);
+[e ( _display_waterTemp (1 _engTemp ]
+[; ;display.c: 10: display_oilTemp(oilTemp);
 "10
-[e ( _display_oilPress (1 _oilP ]
+[e ( _display_oilTemp (1 _oilTemp ]
 [; ;display.c: 11: display_gear(gear);
 "11
 [e ( _display_gear (1 _gear ]
-[; ;display.c: 12: display_rpm(rpm);
+[; ;display.c: 12: display_battery(battVolts);
 "12
-[e ( _display_rpm (1 _rpm ]
-[; ;display.c: 13: display_speed(speed);
+[e ( _display_battery (1 _battVolts ]
+[; ;display.c: 13: display_tp(tp);
 "13
-[e ( _display_speed (1 _speed ]
-[; ;display.c: 14: display_tp(tp);
-"14
 [e ( _display_tp (1 _tp ]
-[; ;display.c: 15: display_message("hello");
-"15
-[e ( _display_message (1 -> :s 1C `*uc ]
-[; ;display.c: 16: display_end();
-"16
+[; ;display.c: 14: display_end();
+"14
 [e ( _display_end ..  ]
-[; ;display.c: 17: }
-"17
+[; ;display.c: 15: }
+"15
 [e :UE 1540 ]
 }
-"19
+"17
 [v _display_start `(v ~T0 @X0 1 ef ]
 {
-[; ;display.c: 19: void display_start() {
+[; ;display.c: 17: void display_start() {
 [e :U _display_start ]
 [f ]
-[; ;display.c: 20: cmd(4294967040UL);
-"20
+[; ;display.c: 18: cmd(4294967040UL);
+"18
 [e ( _cmd (1 -> -256 `ul ]
-[; ;display.c: 21: cmd(((2UL<<24)|(((20)&255UL)<<16)|(((20)&255UL)<<8)|(((20)&255UL)<<0)));
-"21
+[; ;display.c: 19: cmd(((2UL<<24)|(((20)&255UL)<<16)|(((20)&255UL)<<8)|(((20)&255UL)<<0)));
+"19
 [e ( _cmd (1 | | | << -> 2 `ul -> 24 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 22: cmd(((38UL<<24)|(((1)&1UL)<<2)|(((1)&1UL)<<1)|(((1)&1UL)<<0)));
-"22
+[; ;display.c: 20: cmd(((38UL<<24)|(((1)&1UL)<<2)|(((1)&1UL)<<1)|(((1)&1UL)<<0)));
+"20
 [e ( _cmd (1 | | | << -> 38 `ul -> 24 `i << & -> -> -> 1 `i `l `ul -> 1 `ul -> 2 `i << & -> -> -> 1 `i `l `ul -> 1 `ul -> 1 `i << & -> -> -> 1 `i `l `ul -> 1 `ul -> 0 `i ]
-[; ;display.c: 23: }
-"23
+[; ;display.c: 21: }
+"21
 [e :UE 1541 ]
 }
-"25
+"23
 [v _display_end `(v ~T0 @X0 1 ef ]
 {
-[; ;display.c: 25: void display_end() {
+[; ;display.c: 23: void display_end() {
 [e :U _display_end ]
 [f ]
-[; ;display.c: 26: cmd(((0UL<<24)));
-"26
+[; ;display.c: 24: cmd(((0UL<<24)));
+"24
 [e ( _cmd (1 << -> 0 `ul -> 24 `i ]
-[; ;display.c: 27: cmd(4294967041UL);
-"27
+[; ;display.c: 25: cmd(4294967041UL);
+"25
 [e ( _cmd (1 -> -255 `ul ]
-[; ;display.c: 28: wr16(1058024UL, cmd_offset);
-"28
+[; ;display.c: 26: wr16(1058024UL, cmd_offset);
+"26
 [e ( _wr16 (2 , -> -> 1058024 `ul `um -> _cmd_offset `ui ]
-[; ;display.c: 29: }
-"29
+[; ;display.c: 27: }
+"27
 [e :UE 1542 ]
 }
-"31
+"29
 [v _display_labels `(v ~T0 @X0 1 ef ]
 {
-[; ;display.c: 31: void display_labels() {
+[; ;display.c: 29: void display_labels() {
 [e :U _display_labels ]
 [f ]
-"32
+"30
 [v _y_start `i ~T0 @X0 1 a ]
-[; ;display.c: 32: int y_start = 5;
+[; ;display.c: 30: int y_start = 5;
 [e = _y_start -> 5 `i ]
-[; ;display.c: 35: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-"35
+[; ;display.c: 32: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"32
 [e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 36: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd
-"36
+[; ;display.c: 33: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 22);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_off
+"33
+[e ( _cmd (1 -> -244 `ul ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 80 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 22 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 1C ]
+[; ;display.c: 34: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 60);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offs
+"34
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> _y_start `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 60 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 27 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 2C ]
-[; ;display.c: 37: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"37
+[; ;display.c: 35: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 135);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_off
+"35
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 15 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 135 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 3C ]
-[; ;display.c: 38: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 25);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"38
+[; ;display.c: 36: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 167);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 20);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"36
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 80 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 25 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 167 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 20 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 4C ]
-[; ;display.c: 39: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"39
+[; ;display.c: 37: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 85);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 170);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"37
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 85 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 15 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 170 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 5C ]
-[; ;display.c: 40: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 25);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"40
+[; ;display.c: 38: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 475);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 135);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
+"38
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 475 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 25 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 135 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 6C ]
-[; ;display.c: 41: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"41
+[; ;display.c: 39: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 455);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 167);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 20);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"39
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 455 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 15 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 167 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 20 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 7C ]
-[; ;display.c: 42: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 25);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"42
+[; ;display.c: 40: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 472);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 170);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
+"40
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 472 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 25 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 170 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 8C ]
-[; ;display.c: 43: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"43
+[; ;display.c: 41: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 65);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"41
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 65 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 15 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 245 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 9C ]
-[; ;display.c: 44: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 25);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"44
+[; ;display.c: 42: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 45);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"42
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 45 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 25 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 245 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 10C ]
-[; ;display.c: 45: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344
-"45
+[; ;display.c: 43: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 270);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"43
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 270 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> =+ _y_start -> 15 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 245 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 11C ]
-[; ;display.c: 46: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 360);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"46
+[; ;display.c: 44: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 370);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"44
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 360 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 370 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 130 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 245 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 12C ]
-[; ;display.c: 47: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 360);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130 + 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
-"47
+[; ;display.c: 45: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 459);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"45
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 360 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 459 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> + -> 130 `i -> 15 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 245 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 13C ]
-[; ;display.c: 48: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 380);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 180);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"48
+[; ;display.c: 65: }
+"65
+[e :UE 1543 ]
+}
+"67
+[v _display_status `(v ~T0 @X0 1 ef5`uc`uc`uc`uc`uc ]
+{
+[; ;display.c: 67: void display_status(bool launch, bool autoShift, bool clutch, bool drs, bool radio) {
+[e :U _display_status ]
+[v _launch `uc ~T0 @X0 1 r1 ]
+[v _autoShift `uc ~T0 @X0 1 r2 ]
+[v _clutch `uc ~T0 @X0 1 r3 ]
+[v _drs `uc ~T0 @X0 1 r4 ]
+[v _radio `uc ~T0 @X0 1 r5 ]
+[f ]
+[; ;display.c: 74: cmd(((31UL<<24)|(((9UL)&15UL)<<0)));
+"74
+[e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 9 `ul -> 15 `ul -> 0 `i ]
+[; ;display.c: 75: if(launch) {
+"75
+[e $ ! != -> _launch `i -> -> -> 0 `i `uc `i 1545  ]
+{
+[; ;display.c: 76: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+"76
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"77
+}
+[; ;display.c: 77: } else {
+[e $U 1546  ]
+[e :U 1545 ]
+{
+[; ;display.c: 78: cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+"78
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 0 `i ]
+"79
+}
+[e :U 1546 ]
+[; ;display.c: 79: }
+[; ;display.c: 80: cmd(((2UL<<30)|(((90)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"80
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 90 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 215 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 81: cmd(((2UL<<30)|(((10)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"81
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 10 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 230 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 83: if (autoShift) {
+"83
+[e $ ! != -> _autoShift `i -> -> -> 0 `i `uc `i 1547  ]
+{
+[; ;display.c: 84: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+"84
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"85
+}
+[; ;display.c: 85: } else {
+[e $U 1548  ]
+[e :U 1547 ]
+{
+[; ;display.c: 86: cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+"86
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 0 `i ]
+"87
+}
+[e :U 1548 ]
+[; ;display.c: 87: }
+[; ;display.c: 88: cmd(((2UL<<30)|(((175)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"88
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 175 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 215 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 89: cmd(((2UL<<30)|(((125)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"89
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 125 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 230 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 91: if (clutch) {
+"91
+[e $ ! != -> _clutch `i -> -> -> 0 `i `uc `i 1549  ]
+{
+[; ;display.c: 92: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+"92
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"93
+}
+[; ;display.c: 93: } else {
+[e $U 1550  ]
+[e :U 1549 ]
+{
+[; ;display.c: 94: cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+"94
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 0 `i ]
+"95
+}
+[e :U 1550 ]
+[; ;display.c: 95: }
+[; ;display.c: 96: cmd(((2UL<<30)|(((275)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"96
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 275 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 215 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 97: cmd(((2UL<<30)|(((210)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"97
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 210 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 230 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 99: if (drs) {
+"99
+[e $ ! != -> _drs `i -> -> -> 0 `i `uc `i 1551  ]
+{
+[; ;display.c: 100: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+"100
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"101
+}
+[; ;display.c: 101: } else {
+[e $U 1552  ]
+[e :U 1551 ]
+{
+[; ;display.c: 102: cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+"102
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 0 `i ]
+"103
+}
+[e :U 1552 ]
+[; ;display.c: 103: }
+[; ;display.c: 104: cmd(((2UL<<30)|(((367)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"104
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 367 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 215 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 105: cmd(((2UL<<30)|(((325)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"105
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 325 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 230 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 107: if (radio) {
+"107
+[e $ ! != -> _radio `i -> -> -> 0 `i `uc `i 1553  ]
+{
+[; ;display.c: 108: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+"108
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"109
+}
+[; ;display.c: 109: } else {
+[e $U 1554  ]
+[e :U 1553 ]
+{
+[; ;display.c: 110: cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+"110
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 0 `i ]
+"111
+}
+[e :U 1554 ]
+[; ;display.c: 111: }
+[; ;display.c: 112: cmd(((2UL<<30)|(((465)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"112
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 465 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 215 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 113: cmd(((2UL<<30)|(((405)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"113
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 405 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 230 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 115: if (launch) {
+"115
+[e $ ! != -> _launch `i -> -> -> 0 `i `uc `i 1555  ]
+{
+[; ;display.c: 116: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"116
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"117
+}
+[; ;display.c: 117: } else {
+[e $U 1556  ]
+[e :U 1555 ]
+{
+[; ;display.c: 118: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"118
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
+"119
+}
+[e :U 1556 ]
+[; ;display.c: 119: }
+[; ;display.c: 120: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 10);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"120
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 380 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 10 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 180 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 208 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 26 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 29 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 14C ]
-[; ;display.c: 49: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 459);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 174);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"49
+[; ;display.c: 121: if (autoShift) {
+"121
+[e $ ! != -> _autoShift `i -> -> -> 0 `i `uc `i 1557  ]
+{
+[; ;display.c: 122: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"122
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"123
+}
+[; ;display.c: 123: } else {
+[e $U 1558  ]
+[e :U 1557 ]
+{
+[; ;display.c: 124: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"124
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
+"125
+}
+[e :U 1558 ]
+[; ;display.c: 125: }
+[; ;display.c: 126: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 127);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"126
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 459 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 127 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 174 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 208 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 29 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 15C ]
-[; ;display.c: 53: cmd(((31UL<<24)|(((2UL)&15UL)<<0)));
-"53
-[e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 2 `ul -> 15 `ul -> 0 `i ]
-[; ;display.c: 54: cmd(((4UL<<24)|(((20)&255UL)<<16)|(((20)&255UL)<<8)|(((20)&255UL)<<0)));
-"54
-[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 55: cmd(((13UL<<24)|(((1750)&8191UL)<<0)));
-"55
-[e ( _cmd (1 | << -> 13 `ul -> 24 `i << & -> -> -> 1750 `i `l `ul -> 8191 `ul -> 0 `i ]
-[; ;display.c: 56: cmd(((2UL<<30)|(((240)&511UL)<<21)|(((115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"56
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 240 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 57: cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
-"57
-[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 58: cmd(((13UL<<24)|(((1650)&8191UL)<<0)));
-"58
-[e ( _cmd (1 | << -> 13 `ul -> 24 `i << & -> -> -> 1650 `i `l `ul -> 8191 `ul -> 0 `i ]
-[; ;display.c: 59: cmd(((2UL<<30)|(((240)&511UL)<<21)|(((115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"59
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 240 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 61: }
-"61
-[e :UE 1543 ]
-}
-"63
-[v _display_message `(v ~T0 @X0 1 ef1`*uc ]
+[; ;display.c: 127: if (clutch) {
+"127
+[e $ ! != -> _clutch `i -> -> -> 0 `i `uc `i 1559  ]
 {
-[; ;display.c: 63: void display_message(char* message) {
-[e :U _display_message ]
-[v _message `*uc ~T0 @X0 1 r1 ]
-[f ]
-[; ;display.c: 64: cmd(((31UL<<24)|(((9UL)&15UL)<<0)));
-"64
-[e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 9 `ul -> 15 `ul -> 0 `i ]
-[; ;display.c: 65: cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
-"65
-[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 66: cmd(((2UL<<30)|(((350)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"66
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 350 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 215 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 67: cmd(((2UL<<30)|(((134)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"67
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 134 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 230 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 68: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-"68
+[; ;display.c: 128: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"128
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"129
+}
+[; ;display.c: 129: } else {
+[e $U 1560  ]
+[e :U 1559 ]
+{
+[; ;display.c: 130: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"130
 [e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 69: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
-"69
+"131
+}
+[e :U 1560 ]
+[; ;display.c: 131: }
+[; ;display.c: 132: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"132
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 208 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 222 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 208 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 29 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 1536 `ul `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> _message `*Cuc ]
-[; ;display.c: 70: }
-"70
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 16C ]
+[; ;display.c: 133: if (drs) {
+"133
+[e $ ! != -> _drs `i -> -> -> 0 `i `uc `i 1561  ]
+{
+[; ;display.c: 134: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"134
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"135
+}
+[; ;display.c: 135: } else {
+[e $U 1562  ]
+[e :U 1561 ]
+{
+[; ;display.c: 136: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"136
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
+"137
+}
+[e :U 1562 ]
+[; ;display.c: 137: }
+[; ;display.c: 138: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 325);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"138
+[e ( _cmd (1 -> -244 `ul ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 325 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 208 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 29 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 17C ]
+[; ;display.c: 139: if (radio) {
+"139
+[e $ ! != -> _radio `i -> -> -> 0 `i `uc `i 1563  ]
+{
+[; ;display.c: 140: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"140
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+"141
+}
+[; ;display.c: 141: } else {
+[e $U 1564  ]
+[e :U 1563 ]
+{
+[; ;display.c: 142: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"142
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
+"143
+}
+[e :U 1564 ]
+[; ;display.c: 143: }
+[; ;display.c: 144: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 405);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"144
+[e ( _cmd (1 -> -244 `ul ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 405 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 208 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 29 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 18C ]
+[; ;display.c: 145: }
+"145
 [e :UE 1544 ]
 }
-"72
+"147
 [v _display_laptime `(v ~T0 @X0 1 ef8`i`i`i`i`i`i`i`i ]
 {
-[; ;display.c: 72: void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap) {
+[; ;display.c: 147: void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap) {
 [e :U _display_laptime ]
 [v _current_int `i ~T0 @X0 1 r1 ]
 [v _current_dec `i ~T0 @X0 1 r2 ]
@@ -14106,107 +14336,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _lap `i ~T0 @X0 1 r7 ]
 [v _best_lap `i ~T0 @X0 1 r8 ]
 [f ]
-[; ;display.c: 73: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
-"73
-[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 74: cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
-"74
-[e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 8 `ul -> 15 `ul -> 0 `i ]
-[; ;display.c: 75: cmd(((2UL<<30)|(((0)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"75
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 0 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 200 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 76: cmd(((2UL<<30)|(((187)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"76
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 187 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 200 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 77: cmd(((2UL<<30)|(((216)&511UL)<<21)|(((173)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"77
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 216 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 173 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 78: cmd(((2UL<<30)|(((263)&511UL)<<21)|(((173)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"78
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 263 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 173 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 79: cmd(((2UL<<30)|(((292)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"79
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 292 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 200 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 80: cmd(((2UL<<30)|(((480)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"80
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 480 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 200 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 82: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
-"82
-[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 83: cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
-"83
-[e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 8 `ul -> 15 `ul -> 0 `i ]
-[; ;display.c: 84: cmd(((2UL<<30)|(((0)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"84
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 0 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 205 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 85: cmd(((2UL<<30)|(((189)&511UL)<<21)|(((204)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"85
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 189 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 204 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 86: cmd(((2UL<<30)|(((217)&511UL)<<21)|(((177)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"86
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 217 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 177 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 87: cmd(((2UL<<30)|(((261)&511UL)<<21)|(((177)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"87
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 261 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 177 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 88: cmd(((2UL<<30)|(((289)&511UL)<<21)|(((204)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"88
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 289 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 204 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 89: cmd(((2UL<<30)|(((483)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"89
-[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 483 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 205 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 92: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((125)&255UL)<<8)|(((0)&255UL)<<0)));
-"92
+[; ;display.c: 149: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((125)&255UL)<<8)|(((0)&255UL)<<0)));
+"149
 [e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 125 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 93: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_off
-"93
-[e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 207 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 27 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 16C ]
-[; ;display.c: 94: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 217);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(lap);
-"94
-[e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 66 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 217 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 27 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 1536 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd (1 -> -> _lap `l `ul ]
-[; ;display.c: 95: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 448);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
-"95
-[e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 448 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 207 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 27 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 17C ]
-[; ;display.c: 96: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 475);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(best_lap);
-"96
-[e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 475 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 207 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 27 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd (1 -> -> _best_lap `l `ul ]
-[; ;display.c: 97: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 165);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
-"97
+[; ;display.c: 154: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 165);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
+"154
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14216,9 +14350,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 1536 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 18C ]
-[; ;display.c: 98: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 190);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(lap+1);
-"98
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 19C ]
+[; ;display.c: 155: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 190);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(lap+1);
+"155
 [e ( _cmd (1 -> -210 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14229,179 +14363,156 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 1536 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> + _lap -> 1 `i `l `ul ]
-[; ;display.c: 101: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-"101
-[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 102: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 36);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(last_int);
-"102
-[e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 36 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 222 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd (1 -> -> _last_int `l `ul ]
-[; ;display.c: 103: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 39);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 238);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+c
-"103
+"157
+[v _time_difference_integer `i ~T0 @X0 1 a ]
+[; ;display.c: 157: int time_difference_integer = last_int - best_int;
+[e = _time_difference_integer - _last_int _best_int ]
+"158
+[v _time_difference_decimal `i ~T0 @X0 1 a ]
+[; ;display.c: 158: int time_difference_decimal = last_dec - best_dec;
+[e = _time_difference_decimal - _last_dec _best_dec ]
+[; ;display.c: 160: if(time_difference_integer > 0) {
+"160
+[e $ ! > _time_difference_integer -> 0 `i 1566  ]
+{
+[; ;display.c: 161: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"161
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+[; ;display.c: 162: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offs
+"162
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 39 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 238 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 80 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 31 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 1536 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 19C ]
-[; ;display.c: 104: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 42);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(last_dec);
-"104
-[e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 42 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 222 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd (1 -> -> _last_dec `l `ul ]
-[; ;display.c: 108: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 434);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(best_int);
-"108
-[e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 434 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 222 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd (1 -> -> _best_int `l `ul ]
-[; ;display.c: 109: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 437);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 239);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
-"109
-[e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 437 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 239 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 1536 `ul `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 20C ]
-[; ;display.c: 110: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 440);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(best_dec);
-"110
-[e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 440 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 222 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd (1 -> -> _best_dec `l `ul ]
-[; ;display.c: 114: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 233);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 235);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(current_int);
-"114
-[e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 233 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 235 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd (1 -> -> _current_int `l `ul ]
-[; ;display.c: 115: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 237);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 252);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
-"115
+"163
+}
+[; ;display.c: 163: } else {
+[e $U 1567  ]
+[e :U 1566 ]
+{
+[; ;display.c: 164: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+"164
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+[; ;display.c: 165: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offs
+"165
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 237 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 252 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 80 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 31 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 1536 `ul `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 21C ]
-[; ;display.c: 116: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 235);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(current_dec);
-"116
+"166
+}
+[e :U 1567 ]
+[; ;display.c: 166: }
+[; ;display.c: 167: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 53);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_off
+"167
+[e ( _cmd (1 -> -244 `ul ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 53 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 80 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 31 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 22C ]
+[; ;display.c: 168: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(time_difference_integer);
+"168
 [e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 235 `i `ui ]
-[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2 `ul `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 80 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd (1 -> -> _current_dec `l `ul ]
-[; ;display.c: 117: }
-"117
-[e :UE 1545 ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 31 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _cmd (1 -> -> _time_difference_integer `l `ul ]
+[; ;display.c: 169: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 62);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(time_difference_decimal);
+"169
+[e ( _cmd (1 -> -210 `ul ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 62 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 80 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 31 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _cmd (1 -> -> _time_difference_decimal `l `ul ]
+[; ;display.c: 188: }
+"188
+[e :UE 1565 ]
 }
-"119
+"190
 [v _display_waterTemp `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 119: void display_waterTemp(int temp) {
+[; ;display.c: 190: void display_waterTemp(int temp) {
 [e :U _display_waterTemp ]
 [v _temp `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;display.c: 120: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-"120
+[; ;display.c: 191: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"191
 [e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 121: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 64);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 7);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(temp);
-"121
+[; ;display.c: 193: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 155);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(temp);
+"193
 [e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 64 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 7 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 155 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 31 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> _temp `l `ul ]
-[; ;display.c: 122: }
-"122
-[e :UE 1546 ]
+[; ;display.c: 194: }
+"194
+[e :UE 1568 ]
 }
-"124
+"196
 [v _display_oilTemp `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 124: void display_oilTemp(int temp) {
+[; ;display.c: 196: void display_oilTemp(int temp) {
 [e :U _display_oilTemp ]
 [v _temp `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;display.c: 125: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 48);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(temp);
-"125
+[; ;display.c: 198: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 450);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 155);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(temp);
+"198
 [e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 66 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 450 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 48 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 155 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 31 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> _temp `l `ul ]
-[; ;display.c: 126: }
-"126
-[e :UE 1547 ]
+[; ;display.c: 199: }
+"199
+[e :UE 1569 ]
 }
-"128
+"201
 [v _display_fuel `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 128: void display_fuel(int level) {
+[; ;display.c: 201: void display_fuel(int level) {
 [e :U _display_fuel ]
 [v _level `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;display.c: 129: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 89);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(level);
-"129
+[; ;display.c: 202: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 89);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(level);
+"202
 [e ( _cmd (1 -> -210 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 66 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14412,66 +14523,66 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> _level `l `ul ]
-[; ;display.c: 130: }
-"130
-[e :UE 1548 ]
+[; ;display.c: 203: }
+"203
+[e :UE 1570 ]
 }
-"132
+"205
 [v _display_battery `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 132: void display_battery(int volts) {
+[; ;display.c: 205: void display_battery(int volts) {
 [e :U _display_battery ]
 [v _volts `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;display.c: 133: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(volts/10);
-"133
+[; ;display.c: 206: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(volts/10);
+"206
 [e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 66 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 130 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 236 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> / _volts -> 10 `i `l `ul ]
-[; ;display.c: 134: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 90);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 131);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
-"134
+[; ;display.c: 207: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"207
 [e ( _cmd (1 -> -244 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 90 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 131 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 236 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 22C ]
-[; ;display.c: 135: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 96);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(volts%10);
-"135
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 23C ]
+[; ;display.c: 208: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 248);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(volts%10);
+"208
 [e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 96 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 248 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 130 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 236 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 28 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> % _volts -> 10 `i `l `ul ]
-[; ;display.c: 136: }
-"136
-[e :UE 1549 ]
+[; ;display.c: 212: }
+"212
+[e :UE 1571 ]
 }
-"138
+"214
 [v _display_oilPress `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 138: void display_oilPress(int pressure) {
+[; ;display.c: 214: void display_oilPress(int pressure) {
 [e :U _display_oilPress ]
 [v _pressure `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;display.c: 139: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 171);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(pressure);
-"139
+[; ;display.c: 215: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 171);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(pressure);
+"215
 [e ( _cmd (1 -> -210 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 66 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14482,80 +14593,127 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> _pressure `l `ul ]
-[; ;display.c: 140: }
-"140
-[e :UE 1550 ]
+[; ;display.c: 216: }
+"216
+[e :UE 1572 ]
 }
-"142
+"218
 [v _display_tp `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 142: void display_tp(int tp) {
+[; ;display.c: 218: void display_tp(int tp) {
 [e :U _display_tp ]
 [v _tp `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;display.c: 143: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 455);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 166);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(tp);
-"143
+[; ;display.c: 220: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 455);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(tp);
+"220
 [e ( _cmd (1 -> -210 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 455 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 166 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 236 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> _tp `l `ul ]
-[; ;display.c: 144: }
-"144
-[e :UE 1551 ]
+[; ;display.c: 221: }
+"221
+[e :UE 1573 ]
 }
-"146
+"223
 [v _display_speed `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 146: void display_speed(int speed) {
+[; ;display.c: 223: void display_speed(int speed) {
 [e :U _display_speed ]
 [v _speed `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;display.c: 147: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 360 + 115);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130 - 10);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(speed);
-"147
+[; ;display.c: 225: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 75);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(speed);
+"225
 [e ( _cmd (1 -> -210 `ul ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> + -> 360 `i -> 115 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 75 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> - -> 130 `i -> 10 `i `ui ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 31 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> _speed `l `ul ]
-[; ;display.c: 148: }
-"148
-[e :UE 1552 ]
+[; ;display.c: 226: }
+"226
+[e :UE 1574 ]
 }
-"150
+"228
+[v _display_brake_bias `(v ~T0 @X0 1 ef1`i ]
+{
+[; ;display.c: 228: void display_brake_bias(int bias) {
+[e :U _display_brake_bias ]
+[v _bias `i ~T0 @X0 1 r1 ]
+[f ]
+[; ;display.c: 229: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"229
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
+[; ;display.c: 230: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(bias);
+"230
+[e ( _cmd (1 -> -210 `ul ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 5 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 236 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 30 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
+[e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
+[e ( _cmd (1 -> -> _bias `l `ul ]
+[; ;display.c: 231: }
+"231
+[e :UE 1575 ]
+}
+"233
 [v _display_rpm `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 150: void display_rpm(int rpm) {
+[; ;display.c: 233: void display_rpm(int rpm) {
 [e :U _display_rpm ]
 [v _rpm `i ~T0 @X0 1 r1 ]
 [f ]
-"151
+"234
 [v _first_digit `i ~T0 @X0 1 a ]
-[; ;display.c: 151: int first_digit = rpm/1000;
+[; ;display.c: 234: int first_digit = rpm/1000;
 [e = _first_digit / _rpm -> 1000 `i ]
-"152
+"235
 [v _second_digit `i ~T0 @X0 1 a ]
-[; ;display.c: 152: int second_digit = (rpm/100)%10;
+[; ;display.c: 235: int second_digit = (rpm/100)%10;
 [e = _second_digit % / _rpm -> 100 `i -> 10 `i ]
-[; ;display.c: 153: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-"153
+[; ;display.c: 238: cmd(((31UL<<24)|(((2UL)&15UL)<<0)));
+"238
+[e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 2 `ul -> 15 `ul -> 0 `i ]
+[; ;display.c: 239: cmd(((4UL<<24)|(((20)&255UL)<<16)|(((20)&255UL)<<8)|(((20)&255UL)<<0)));
+"239
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 20 `i `l `ul -> 255 `ul -> 0 `i ]
+[; ;display.c: 240: cmd(((13UL<<24)|(((1750)&8191UL)<<0)));
+"240
+[e ( _cmd (1 | << -> 13 `ul -> 24 `i << & -> -> -> 1750 `i `l `ul -> 8191 `ul -> 0 `i ]
+[; ;display.c: 241: cmd(((2UL<<30)|(((240)&511UL)<<21)|(((115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"241
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 240 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 242: cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+"242
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 60 `i `l `ul -> 255 `ul -> 0 `i ]
+[; ;display.c: 243: cmd(((13UL<<24)|(((1650)&8191UL)<<0)));
+"243
+[e ( _cmd (1 | << -> 13 `ul -> 24 `i << & -> -> -> 1650 `i `l `ul -> 8191 `ul -> 0 `i ]
+[; ;display.c: 244: cmd(((2UL<<30)|(((240)&511UL)<<21)|(((115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"244
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 240 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 246: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"246
 [e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 155: cmd(4294967049UL);cmd(0x323232);
-"155
+[; ;display.c: 248: cmd(4294967049UL);cmd(0x323232);
+"248
 [e ( _cmd (1 -> -247 `ul ]
 [e ( _cmd (1 -> -> 3289650 `l `ul ]
-[; ;display.c: 156: cmd(4294967059UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 115);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 16384UL | 4096UL | 256UL);cmd_incrementn(2);wr16(108134
-"156
+[; ;display.c: 249: cmd(4294967059UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 115);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 16384UL | 4096UL | 256UL);cmd_incrementn(2);wr16(108134
+"249
 [e ( _cmd (1 -> -237 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14573,15 +14731,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 50 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[; ;display.c: 158: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
-"158
+[; ;display.c: 251: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"251
 [e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 159: if(first_digit < 2) {
-"159
-[e $ ! < _first_digit -> 2 `i 1554  ]
+[; ;display.c: 252: if(first_digit < 2) {
+"252
+[e $ ! < _first_digit -> 2 `i 1577  ]
 {
-[; ;display.c: 160: cmd(4294967059UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 115);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 8192UL|4096UL | 256UL);cmd_incrementn(2);wr16(1081344UL
-"160
+[; ;display.c: 253: cmd(4294967059UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 115);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 8192UL|4096UL | 256UL);cmd_incrementn(2);wr16(1081344UL
+"253
 [e ( _cmd (1 -> -237 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14599,18 +14757,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 50 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-"161
+"254
 }
-[; ;display.c: 161: } else {
-[e $U 1555  ]
-[e :U 1554 ]
+[; ;display.c: 254: } else {
+[e $U 1578  ]
+[e :U 1577 ]
 {
-"162
+"255
 [v _val `i ~T0 @X0 1 a ]
-[; ;display.c: 162: int val = ((first_digit-2)*5)+(second_digit/2);
+[; ;display.c: 255: int val = ((first_digit-2)*5)+(second_digit/2);
 [e = _val + * - _first_digit -> 2 `i -> 5 `i / _second_digit -> 2 `i ]
-[; ;display.c: 163: cmd(4294967059UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 115);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 8192UL|4096UL | 256UL);cmd_incrementn(2);wr16(1081344UL
-"163
+[; ;display.c: 256: cmd(4294967059UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 115);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 8192UL|4096UL | 256UL);cmd_incrementn(2);wr16(1081344UL
+"256
 [e ( _cmd (1 -> -237 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 240 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14628,15 +14786,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 50 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-"164
+"257
 }
-[e :U 1555 ]
-[; ;display.c: 164: }
-[; ;display.c: 166: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-"166
+[e :U 1578 ]
+[; ;display.c: 257: }
+[; ;display.c: 259: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+"259
 [e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 167: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 237);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 89);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(first_digit);
-"167
+[; ;display.c: 260: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 237);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 89);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(first_digit);
+"260
 [e ( _cmd (1 -> -210 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 237 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14647,8 +14805,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 2048 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> _first_digit `l `ul ]
-[; ;display.c: 168: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 243);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 89);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(second_digit);
-"168
+[; ;display.c: 261: cmd(4294967086UL);wr16(1081344UL+cmd_offset, 243);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 89);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(second_digit);
+"261
 [e ( _cmd (1 -> -210 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 243 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14659,8 +14817,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _cmd (1 -> -> _second_digit `l `ul ]
-[; ;display.c: 170: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 183);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 161);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"170
+[; ;display.c: 263: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 183);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 161);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"263
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 183 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14670,9 +14828,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 23C ]
-[; ;display.c: 171: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 160);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"171
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 24C ]
+[; ;display.c: 264: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 160);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"264
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 160 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14682,9 +14840,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 24C ]
-[; ;display.c: 172: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 155);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 92);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
-"172
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 25C ]
+[; ;display.c: 265: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 155);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 92);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"265
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 155 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14694,9 +14852,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 25C ]
-[; ;display.c: 173: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 171);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 58);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
-"173
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 26C ]
+[; ;display.c: 266: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 171);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 58);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"266
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 171 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14706,9 +14864,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 26C ]
-[; ;display.c: 174: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 201);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 33);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
-"174
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 27C ]
+[; ;display.c: 267: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 201);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 33);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"267
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 201 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14718,9 +14876,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 27C ]
-[; ;display.c: 175: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 235);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
-"175
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 28C ]
+[; ;display.c: 268: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 235);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"268
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 235 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14730,9 +14888,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 28C ]
-[; ;display.c: 176: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 269);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 33);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
-"176
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 29C ]
+[; ;display.c: 269: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 269);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 33);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"269
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 269 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14742,9 +14900,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 29C ]
-[; ;display.c: 177: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 298);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 58);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
-"177
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 30C ]
+[; ;display.c: 270: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 298);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 58);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"270
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 298 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14754,9 +14912,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 30C ]
-[; ;display.c: 178: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 301);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 92);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
-"178
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 31C ]
+[; ;display.c: 271: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 301);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 92);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_of
+"271
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 301 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14766,9 +14924,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 31C ]
-[; ;display.c: 179: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 299);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"179
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 32C ]
+[; ;display.c: 272: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 299);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"272
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 299 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14778,9 +14936,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 32C ]
-[; ;display.c: 180: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 274);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 161);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"180
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 33C ]
+[; ;display.c: 273: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 274);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 161);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"273
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 274 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14790,9 +14948,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 33C ]
-[; ;display.c: 181: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 241);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 114);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
-"181
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 34C ]
+[; ;display.c: 274: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 241);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 114);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+
+"274
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 241 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14802,9 +14960,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 1536 `ul `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 34C ]
-[; ;display.c: 182: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 267);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 108);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"182
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 35C ]
+[; ;display.c: 275: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 267);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 108);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"275
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 267 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14814,9 +14972,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 35C ]
-[; ;display.c: 183: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 227);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 132);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
-"183
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 36C ]
+[; ;display.c: 276: cmd(4294967052UL);wr16(1081344UL+cmd_offset, 227);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 132);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_o
+"276
 [e ( _cmd (1 -> -244 `ul ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 227 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
@@ -14826,300 +14984,359 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
 [e ( _wr16 (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um -> -> 0 `i `ui ]
 [e ( _cmd_incrementn (1 -> -> 2 `i `uc ]
-[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 36C ]
-[; ;display.c: 184: }
-"184
-[e :UE 1553 ]
+[e ( _cmd_incrementn (1 ( _wr8s (2 , -> + -> 1081344 `ul -> _cmd_offset `ul `um :s 37C ]
+[; ;display.c: 277: }
+"277
+[e :UE 1576 ]
 }
-"186
+"279
 [v _display_gear `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;display.c: 186: void display_gear(int gear) {
+[; ;display.c: 279: void display_gear(int gear) {
 [e :U _display_gear ]
 [v _gear `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;display.c: 187: cmd(((14UL<<24)|(((96)&4095UL)<<0)));
-"187
+[; ;display.c: 280: cmd(((14UL<<24)|(((96)&4095UL)<<0)));
+"280
 [e ( _cmd (1 | << -> 14 `ul -> 24 `i << & -> -> -> 96 `i `l `ul -> 4095 `ul -> 0 `i ]
-[; ;display.c: 188: cmd(((4UL<<24)|(((202)&255UL)<<16)|(((125)&255UL)<<8)|(((0)&255UL)<<0)));
-"188
+[; ;display.c: 281: cmd(((4UL<<24)|(((202)&255UL)<<16)|(((125)&255UL)<<8)|(((0)&255UL)<<0)));
+"281
 [e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 202 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 125 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
-[; ;display.c: 189: cmd(((31UL<<24)|(((3UL)&15UL)<<0)));
-"189
+[; ;display.c: 282: cmd(((31UL<<24)|(((3UL)&15UL)<<0)));
+"282
 [e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 3 `ul -> 15 `ul -> 0 `i ]
-[; ;display.c: 190: switch (gear) {
-"190
-[e $U 1558  ]
+[; ;display.c: 283: switch (gear) {
+"283
+[e $U 1581  ]
 {
-[; ;display.c: 191: case 0:
-"191
-[e :U 1559 ]
-[; ;display.c: 192: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"192
+[; ;display.c: 284: case 0:
+"284
+[e :U 1582 ]
+[; ;display.c: 285: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"285
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 193: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"193
+[; ;display.c: 286: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"286
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 194: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"194
+[; ;display.c: 287: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"287
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 195: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"195
+[; ;display.c: 288: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"288
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 196: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+116)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"196
+[; ;display.c: 289: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+116)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"289
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 116 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 197: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"197
+[; ;display.c: 290: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"290
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 198: break;
-"198
-[e $U 1557  ]
-[; ;display.c: 199: case 1:
-"199
-[e :U 1560 ]
-[; ;display.c: 200: cmd(((2UL<<30)|(((380+40)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"200
+[; ;display.c: 291: break;
+"291
+[e $U 1580  ]
+[; ;display.c: 292: case 1:
+"292
+[e :U 1583 ]
+[; ;display.c: 293: cmd(((2UL<<30)|(((380+40)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"293
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 40 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 201: cmd(((2UL<<30)|(((380+40)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"201
+[; ;display.c: 294: cmd(((2UL<<30)|(((380+40)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"294
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 40 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 202: cmd(((2UL<<30)|(((380+39)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"202
+[; ;display.c: 295: cmd(((2UL<<30)|(((380+39)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"295
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 39 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 203: cmd(((2UL<<30)|(((380+20)&511UL)<<21)|(((0+30)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"203
+[; ;display.c: 296: cmd(((2UL<<30)|(((380+20)&511UL)<<21)|(((0+30)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"296
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 20 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 30 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 204: cmd(((2UL<<30)|(((380+25)&511UL)<<21)|(((0+116)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"204
+[; ;display.c: 297: cmd(((2UL<<30)|(((380+25)&511UL)<<21)|(((0+116)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"297
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 25 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 116 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 205: cmd(((2UL<<30)|(((380+55)&511UL)<<21)|(((0+116)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"205
+[; ;display.c: 298: cmd(((2UL<<30)|(((380+55)&511UL)<<21)|(((0+116)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"298
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 55 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 116 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 206: break;
-"206
-[e $U 1557  ]
-[; ;display.c: 207: case 2:
-"207
-[e :U 1561 ]
-[; ;display.c: 208: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"208
+[; ;display.c: 299: break;
+"299
+[e $U 1580  ]
+[; ;display.c: 300: case 2:
+"300
+[e :U 1584 ]
+[; ;display.c: 301: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"301
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 209: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"209
+[; ;display.c: 302: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"302
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 210: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"210
+[; ;display.c: 303: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"303
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 16 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 211: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+64)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"211
+[; ;display.c: 304: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+64)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"304
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 64 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 212: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"212
+[; ;display.c: 305: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"305
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 213: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"213
+[; ;display.c: 306: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"306
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 214: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+66)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"214
+[; ;display.c: 307: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+66)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"307
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 66 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 215: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"215
+[; ;display.c: 308: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"308
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 216: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"216
+[; ;display.c: 309: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"309
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 1 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 217: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"217
+[; ;display.c: 310: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"310
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 218: break;
-"218
-[e $U 1557  ]
-[; ;display.c: 219: case 3:
-"219
-[e :U 1562 ]
-[; ;display.c: 220: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"220
+[; ;display.c: 311: break;
+"311
+[e $U 1580  ]
+[; ;display.c: 312: case 3:
+"312
+[e :U 1585 ]
+[; ;display.c: 313: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"313
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 221: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"221
+[; ;display.c: 314: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"314
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 79 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 222: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"222
+[; ;display.c: 315: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"315
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 16 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 223: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"223
+[; ;display.c: 316: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"316
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 224: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"224
+[; ;display.c: 317: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"317
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 79 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 225: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"225
+[; ;display.c: 318: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"318
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 226: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"226
+[; ;display.c: 319: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"319
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 1 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 227: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"227
+[; ;display.c: 320: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"320
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 79 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 228: break;
-"228
-[e $U 1557  ]
-[; ;display.c: 229: case 4:
-"229
-[e :U 1563 ]
-[; ;display.c: 230: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"230
+[; ;display.c: 321: break;
+"321
+[e $U 1580  ]
+[; ;display.c: 322: case 4:
+"322
+[e :U 1586 ]
+[; ;display.c: 323: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"323
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 231: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+64)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"231
+[; ;display.c: 324: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+64)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"324
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 64 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 232: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"232
+[; ;display.c: 325: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"325
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 16 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 233: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"233
+[; ;display.c: 326: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"326
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 234: cmd(((2UL<<30)|(((380+77)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"234
+[; ;display.c: 327: cmd(((2UL<<30)|(((380+77)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"327
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 77 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 235: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"235
+[; ;display.c: 328: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"328
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 1 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 236: break;
-"236
-[e $U 1557  ]
-[; ;display.c: 237: case 5:
-"237
-[e :U 1564 ]
-[; ;display.c: 238: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"238
+[; ;display.c: 329: break;
+"329
+[e $U 1580  ]
+[; ;display.c: 330: case 5:
+"330
+[e :U 1587 ]
+[; ;display.c: 331: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"331
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 239: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"239
+[; ;display.c: 332: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"332
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 79 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 240: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"240
+[; ;display.c: 333: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"333
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 16 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 241: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+64)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"241
+[; ;display.c: 334: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+64)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"334
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 64 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 242: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"242
+[; ;display.c: 335: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"335
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 243: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+114)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"243
+[; ;display.c: 336: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+114)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"336
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 114 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 244: cmd(((2UL<<30)|(((380+77)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"244
+[; ;display.c: 337: cmd(((2UL<<30)|(((380+77)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"337
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 77 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 245: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"245
+[; ;display.c: 338: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"338
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 1 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 246: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"246
+[; ;display.c: 339: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"339
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 1 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 247: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"247
+[; ;display.c: 340: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"340
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 79 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 248: break;
-"248
-[e $U 1557  ]
-[; ;display.c: 249: case 6:
-"249
-[e :U 1565 ]
-[; ;display.c: 250: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"250
+[; ;display.c: 341: break;
+"341
+[e $U 1580  ]
+[; ;display.c: 342: case 6:
+"342
+[e :U 1588 ]
+[; ;display.c: 343: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"343
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 251: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"251
+[; ;display.c: 344: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+15)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"344
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 79 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 15 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 252: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"252
+[; ;display.c: 345: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+16)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"345
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 16 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 253: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"253
+[; ;display.c: 346: cmd(((2UL<<30)|(((380)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"346
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 380 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 254: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"254
+[; ;display.c: 347: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"347
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 255: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+114)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"255
+[; ;display.c: 348: cmd(((2UL<<30)|(((380+80)&511UL)<<21)|(((0+114)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"348
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 80 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 114 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 256: cmd(((2UL<<30)|(((380+77)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"256
+[; ;display.c: 349: cmd(((2UL<<30)|(((380+77)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"349
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 77 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 257: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"257
+[; ;display.c: 350: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+65)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"350
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 1 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 65 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 258: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"258
+[; ;display.c: 351: cmd(((2UL<<30)|(((380+1)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"351
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 1 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 259: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-"259
+[; ;display.c: 352: cmd(((2UL<<30)|(((380+79)&511UL)<<21)|(((0+115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"352
 [e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> + -> 380 `i -> 79 `i `l `ul -> 511 `ul -> 21 `i << & -> -> + -> 0 `i -> 115 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
-[; ;display.c: 260: break;
-"260
-[e $U 1557  ]
-[; ;display.c: 261: default:
-"261
-[e :U 1566 ]
-[; ;display.c: 263: break;
-"263
-[e $U 1557  ]
-"264
+[; ;display.c: 353: break;
+"353
+[e $U 1580  ]
+[; ;display.c: 354: default:
+"354
+[e :U 1589 ]
+[; ;display.c: 356: break;
+"356
+[e $U 1580  ]
+"357
 }
-[; ;display.c: 264: }
-[e $U 1557  ]
-"190
-[e :U 1558 ]
-[e [\ _gear , $ -> 0 `i 1559
- , $ -> 1 `i 1560
- , $ -> 2 `i 1561
- , $ -> 3 `i 1562
- , $ -> 4 `i 1563
- , $ -> 5 `i 1564
- , $ -> 6 `i 1565
- 1566 ]
-"264
-[e :U 1557 ]
-[; ;display.c: 265: }
-"265
-[e :UE 1556 ]
+[; ;display.c: 357: }
+[e $U 1580  ]
+"283
+[e :U 1581 ]
+[e [\ _gear , $ -> 0 `i 1582
+ , $ -> 1 `i 1583
+ , $ -> 2 `i 1584
+ , $ -> 3 `i 1585
+ , $ -> 4 `i 1586
+ , $ -> 5 `i 1587
+ , $ -> 6 `i 1588
+ 1589 ]
+"357
+[e :U 1580 ]
+[; ;display.c: 358: }
+"358
+[e :UE 1579 ]
 }
-[a 1C 104 101 108 108 111 0 ]
-[a 35C 107 0 ]
-[a 8C 66 65 84 84 0 ]
-[a 17C 66 69 83 84 0 ]
-[a 16C 76 65 83 84 0 ]
-[a 9C 86 79 76 84 83 0 ]
-[a 7C 80 82 69 83 83 0 ]
-[a 11C 80 82 69 83 83 0 ]
-[a 2C 87 65 84 69 82 0 ]
-[a 14C 84 80 0 ]
-[a 3C 84 69 77 80 0 ]
-[a 5C 84 69 77 80 0 ]
-[a 18C 76 65 80 0 ]
-[a 36C 82 80 77 0 ]
-[a 4C 79 73 76 0 ]
-[a 10C 79 73 76 0 ]
-[a 6C 70 85 69 76 0 ]
-[a 13C 75 80 72 0 ]
-[a 12C 83 80 69 69 68 0 ]
-[a 19C 58 0 ]
-[a 20C 58 0 ]
-[a 21C 58 0 ]
-[a 30C 57 0 ]
-[a 29C 56 0 ]
-[a 28C 55 0 ]
-[a 27C 54 0 ]
-[a 26C 53 0 ]
-[a 25C 52 0 ]
-[a 24C 51 0 ]
-[a 33C 49 50 0 ]
-[a 23C 50 0 ]
-[a 32C 49 49 0 ]
-[a 31C 49 48 0 ]
+"360
+[v _display_bottom_section `(v ~T0 @X0 1 ef ]
+{
+[; ;display.c: 360: void display_bottom_section() {
+[e :U _display_bottom_section ]
+[f ]
+[; ;display.c: 361: cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"361
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 255 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+[; ;display.c: 362: cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
+"362
+[e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 8 `ul -> 15 `ul -> 0 `i ]
+[; ;display.c: 363: cmd(((2UL<<30)|(((0)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"363
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 0 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 200 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 364: cmd(((2UL<<30)|(((187)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"364
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 187 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 200 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 365: cmd(((2UL<<30)|(((216)&511UL)<<21)|(((173)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"365
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 216 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 173 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 366: cmd(((2UL<<30)|(((263)&511UL)<<21)|(((173)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"366
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 263 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 173 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 367: cmd(((2UL<<30)|(((292)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"367
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 292 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 200 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 368: cmd(((2UL<<30)|(((480)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"368
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 480 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 200 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 370: cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+"370
+[e ( _cmd (1 | | | << -> 4 `ul -> 24 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 16 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 8 `i << & -> -> -> 0 `i `l `ul -> 255 `ul -> 0 `i ]
+[; ;display.c: 371: cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
+"371
+[e ( _cmd (1 | << -> 31 `ul -> 24 `i << & -> 8 `ul -> 15 `ul -> 0 `i ]
+[; ;display.c: 372: cmd(((2UL<<30)|(((0)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"372
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 0 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 205 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 373: cmd(((2UL<<30)|(((189)&511UL)<<21)|(((204)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"373
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 189 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 204 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 374: cmd(((2UL<<30)|(((217)&511UL)<<21)|(((177)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"374
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 217 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 177 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 375: cmd(((2UL<<30)|(((261)&511UL)<<21)|(((177)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"375
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 261 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 177 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 376: cmd(((2UL<<30)|(((289)&511UL)<<21)|(((204)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"376
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 289 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 204 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 377: cmd(((2UL<<30)|(((483)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+"377
+[e ( _cmd (1 | | | | << -> 2 `ul -> 30 `i << & -> -> -> 483 `i `l `ul -> 511 `ul -> 21 `i << & -> -> -> 205 `i `l `ul -> 511 `ul -> 12 `i << & -> -> -> 0 `i `l `ul -> 31 `ul -> 7 `i << & -> -> -> 0 `i `l `ul -> 127 `ul -> 0 `i ]
+[; ;display.c: 378: }
+"378
+[e :UE 1590 ]
+}
+[a 3C 67 111 111 108 97 110 116 0 ]
+[a 2C 71 97 105 110 47 76 111 115 115 0 ]
+[a 9C 66 105 97 115 0 ]
+[a 6C 79 105 108 32 84 101 109 112 0 ]
+[a 15C 65 117 116 111 0 ]
+[a 18C 82 97 100 105 111 0 ]
+[a 4C 111 0 ]
+[a 7C 111 0 ]
+[a 36C 107 0 ]
+[a 16C 67 108 117 116 99 104 0 ]
+[a 14C 76 97 117 110 99 104 0 ]
+[a 11C 86 0 ]
+[a 17C 68 82 83 0 ]
+[a 12C 84 80 0 ]
+[a 19C 76 65 80 0 ]
+[a 37C 82 80 77 0 ]
+[a 1C 75 80 72 0 ]
+[a 5C 67 0 ]
+[a 8C 67 0 ]
+[a 31C 57 0 ]
+[a 30C 56 0 ]
+[a 29C 55 0 ]
+[a 28C 54 0 ]
+[a 27C 53 0 ]
+[a 26C 52 0 ]
+[a 25C 51 0 ]
+[a 34C 49 50 0 ]
+[a 24C 50 0 ]
+[a 33C 49 49 0 ]
+[a 32C 49 48 0 ]
 [a 22C 46 0 ]
-[a 34C 46 0 ]
-[a 15C 37 0 ]
+[a 23C 46 0 ]
+[a 35C 46 0 ]
+[a 21C 45 0 ]
+[a 20C 43 0 ]
+[a 10C 37 0 ]
+[a 13C 37 0 ]

@@ -59,6 +59,7 @@
 
 #endif
 
+#define TMR1_INTERRUPT_TICKER_FACTOR    1
 
 /**
   Section: TMR1 APIs
@@ -364,6 +365,23 @@ uint8_t TMR1_CheckGateValueStatus(void);
     None
 */
 void TMR1_ISR(void);
+/**
+  @Summary
+    CallBack function.
+
+  @Description
+    This routine is called by the Interrupt Manager.
+
+  @Preconditions
+    Initialize  the TMR1 module with interrupt before calling this function.
+
+  @Param
+    None
+
+  @Returns
+    None
+*/
+void TMR1_CallBack(void);
 
 /**
   @Summary

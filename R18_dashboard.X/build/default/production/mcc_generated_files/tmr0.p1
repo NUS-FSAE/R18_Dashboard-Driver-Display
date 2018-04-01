@@ -13674,12 +13674,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 71: T0CON = 0x15;
 "71
 [e = _T0CON -> -> 21 `i `uc ]
-[; ;tmr0.c: 74: TMR0H = 0x9E;
+[; ;tmr0.c: 74: TMR0H = 0xCF;
 "74
-[e = _TMR0H -> -> 158 `i `uc ]
-[; ;tmr0.c: 77: TMR0L = 0x57;
+[e = _TMR0H -> -> 207 `i `uc ]
+[; ;tmr0.c: 77: TMR0L = 0x2B;
 "77
-[e = _TMR0L -> -> 87 `i `uc ]
+[e = _TMR0L -> -> 43 `i `uc ]
 [; ;tmr0.c: 80: timer0ReloadVal = (TMR0H << 8) | TMR0L;
 "80
 [e = _timer0ReloadVal -> | << -> _TMR0H `i -> 8 `i -> _TMR0L `i `ui ]

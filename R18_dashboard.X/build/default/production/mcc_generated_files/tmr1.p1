@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F15112 `(v ~T0 @X0 0 tf ]
+[v F15114 `(v ~T0 @X0 0 tf ]
 "35812 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
 [v _T1CON `Vuc ~T0 @X0 0 e@4045 ]
 "32591
@@ -30,12 +30,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1195 . . . ]
 "31628
 [v _PIE1bits `VS1195 ~T0 @X0 0 e@3997 ]
-[v F15109 `(v ~T0 @X0 0 tf ]
-"384 mcc_generated_files/tmr1.h
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F15109 ]
-"420
+[v F15111 `(v ~T0 @X0 0 tf ]
+"402 mcc_generated_files/tmr1.h
+[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F15111 ]
+"438
 [v _TMR1_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
-"128
+"129
 [v _TMR1_StartTimer `(v ~T0 @X0 0 ef ]
 "35818 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
 [s S1413 :2 `uc 1 :1 `uc 1 ]
@@ -74,6 +74,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1240 . . . . . . ]
 "32625
 [v _T1GCONbits `VS1240 ~T0 @X0 0 e@4010 ]
+"384 mcc_generated_files/tmr1.h
+[v _TMR1_CallBack `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -13683,23 +13685,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 217: typedef uint32_t uintmax_t;
 [; ;stdint.h: 222: typedef int16_t intptr_t;
 [; ;stdint.h: 227: typedef uint16_t uintptr_t;
-[; ;tmr1.h: 99: void TMR1_Initialize(void);
-[; ;tmr1.h: 128: void TMR1_StartTimer(void);
-[; ;tmr1.h: 160: void TMR1_StopTimer(void);
-[; ;tmr1.h: 195: uint16_t TMR1_ReadTimer(void);
-[; ;tmr1.h: 234: void TMR1_WriteTimer(uint16_t timerVal);
-[; ;tmr1.h: 270: void TMR1_Reload(void);
-[; ;tmr1.h: 309: void TMR1_StartSinglePulseAcquisition(void);
-[; ;tmr1.h: 348: uint8_t TMR1_CheckGateValueStatus(void);
-[; ;tmr1.h: 366: void TMR1_ISR(void);
-[; ;tmr1.h: 384: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr1.h: 402: extern void (*TMR1_InterruptHandler)(void);
-[; ;tmr1.h: 420: void TMR1_DefaultInterruptHandler(void);
+[; ;tmr1.h: 100: void TMR1_Initialize(void);
+[; ;tmr1.h: 129: void TMR1_StartTimer(void);
+[; ;tmr1.h: 161: void TMR1_StopTimer(void);
+[; ;tmr1.h: 196: uint16_t TMR1_ReadTimer(void);
+[; ;tmr1.h: 235: void TMR1_WriteTimer(uint16_t timerVal);
+[; ;tmr1.h: 271: void TMR1_Reload(void);
+[; ;tmr1.h: 310: void TMR1_StartSinglePulseAcquisition(void);
+[; ;tmr1.h: 349: uint8_t TMR1_CheckGateValueStatus(void);
+[; ;tmr1.h: 367: void TMR1_ISR(void);
+[; ;tmr1.h: 384: void TMR1_CallBack(void);
+[; ;tmr1.h: 402: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr1.h: 420: extern void (*TMR1_InterruptHandler)(void);
+[; ;tmr1.h: 438: void TMR1_DefaultInterruptHandler(void);
 "56 mcc_generated_files/tmr1.c
 [v _timer1ReloadVal `Vui ~T0 @X0 1 e ]
 [; ;tmr1.c: 56: volatile uint16_t timer1ReloadVal;
 "57
-[v _TMR1_InterruptHandler `*F15112 ~T0 @X0 1 e ]
+[v _TMR1_InterruptHandler `*F15114 ~T0 @X0 1 e ]
 [; ;tmr1.c: 57: void (*TMR1_InterruptHandler)(void);
 "63
 [v _TMR1_Initialize `(v ~T0 @X0 1 ef ]
@@ -13923,45 +13926,60 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr1.c: 167: TMR1L = timer1ReloadVal;
 "167
 [e = _TMR1L -> _timer1ReloadVal `uc ]
-[; ;tmr1.c: 169: if(TMR1_InterruptHandler)
-"169
-[e $ ! != _TMR1_InterruptHandler -> -> 0 `i `*F15112 1548  ]
-[; ;tmr1.c: 170: {
-"170
-{
-[; ;tmr1.c: 171: TMR1_InterruptHandler();
+[; ;tmr1.c: 171: TMR1_CallBack();
 "171
-[e ( *U _TMR1_InterruptHandler ..  ]
-"172
-}
-[e :U 1548 ]
+[e ( _TMR1_CallBack ..  ]
 [; ;tmr1.c: 172: }
-[; ;tmr1.c: 173: }
-"173
+"172
 [e :UE 1547 ]
 }
-"176
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F15109 ]
+"174
+[v _TMR1_CallBack `(v ~T0 @X0 1 ef ]
+"175
 {
-[; ;tmr1.c: 176: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
-[e :U _TMR1_SetInterruptHandler ]
-[v F15135 `(v ~T0 @X0 0 tf ]
-[v _InterruptHandler `*F15135 ~T0 @X0 1 r1 ]
+[; ;tmr1.c: 174: void TMR1_CallBack(void)
+[; ;tmr1.c: 175: {
+[e :U _TMR1_CallBack ]
 [f ]
-[; ;tmr1.c: 177: TMR1_InterruptHandler = InterruptHandler;
+[; ;tmr1.c: 177: if(TMR1_InterruptHandler)
 "177
-[e = _TMR1_InterruptHandler _InterruptHandler ]
-[; ;tmr1.c: 178: }
+[e $ ! != _TMR1_InterruptHandler -> -> 0 `i `*F15114 1549  ]
+[; ;tmr1.c: 178: {
 "178
-[e :UE 1549 ]
-}
+{
+[; ;tmr1.c: 179: TMR1_InterruptHandler();
+"179
+[e ( *U _TMR1_InterruptHandler ..  ]
 "180
+}
+[e :U 1549 ]
+[; ;tmr1.c: 180: }
+[; ;tmr1.c: 181: }
+"181
+[e :UE 1548 ]
+}
+"183
+[v _TMR1_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F15111 ]
+{
+[; ;tmr1.c: 183: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
+[e :U _TMR1_SetInterruptHandler ]
+[v F15138 `(v ~T0 @X0 0 tf ]
+[v _InterruptHandler `*F15138 ~T0 @X0 1 r1 ]
+[f ]
+[; ;tmr1.c: 184: TMR1_InterruptHandler = InterruptHandler;
+"184
+[e = _TMR1_InterruptHandler _InterruptHandler ]
+[; ;tmr1.c: 185: }
+"185
+[e :UE 1550 ]
+}
+"187
 [v _TMR1_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;tmr1.c: 180: void TMR1_DefaultInterruptHandler(void){
+[; ;tmr1.c: 187: void TMR1_DefaultInterruptHandler(void){
 [e :U _TMR1_DefaultInterruptHandler ]
 [f ]
-[; ;tmr1.c: 183: }
-"183
-[e :UE 1550 ]
+[; ;tmr1.c: 190: }
+"190
+[e :UE 1551 ]
 }

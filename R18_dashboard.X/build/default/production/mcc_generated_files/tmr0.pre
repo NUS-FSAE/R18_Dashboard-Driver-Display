@@ -17976,10 +17976,10 @@ void TMR0_Initialize(void)
 T0CON = 0x15;
 
 
-TMR0H = 0x9E;
+TMR0H = 0xCF;
 
 
-TMR0L = 0x57;
+TMR0L = 0x2B;
 
 
 timer0ReloadVal = (TMR0H << 8) | TMR0L;

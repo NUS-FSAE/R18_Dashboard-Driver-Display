@@ -1,4 +1,5 @@
 #include<xc.h>
+#include <string.h>
 #include "mcc_generated_files/mcc.h"
 #include "FT800.h"
 #include "display.h"
@@ -12,11 +13,12 @@
 #define FT_CLK48M  0x62
 #define FT_CLK36M  0x61
 #define FT_CORERST 0x68
-#define UP_SHIFT_RPM 9000
+#define UP_SHIFT_RPM 10000
+#define MESSAGE_SIZE 20
 
 uCAN_MSG canMessage;
 bool refresh_screen = false;
-    bool up_blink = false;
+bool up_blink = false;
 
 typedef struct {
     int current, current_number, current_int, current_dec, last, last_int, last_dec, best, best_number, best_int, best_dec;
@@ -38,10 +40,11 @@ void LED_blink() {
 }
 
 void main(void) {   
-    Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
+    Lap_time lap_time= {0,1,0,0,0,0,0,0,0,0,0};
     bool timer_started = false;
-    char* message = "READY";
-    int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
+    bool launch, autoShift, clutch, drs, radio = false;
+    char message[MESSAGE_SIZE] = {'\0'};
+    int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0, bias = 0;
     wait2secs(); 
     
     // Initialize the device
@@ -93,6 +96,7 @@ void main(void) {
     
     display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
     
+    
     TMR1_SetInterruptHandler(&refresh); 
     TMR0_SetInterruptHandler(*LED_blink);
     TMR0_StopTimer();
@@ -109,26 +113,21 @@ void main(void) {
                 speed = canMessage.frame.data7;
             } else if (canMessage.frame.id == 0x641) {
                 gear = canMessage.frame.data6;
+                bias = canMessage.frame.data7;
             } else if (canMessage.frame.id == 0x642) {
                 engTemp = canMessage.frame.data0;
                 oilTemp = canMessage.frame.data1;
                 battVolts = canMessage.frame.data2;
             } else if (canMessage.frame.id == 0x643) {
-                if(canMessage.frame.data0 >> 7) {
-                    *message = "Radio ON";
-                } else {
-                    *message = "R18";
-                }
-                if(canMessage.frame.data0 >> 6) {
-                    *message = "DRS & AutoShift ON";
-                } else {
-                    *message = "R18";
-                }
-                warning_1_LAT = canMessage.frame.data0 >> 5; //coolant temp
-                warning_2_LAT = canMessage.frame.data0 >> 4; // oil temp
-                warning_4_LAT = canMessage.frame.data0 >> 3; // oil pressure
-                warning_3_LAT = canMessage.frame.data0 >> 2; // fuel pressure
-
+                radio = canMessage.frame.data0 >> 7;
+                drs = canMessage.frame.data0 >> 6 & 0b1;
+                warning_1_LAT = canMessage.frame.data0 >> 5 & 0b1; //coolant temp
+                warning_2_LAT = canMessage.frame.data0 >> 4 & 0b1; // oil temp
+                warning_4_LAT = canMessage.frame.data0 >> 3 & 0b1; // oil pressure
+                warning_3_LAT = canMessage.frame.data0 >> 2 & 0b1; // fuel pressure
+                launch = canMessage.frame.data1 >> 7 & 0b1;
+                autoShift = canMessage.frame.data1 >> 6 & 0b1;
+                clutch = canMessage.frame.data1 >> 5 & 0b1;
             } else if (canMessage.frame.id == 0x644) {
                 lap_time.last = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
                 lap_time.current = ((canMessage.frame.data2 << 8) | canMessage.frame.data3);
@@ -146,21 +145,21 @@ void main(void) {
         }
         if(refresh_screen) {
             display_start();
+            display_rpm(rpm);
+            display_bottom_section();
             display_labels();
+            display_speed(speed);
             display_waterTemp(engTemp);
             display_oilTemp(oilTemp);
-            display_fuel(4.3);
-            display_battery(battVolts);
-            display_oilPress(oilP);
             display_gear(gear);
-            display_rpm(rpm);
-            display_speed(speed);
+            display_status(launch,autoShift,clutch,drs,radio);
+            display_brake_bias(bias);
+            display_battery(battVolts);
             display_tp(tp);
             display_laptime(lap_time.current_int, lap_time.current_dec, lap_time.best_int, lap_time.best_dec,
                              lap_time.last_int, lap_time.last_dec, lap_time.current_number, lap_time.best_number);
-            display_message(message);
             display_end();
-            if(rpm == 0 && !timer_started) {
+            if(rpm > UP_SHIFT_RPM && !timer_started) {
                 TMR0_StartTimer();
                 timer_started = true;
             } else {

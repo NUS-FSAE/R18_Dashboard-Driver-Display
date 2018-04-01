@@ -19,6 +19,12 @@
 #define GAUGE_MAJOR_DIVISION 10
 #define GAUGE_MINOR_DIVISION 5
 #define GAUGE_RANGE 50
+#define BACKGROUND_COLOR_R 60
+#define BACKGROUND_COLOR_G 60
+#define BACKGROUND_COLOR_B 60   
+#define INDICATOR_ACTIVE_COLOR_R 0
+#define INDICATOR_ACTIVE_COLOR_G 255
+#define INDICATOR_ACTIVE_COLOR_B 0 
 
 void display(int rpm, int oilP, int fuelP, int tp, int speed, int gear, int engTemp, int oilTemp, int battVolts);
 void display_start();
@@ -34,4 +40,6 @@ void display_end();
 void display_speed(int speed);
 void display_tp(int tp);
 void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
-void display_message(char* message);
+void display_status(bool launch, bool autoShift, bool clutch, bool drs, bool radio);
+void display_bottom_section();
+void display_brake_bias(int bias);

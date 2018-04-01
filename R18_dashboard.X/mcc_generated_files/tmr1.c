@@ -166,12 +166,19 @@ void TMR1_ISR(void)
     TMR1H = (timer1ReloadVal >> 8);
     TMR1L = timer1ReloadVal;
 
+    // ticker function call;
+    // ticker is 1 -> Callback function gets called everytime this ISR executes
+    TMR1_CallBack();
+}
+
+void TMR1_CallBack(void)
+{
+    // Add your custom callback code here
     if(TMR1_InterruptHandler)
     {
         TMR1_InterruptHandler();
     }
 }
-
 
 void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
     TMR1_InterruptHandler = InterruptHandler;

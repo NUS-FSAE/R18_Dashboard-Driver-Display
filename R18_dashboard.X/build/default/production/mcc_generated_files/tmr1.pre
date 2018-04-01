@@ -17932,40 +17932,43 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 99 "mcc_generated_files/tmr1.h"
+# 100 "mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
 
-# 128
+# 129
 void TMR1_StartTimer(void);
 
-# 160
+# 161
 void TMR1_StopTimer(void);
 
-# 195
+# 196
 uint16_t TMR1_ReadTimer(void);
 
-# 234
+# 235
 void TMR1_WriteTimer(uint16_t timerVal);
 
-# 270
+# 271
 void TMR1_Reload(void);
 
-# 309
+# 310
 void TMR1_StartSinglePulseAcquisition(void);
 
-# 348
+# 349
 uint8_t TMR1_CheckGateValueStatus(void);
 
-# 366
+# 367
 void TMR1_ISR(void);
 
 # 384
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+void TMR1_CallBack(void);
 
 # 402
-extern void (*TMR1_InterruptHandler)(void);
+void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
 
 # 420
+extern void (*TMR1_InterruptHandler)(void);
+
+# 438
 void TMR1_DefaultInterruptHandler(void);
 
 # 56 "mcc_generated_files/tmr1.c"
@@ -18079,12 +18082,19 @@ PIR1bits.TMR1IF = 0;
 TMR1H = (timer1ReloadVal >> 8);
 TMR1L = timer1ReloadVal;
 
+
+
+TMR1_CallBack();
+}
+
+void TMR1_CallBack(void)
+{
+
 if(TMR1_InterruptHandler)
 {
 TMR1_InterruptHandler();
 }
 }
-
 
 void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
 TMR1_InterruptHandler = InterruptHandler;

@@ -17857,6 +17857,41 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\__size_t.h"
+typedef unsigned size_t;
+
+# 14 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 36
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
 # 250 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
@@ -17944,6 +17979,57 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
+# 99 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 128
+void TMR0_StartTimer(void);
+
+# 160
+void TMR0_StopTimer(void);
+
+# 196
+uint16_t TMR0_ReadTimer(void);
+
+# 235
+void TMR0_WriteTimer(uint16_t timerVal);
+
+# 271
+void TMR0_Reload(void);
+
+# 289
+void TMR0_ISR(void);
+
+# 308
+void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 326
+extern void (*TMR0_InterruptHandler)(void);
+
+# 344
+void TMR0_DefaultInterruptHandler(void);
+
+# 6 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\stddef.h"
+typedef int ptrdiff_t;
+
+# 116 "mcc_generated_files/spi.h"
+void SPI_Initialize(void);
+
+# 151
+uint8_t SPI_Exchange8bit(uint8_t data);
+
+# 191
+uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+
+# 214
+bool SPI_IsBufferFull(void);
+
+# 239
+bool SPI_HasWriteCollisionOccured(void);
+
+# 263
+void SPI_ClearWriteCollisionStatus(void);
+
 # 67 "mcc_generated_files/ecan.h"
 typedef union {
 
@@ -17987,95 +18073,44 @@ unsigned char CAN_isRXErrorPassive(void);
 # 278
 unsigned char CAN_isTXErrorPassive(void);
 
-# 99 "mcc_generated_files/tmr1.h"
+# 100 "mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
 
-# 128
+# 129
 void TMR1_StartTimer(void);
 
-# 160
+# 161
 void TMR1_StopTimer(void);
 
-# 195
+# 196
 uint16_t TMR1_ReadTimer(void);
 
-# 234
+# 235
 void TMR1_WriteTimer(uint16_t timerVal);
 
-# 270
+# 271
 void TMR1_Reload(void);
 
-# 309
+# 310
 void TMR1_StartSinglePulseAcquisition(void);
 
-# 348
+# 349
 uint8_t TMR1_CheckGateValueStatus(void);
 
-# 366
+# 367
 void TMR1_ISR(void);
 
 # 384
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+void TMR1_CallBack(void);
 
 # 402
-extern void (*TMR1_InterruptHandler)(void);
+void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
 
 # 420
+extern void (*TMR1_InterruptHandler)(void);
+
+# 438
 void TMR1_DefaultInterruptHandler(void);
-
-# 99 "mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-
-# 128
-void TMR0_StartTimer(void);
-
-# 160
-void TMR0_StopTimer(void);
-
-# 196
-uint16_t TMR0_ReadTimer(void);
-
-# 235
-void TMR0_WriteTimer(uint16_t timerVal);
-
-# 271
-void TMR0_Reload(void);
-
-# 289
-void TMR0_ISR(void);
-
-# 308
-void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 326
-extern void (*TMR0_InterruptHandler)(void);
-
-# 344
-void TMR0_DefaultInterruptHandler(void);
-
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\__size_t.h"
-typedef unsigned size_t;
-
-# 6 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\stddef.h"
-typedef int ptrdiff_t;
-
-# 116 "mcc_generated_files/spi.h"
-void SPI_Initialize(void);
-
-# 151
-uint8_t SPI_Exchange8bit(uint8_t data);
-
-# 191
-uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-
-# 214
-bool SPI_IsBufferFull(void);
-
-# 239
-bool SPI_HasWriteCollisionOccured(void);
-
-# 263
-void SPI_ClearWriteCollisionStatus(void);
 
 # 72 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -18157,7 +18192,7 @@ inline void FT800_Init();
 # 318
 void off_display();
 
-# 23 "display.h"
+# 29 "display.h"
 void display(int rpm, int oilP, int fuelP, int tp, int speed, int gear, int engTemp, int oilTemp, int battVolts);
 void display_start();
 void display_labels();
@@ -18172,9 +18207,11 @@ void display_end();
 void display_speed(int speed);
 void display_tp(int tp);
 void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
-void display_message(char* message);
+void display_status(bool launch, bool autoShift, bool clutch, bool drs, bool radio);
+void display_bottom_section();
+void display_brake_bias(int bias);
 
-# 17 "main.c"
+# 19 "main.c"
 uCAN_MSG canMessage;
 bool refresh_screen = 0;
 bool up_blink = 0;
@@ -18192,15 +18229,18 @@ refresh_screen = 1;
 }
 
 void LED_blink() {
+(INTCONbits.PEIE = 0);
 LATAbits.LATA1 = !PORTAbits.RA1;
 LATDbits.LATD4 = !PORTDbits.RD4;
+(INTCONbits.PEIE = 1);
 }
 
 void main(void) {
-Lap_time lap_time= {0,1,0,0,0,0,0,9999,0,99,99};
+Lap_time lap_time= {0,1,0,0,0,0,0,0,0,0,0};
 bool timer_started = 0;
-char* message;
-int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0;
+bool launch, autoShift, clutch, drs, radio = 0;
+char message[20] = {'\0'};
+int rpm = 0, oilP = 0, fuelP = 0, tp = 0, speed = 0, gear = 0, engTemp = 0, oilTemp = 0, battVolts = 0, bias = 0;
 wait2secs();
 
 
@@ -18219,13 +18259,13 @@ PIE5bits.RXB1IE = 0;
 PIR5bits.ERRIF = 0;
 PIR5bits.WAKIF = 0;
 
-# 67
+# 72
 RXF2SIDH = 0xC8;
 RXF2SIDL = 0x40;
-RXM0SIDH = 0xFF;
-RXM0SIDL = 0b11011111;
-RXM1SIDH = 0xFF;
-RXM1SIDL = 0x11011111;
+RXM0SIDH = 0xFE;
+RXM0SIDL = 0b00011111;
+RXM1SIDH = 0xFE;
+RXM1SIDL = 0x00011111;
 
 
 SSPSTATbits.SMP = 0;
@@ -18247,6 +18287,7 @@ do { LATDbits.LATD3 = 1; } while(0);
 
 display(rpm, oilP, fuelP, tp, speed, gear, engTemp, oilTemp, battVolts);
 
+
 TMR1_SetInterruptHandler(&refresh);
 TMR0_SetInterruptHandler(*LED_blink);
 TMR0_StopTimer();
@@ -18263,23 +18304,21 @@ tp = canMessage.frame.data6;
 speed = canMessage.frame.data7;
 } else if (canMessage.frame.id == 0x641) {
 gear = canMessage.frame.data6;
+bias = canMessage.frame.data7;
 } else if (canMessage.frame.id == 0x642) {
 engTemp = canMessage.frame.data0;
 oilTemp = canMessage.frame.data1;
 battVolts = canMessage.frame.data2;
 } else if (canMessage.frame.id == 0x643) {
-if(canMessage.frame.data0 >> 7) {
-*message = "Radio ON";
-} else if(canMessage.frame.data0 >> 6) {
-*message = "DRS & AutoShift ON";
-} else {
-*message = "R18 ";
-}
-LATAbits.LATA0 = canMessage.frame.data0 >> 5;
-LATBbits.LATB5 = canMessage.frame.data0 >> 4;
-LATDbits.LATD3 = canMessage.frame.data0 >> 3;
-LATDbits.LATD5 = canMessage.frame.data0 >> 2;
-
+radio = canMessage.frame.data0 >> 7;
+drs = canMessage.frame.data0 >> 6 & 0b1;
+LATAbits.LATA0 = canMessage.frame.data0 >> 5 & 0b1;
+LATBbits.LATB5 = canMessage.frame.data0 >> 4 & 0b1;
+LATDbits.LATD3 = canMessage.frame.data0 >> 3 & 0b1;
+LATDbits.LATD5 = canMessage.frame.data0 >> 2 & 0b1;
+launch = canMessage.frame.data1 >> 7 & 0b1;
+autoShift = canMessage.frame.data1 >> 6 & 0b1;
+clutch = canMessage.frame.data1 >> 5 & 0b1;
 } else if (canMessage.frame.id == 0x644) {
 lap_time.last = ((canMessage.frame.data0 << 8) | canMessage.frame.data1);
 lap_time.current = ((canMessage.frame.data2 << 8) | canMessage.frame.data3);
@@ -18297,21 +18336,21 @@ lap_time.best_dec = lap_time.current_dec;
 }
 if(refresh_screen) {
 display_start();
+display_rpm(rpm);
+display_bottom_section();
 display_labels();
+display_speed(speed);
 display_waterTemp(engTemp);
 display_oilTemp(oilTemp);
-display_fuel(4.3);
-display_battery(battVolts);
-display_oilPress(oilP);
 display_gear(gear);
-display_rpm(rpm);
-display_speed(speed);
+display_status(launch,autoShift,clutch,drs,radio);
+display_brake_bias(bias);
+display_battery(battVolts);
 display_tp(tp);
 display_laptime(lap_time.current_int, lap_time.current_dec, lap_time.best_int, lap_time.best_dec,
 lap_time.last_int, lap_time.last_dec, lap_time.current_number, lap_time.best_number);
-display_message(message);
 display_end();
-if(rpm == 0 && !timer_started) {
+if(rpm > 10000 && !timer_started) {
 TMR0_StartTimer();
 timer_started = 1;
 } else {

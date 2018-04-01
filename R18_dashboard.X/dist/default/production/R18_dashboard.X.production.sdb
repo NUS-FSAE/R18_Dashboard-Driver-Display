@@ -33,34 +33,34 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "3 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\display.c
 [v _display display `(v  1 e 1 0 ]
-"19
+"17
 [v _display_start display_start `(v  1 e 1 0 ]
-"25
+"23
 [v _display_end display_end `(v  1 e 1 0 ]
-"31
+"29
 [v _display_labels display_labels `(v  1 e 1 0 ]
-"63
-[v _display_message display_message `(v  1 e 1 0 ]
-"72
+"67
+[v _display_status display_status `(v  1 e 1 0 ]
+"147
 [v _display_laptime display_laptime `(v  1 e 1 0 ]
-"119
+"190
 [v _display_waterTemp display_waterTemp `(v  1 e 1 0 ]
-"124
+"196
 [v _display_oilTemp display_oilTemp `(v  1 e 1 0 ]
-"128
-[v _display_fuel display_fuel `(v  1 e 1 0 ]
-"132
+"205
 [v _display_battery display_battery `(v  1 e 1 0 ]
-"138
-[v _display_oilPress display_oilPress `(v  1 e 1 0 ]
-"142
+"218
 [v _display_tp display_tp `(v  1 e 1 0 ]
-"146
+"223
 [v _display_speed display_speed `(v  1 e 1 0 ]
-"150
+"228
+[v _display_brake_bias display_brake_bias `(v  1 e 1 0 ]
+"233
 [v _display_rpm display_rpm `(v  1 e 1 0 ]
-"186
+"279
 [v _display_gear display_gear `(v  1 e 1 0 ]
+"360
+[v _display_bottom_section display_bottom_section `(v  1 e 1 0 ]
 "8 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\FT800.c
 [v _host_command host_command `(v  1 e 1 0 ]
 "16
@@ -79,13 +79,13 @@
 [v _cmd cmd `(v  1 e 1 0 ]
 "143
 [v _FT800_Init FT800_Init `T(v  1 e 1 0 ]
-"25 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
+"27 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
 [v _wait2secs wait2secs `(v  1 e 1 0 ]
-"29
+"31
 [v _refresh refresh `(v  1 e 1 0 ]
-"33
+"35
 [v _LED_blink LED_blink `(v  1 e 1 0 ]
-"38
+"42
 [v _main main `(v  1 e 1 0 ]
 "63 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\mcc_generated_files/ecan.c
 [v _ECAN_Initialize ECAN_Initialize `(v  1 e 1 0 ]
@@ -131,9 +131,11 @@
 [v _TMR1_Reload TMR1_Reload `(v  1 e 1 0 ]
 "160
 [v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
-"176
+"174
+[v _TMR1_CallBack TMR1_CallBack `(v  1 e 1 0 ]
+"183
 [v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
-"180
+"187
 [v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
 "190 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic18f46k80.h
 [v _BRGCON1 BRGCON1 `VEuc  1 e 1 @3651 ]
@@ -205,7 +207,7 @@
 [v _RXM1EIDH RXM1EIDH `VEuc  1 e 1 @3838 ]
 "19893
 [v _RXM1EIDL RXM1EIDL `VEuc  1 e 1 @3839 ]
-[s S725 . 1 `uc 1 TXPRI 1 0 :2:0 
+[s S730 . 1 `uc 1 TXPRI 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 TXREQ 1 0 :1:3 
 `uc 1 TXERR 1 0 :1:4 
@@ -214,10 +216,10 @@
 `uc 1 TXBIF 1 0 :1:7 
 ]
 "20043
-[s S733 . 1 `uc 1 TXPRI0 1 0 :1:0 
+[s S738 . 1 `uc 1 TXPRI0 1 0 :1:0 
 `uc 1 TXPRI1 1 0 :1:1 
 ]
-[s S862 . 1 `uc 1 TXB2PRI0 1 0 :1:0 
+[s S867 . 1 `uc 1 TXB2PRI0 1 0 :1:0 
 `uc 1 TXB2PRI1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 TXB2REQ 1 0 :1:3 
@@ -226,8 +228,8 @@
 `uc 1 TXB2ABT 1 0 :1:6 
 `uc 1 TX2IF 1 0 :1:7 
 ]
-[u S871 . 1 `S725 1 . 1 0 `S733 1 . 1 0 `S862 1 . 1 0 ]
-[v _TXB2CONbits TXB2CONbits `VES871  1 e 1 @3840 ]
+[u S876 . 1 `S730 1 . 1 0 `S738 1 . 1 0 `S867 1 . 1 0 ]
+[v _TXB2CONbits TXB2CONbits `VES876  1 e 1 @3840 ]
 "20123
 [v _TXB2SIDH TXB2SIDH `VEuc  1 e 1 @3841 ]
 "20243
@@ -255,7 +257,7 @@
 "21171
 [v _TXB2D7 TXB2D7 `VEuc  1 e 1 @3853 ]
 "21474
-[s S804 . 1 `uc 1 TXB1PRI0 1 0 :1:0 
+[s S809 . 1 `uc 1 TXB1PRI0 1 0 :1:0 
 `uc 1 TXB1PRI1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 TXB1REQ 1 0 :1:3 
@@ -264,8 +266,8 @@
 `uc 1 TXB1ABT 1 0 :1:6 
 `uc 1 TX1IF 1 0 :1:7 
 ]
-[u S813 . 1 `S725 1 . 1 0 `S733 1 . 1 0 `S804 1 . 1 0 ]
-[v _TXB1CONbits TXB1CONbits `VES813  1 e 1 @3856 ]
+[u S818 . 1 `S730 1 . 1 0 `S738 1 . 1 0 `S809 1 . 1 0 ]
+[v _TXB1CONbits TXB1CONbits `VES818  1 e 1 @3856 ]
 "21554
 [v _TXB1SIDH TXB1SIDH `VEuc  1 e 1 @3857 ]
 "21674
@@ -293,7 +295,7 @@
 "22602
 [v _TXB1D7 TXB1D7 `VEuc  1 e 1 @3869 ]
 "22905
-[s S736 . 1 `uc 1 TXB0PRI0 1 0 :1:0 
+[s S741 . 1 `uc 1 TXB0PRI0 1 0 :1:0 
 `uc 1 TXB0PRI1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 TXB0REQ 1 0 :1:3 
@@ -302,8 +304,8 @@
 `uc 1 TXB0ABT 1 0 :1:6 
 `uc 1 TX0IF 1 0 :1:7 
 ]
-[u S745 . 1 `S725 1 . 1 0 `S733 1 . 1 0 `S736 1 . 1 0 ]
-[v _TXB0CONbits TXB0CONbits `VES745  1 e 1 @3872 ]
+[u S750 . 1 `S730 1 . 1 0 `S738 1 . 1 0 `S741 1 . 1 0 ]
+[v _TXB0CONbits TXB0CONbits `VES750  1 e 1 @3872 ]
 "22985
 [v _TXB0SIDH TXB0SIDH `VEuc  1 e 1 @3873 ]
 "23105
@@ -330,7 +332,7 @@
 [v _TXB0D6 TXB0D6 `VEuc  1 e 1 @3884 ]
 "24033
 [v _TXB0D7 TXB0D7 `VEuc  1 e 1 @3885 ]
-[s S1017 . 1 `uc 1 FILHIT0 1 0 :1:0 
+[s S1022 . 1 `uc 1 FILHIT0 1 0 :1:0 
 `uc 1 FILHIT1 1 0 :1:1 
 `uc 1 FILHIT2 1 0 :1:2 
 `uc 1 RXRTRRO_FILHIT3 1 0 :1:3 
@@ -340,17 +342,17 @@
 `uc 1 RXFUL 1 0 :1:7 
 ]
 "24351
-[s S1026 . 1 `uc 1 . 1 0 :3:0 
+[s S1031 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 RXRTRRO 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 RXM0 1 0 :1:5 
 ]
-[s S1031 . 1 `uc 1 . 1 0 :3:0 
+[s S1036 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 FILHIT3 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 RTRRO 1 0 :1:5 
 ]
-[s S1036 . 1 `uc 1 RXB1FILHIT0 1 0 :1:0 
+[s S1041 . 1 `uc 1 RXB1FILHIT0 1 0 :1:0 
 `uc 1 RXB1FILHIT1 1 0 :1:1 
 `uc 1 RXB1FILHIT2 1 0 :1:2 
 `uc 1 RXB1FILHIT3 1 0 :1:3 
@@ -359,13 +361,13 @@
 `uc 1 RXB1M1 1 0 :1:6 
 `uc 1 RXB1FUL 1 0 :1:7 
 ]
-[s S1045 . 1 `uc 1 . 1 0 :3:0 
+[s S1050 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 RXB1RTRR0 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 RXB1RTRRO 1 0 :1:5 
 ]
-[u S1050 . 1 `S1017 1 . 1 0 `S1026 1 . 1 0 `S1031 1 . 1 0 `S1036 1 . 1 0 `S1045 1 . 1 0 ]
-[v _RXB1CONbits RXB1CONbits `VES1050  1 e 1 @3888 ]
+[u S1055 . 1 `S1022 1 . 1 0 `S1031 1 . 1 0 `S1036 1 . 1 0 `S1041 1 . 1 0 `S1050 1 . 1 0 ]
+[v _RXB1CONbits RXB1CONbits `VES1055  1 e 1 @3888 ]
 "24466
 [v _RXB1SIDH RXB1SIDH `VEuc  1 e 1 @3889 ]
 "24586
@@ -398,7 +400,7 @@
 [v _ANCON1 ANCON1 `VEuc  1 e 1 @3932 ]
 "27072
 [v _ANCON0 ANCON0 `VEuc  1 e 1 @3933 ]
-[s S909 . 1 `uc 1 FILHIT0 1 0 :1:0 
+[s S914 . 1 `uc 1 FILHIT0 1 0 :1:0 
 `uc 1 JTOFF_FILHIT1 1 0 :1:1 
 `uc 1 RB0DBEN_FILHIT2 1 0 :1:2 
 `uc 1 RXRTRRO_FILHIT3 1 0 :1:3 
@@ -408,21 +410,21 @@
 `uc 1 RXFUL 1 0 :1:7 
 ]
 "27765
-[s S918 . 1 `uc 1 . 1 0 :1:0 
+[s S923 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 JTOFF 1 0 :1:1 
 `uc 1 RB0DBEN 1 0 :1:2 
 `uc 1 RXRTRRO 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 RTRRO 1 0 :1:5 
 ]
-[s S925 . 1 `uc 1 . 1 0 :1:0 
+[s S930 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 FILHIT1 1 0 :1:1 
 `uc 1 FILHIT2 1 0 :1:2 
 `uc 1 FILHIT3 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 RXM0 1 0 :1:5 
 ]
-[s S932 . 1 `uc 1 RXB0FILHIT0 1 0 :1:0 
+[s S937 . 1 `uc 1 RXB0FILHIT0 1 0 :1:0 
 `uc 1 RXB0FILHIT1 1 0 :1:1 
 `uc 1 RXB0FILHIT2 1 0 :1:2 
 `uc 1 RXB0FILHIT3 1 0 :1:3 
@@ -431,13 +433,13 @@
 `uc 1 RXB0M1 1 0 :1:6 
 `uc 1 RXB0FUL 1 0 :1:7 
 ]
-[s S941 . 1 `uc 1 . 1 0 :3:0 
+[s S946 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 RXB0RTRR0 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 RXB0RTRRO 1 0 :1:5 
 ]
-[u S946 . 1 `S909 1 . 1 0 `S918 1 . 1 0 `S925 1 . 1 0 `S932 1 . 1 0 `S941 1 . 1 0 ]
-[v _RXB0CONbits RXB0CONbits `VES946  1 e 1 @3936 ]
+[u S951 . 1 `S914 1 . 1 0 `S923 1 . 1 0 `S930 1 . 1 0 `S937 1 . 1 0 `S946 1 . 1 0 ]
+[v _RXB0CONbits RXB0CONbits `VES951  1 e 1 @3936 ]
 "27900
 [v _RXB0SIDH RXB0SIDH `VEuc  1 e 1 @3937 ]
 "28020
@@ -468,7 +470,7 @@
 [v _CANSTAT CANSTAT `VEuc  1 e 1 @3950 ]
 "29162
 [v _CANCON CANCON `VEuc  1 e 1 @3951 ]
-[s S1797 . 1 `uc 1 CLKSEL 1 0 :1:0 
+[s S1923 . 1 `uc 1 CLKSEL 1 0 :1:0 
 `uc 1 . 1 0 :3:1 
 `uc 1 CANCAP 1 0 :1:4 
 `uc 1 ENDRHI 1 0 :1:5 
@@ -476,9 +478,9 @@
 `uc 1 TX2SRC 1 0 :1:7 
 ]
 "29269
-[u S1804 . 1 `S1797 1 . 1 0 ]
-[v _CIOCONbits CIOCONbits `VES1804  1 e 1 @3952 ]
-[s S1103 . 1 `uc 1 EWARN 1 0 :1:0 
+[u S1930 . 1 `S1923 1 . 1 0 ]
+[v _CIOCONbits CIOCONbits `VES1930  1 e 1 @3952 ]
+[s S1108 . 1 `uc 1 EWARN 1 0 :1:0 
 `uc 1 RXWARN 1 0 :1:1 
 `uc 1 TXWARN 1 0 :1:2 
 `uc 1 RXBP 1 0 :1:3 
@@ -488,21 +490,21 @@
 `uc 1 RXB0OVFL 1 0 :1:7 
 ]
 "29329
-[s S1112 . 1 `uc 1 . 1 0 :7:0 
+[s S1117 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 NOT_FIFOEMPTY 1 0 :1:7 
 ]
-[s S1115 . 1 `uc 1 . 1 0 :7:0 
+[s S1120 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 nFIFOEMPTY 1 0 :1:7 
 ]
-[s S1118 . 1 `uc 1 . 1 0 :6:0 
+[s S1123 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RXBNOVFL 1 0 :1:6 
 `uc 1 FIFOEMPTY 1 0 :1:7 
 ]
-[u S1122 . 1 `S1103 1 . 1 0 `S1112 1 . 1 0 `S1115 1 . 1 0 `S1118 1 . 1 0 ]
-[v _COMSTATbits COMSTATbits `VES1122  1 e 1 @3953 ]
+[u S1127 . 1 `S1108 1 . 1 0 `S1117 1 . 1 0 `S1120 1 . 1 0 `S1123 1 . 1 0 ]
+[v _COMSTATbits COMSTATbits `VES1127  1 e 1 @3953 ]
 "29394
 [v _ECANCON ECANCON `VEuc  1 e 1 @3954 ]
-[s S678 . 1 `uc 1 RXB0IE 1 0 :1:0 
+[s S683 . 1 `uc 1 RXB0IE 1 0 :1:0 
 `uc 1 RXB1IE 1 0 :1:1 
 `uc 1 TXB0IE 1 0 :1:2 
 `uc 1 TXB1IE 1 0 :1:3 
@@ -512,14 +514,14 @@
 `uc 1 IRXIE 1 0 :1:7 
 ]
 "29554
-[s S687 . 1 `uc 1 FIFOWMIE 1 0 :1:0 
+[s S692 . 1 `uc 1 FIFOWMIE 1 0 :1:0 
 `uc 1 RXBnIE 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 TXBnIE 1 0 :1:4 
 ]
-[u S692 . 1 `S678 1 . 1 0 `S687 1 . 1 0 ]
-[v _PIE5bits PIE5bits `VES692  1 e 1 @3958 ]
-[s S646 . 1 `uc 1 RXB0IF 1 0 :1:0 
+[u S697 . 1 `S683 1 . 1 0 `S692 1 . 1 0 ]
+[v _PIE5bits PIE5bits `VES697  1 e 1 @3958 ]
+[s S651 . 1 `uc 1 RXB0IF 1 0 :1:0 
 `uc 1 RXB1IF 1 0 :1:1 
 `uc 1 TXB0IF 1 0 :1:2 
 `uc 1 TXB1IF 1 0 :1:3 
@@ -529,14 +531,14 @@
 `uc 1 IRXIF 1 0 :1:7 
 ]
 "29637
-[s S655 . 1 `uc 1 FIFOWMIF 1 0 :1:0 
+[s S660 . 1 `uc 1 FIFOWMIF 1 0 :1:0 
 `uc 1 RXBnIF 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 TXBnIF 1 0 :1:4 
 ]
-[u S660 . 1 `S646 1 . 1 0 `S655 1 . 1 0 ]
-[v _PIR5bits PIR5bits `VES660  1 e 1 @3959 ]
-[s S1700 . 1 `uc 1 RA0 1 0 :1:0 
+[u S665 . 1 `S651 1 . 1 0 `S660 1 . 1 0 ]
+[v _PIR5bits PIR5bits `VES665  1 e 1 @3959 ]
+[s S1826 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -546,15 +548,15 @@
 `uc 1 RA7 1 0 :1:7 
 ]
 "30017
-[s S1709 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S1835 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 LVDIN 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 RJPU 1 0 :1:7 
 ]
-[u S1715 . 1 `S1700 1 . 1 0 `S1709 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES1715  1 e 1 @3968 ]
-[s S1756 . 1 `uc 1 RD0 1 0 :1:0 
+[u S1841 . 1 `S1826 1 . 1 0 `S1835 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES1841  1 e 1 @3968 ]
+[s S1882 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -564,14 +566,14 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "30250
-[s S1765 . 1 `uc 1 . 1 0 :7:0 
+[s S1891 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 SS2 1 0 :1:7 
 ]
-[u S1768 . 1 `S1756 1 . 1 0 `S1765 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES1768  1 e 1 @3971 ]
+[u S1894 . 1 `S1882 1 . 1 0 `S1891 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES1894  1 e 1 @3971 ]
 "30490
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
-[s S1660 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S1786 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -581,7 +583,7 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "30517
-[s S1669 . 1 `uc 1 LA0 1 0 :1:0 
+[s S1795 . 1 `uc 1 LA0 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 `uc 1 LA2 1 0 :1:2 
 `uc 1 LA3 1 0 :1:3 
@@ -590,11 +592,11 @@
 `uc 1 LA6 1 0 :1:6 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S1678 . 1 `S1660 1 . 1 0 `S1669 1 . 1 0 ]
-[v _LATAbits LATAbits `VES1678  1 e 1 @3977 ]
+[u S1804 . 1 `S1786 1 . 1 0 `S1795 1 . 1 0 ]
+[v _LATAbits LATAbits `VES1804  1 e 1 @3977 ]
 "30592
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S1989 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S2115 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -604,7 +606,7 @@
 `uc 1 LATB7 1 0 :1:7 
 ]
 "30619
-[s S1998 . 1 `uc 1 LB0 1 0 :1:0 
+[s S2124 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -613,8 +615,8 @@
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S2007 . 1 `S1989 1 . 1 0 `S1998 1 . 1 0 ]
-[v _LATBbits LATBbits `VES2007  1 e 1 @3978 ]
+[u S2133 . 1 `S2115 1 . 1 0 `S2124 1 . 1 0 ]
+[v _LATBbits LATBbits `VES2133  1 e 1 @3978 ]
 "30704
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
 [s S72 . 1 `uc 1 LATC0 1 0 :1:0 
@@ -738,34 +740,34 @@
 [v _T1GCONbits T1GCONbits `VES322  1 e 1 @4010 ]
 "35203
 [v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
-[s S426 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S431 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "35223
-[s S432 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S437 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
 "35223
-[u S437 . 1 `S426 1 . 1 0 `S432 1 . 1 0 ]
+[u S442 . 1 `S431 1 . 1 0 `S437 1 . 1 0 ]
 "35223
 "35223
-[v _SSPCON1bits SSPCON1bits `VES437  1 e 1 @4038 ]
+[v _SSPCON1bits SSPCON1bits `VES442  1 e 1 @4038 ]
 "35273
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
-[s S453 . 1 `uc 1 . 1 0 :2:0 
+[s S458 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
 "35350
-[s S456 . 1 `uc 1 . 1 0 :5:0 
+[s S461 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
 "35350
-[s S459 . 1 `uc 1 BF 1 0 :1:0 
+[s S464 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -775,62 +777,62 @@
 `uc 1 SMP 1 0 :1:7 
 ]
 "35350
-[s S468 . 1 `uc 1 . 1 0 :2:0 
+[s S473 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
 "35350
-[s S473 . 1 `uc 1 . 1 0 :2:0 
+[s S478 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
 "35350
-[s S478 . 1 `uc 1 . 1 0 :2:0 
+[s S483 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
 "35350
-[s S481 . 1 `uc 1 . 1 0 :5:0 
+[s S486 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
 "35350
-[s S484 . 1 `uc 1 . 1 0 :2:0 
+[s S489 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
 "35350
-[s S489 . 1 `uc 1 . 1 0 :2:0 
+[s S494 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
 "35350
-[s S494 . 1 `uc 1 . 1 0 :2:0 
+[s S499 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
 "35350
-[s S500 . 1 `uc 1 . 1 0 :2:0 
+[s S505 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 `uc 1 START 1 0 :1:3 
 `uc 1 STOP 1 0 :1:4 
 `uc 1 DA 1 0 :1:5 
 ]
 "35350
-[s S506 . 1 `uc 1 . 1 0 :2:0 
+[s S511 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 NOT_A 1 0 :1:5 
 ]
 "35350
-[u S511 . 1 `S453 1 . 1 0 `S456 1 . 1 0 `S459 1 . 1 0 `S468 1 . 1 0 `S473 1 . 1 0 `S478 1 . 1 0 `S481 1 . 1 0 `S484 1 . 1 0 `S489 1 . 1 0 `S494 1 . 1 0 `S500 1 . 1 0 `S506 1 . 1 0 ]
+[u S516 . 1 `S458 1 . 1 0 `S461 1 . 1 0 `S464 1 . 1 0 `S473 1 . 1 0 `S478 1 . 1 0 `S483 1 . 1 0 `S486 1 . 1 0 `S489 1 . 1 0 `S494 1 . 1 0 `S499 1 . 1 0 `S505 1 . 1 0 `S511 1 . 1 0 ]
 "35350
 "35350
-[v _SSPSTATbits SSPSTATbits `VES511  1 e 1 @4039 ]
+[v _SSPSTATbits SSPSTATbits `VES516  1 e 1 @4039 ]
 "35505
 [v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
 "35575
@@ -870,30 +872,30 @@
 [v _TMR1L TMR1L `VEuc  1 e 1 @4046 ]
 "35941
 [v _TMR1H TMR1H `VEuc  1 e 1 @4047 ]
-[s S1272 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S1277 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "36009
-[s S1274 . 1 `uc 1 . 1 0 :1:0 
+[s S1279 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
 "36009
-[s S1277 . 1 `uc 1 . 1 0 :2:0 
+[s S1282 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_PD 1 0 :1:2 
 ]
 "36009
-[s S1280 . 1 `uc 1 . 1 0 :3:0 
+[s S1285 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_TO 1 0 :1:3 
 ]
 "36009
-[s S1283 . 1 `uc 1 . 1 0 :4:0 
+[s S1288 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RI 1 0 :1:4 
 ]
 "36009
-[s S1286 . 1 `uc 1 . 1 0 :5:0 
+[s S1291 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_CM 1 0 :1:5 
 ]
 "36009
-[s S1289 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S1294 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nPD 1 0 :1:2 
 `uc 1 nTO 1 0 :1:3 
@@ -903,7 +905,7 @@
 `uc 1 IPEN 1 0 :1:7 
 ]
 "36009
-[s S1298 . 1 `uc 1 BOR 1 0 :1:0 
+[s S1303 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 PD 1 0 :1:2 
 `uc 1 TO 1 0 :1:3 
@@ -911,17 +913,17 @@
 `uc 1 CM 1 0 :1:5 
 ]
 "36009
-[u S1305 . 1 `S1272 1 . 1 0 `S1274 1 . 1 0 `S1277 1 . 1 0 `S1280 1 . 1 0 `S1283 1 . 1 0 `S1286 1 . 1 0 `S1289 1 . 1 0 `S1298 1 . 1 0 ]
+[u S1310 . 1 `S1277 1 . 1 0 `S1279 1 . 1 0 `S1282 1 . 1 0 `S1285 1 . 1 0 `S1288 1 . 1 0 `S1291 1 . 1 0 `S1294 1 . 1 0 `S1303 1 . 1 0 ]
 "36009
 "36009
-[v _RCONbits RCONbits `VES1305  1 e 1 @4048 ]
+[v _RCONbits RCONbits `VES1310  1 e 1 @4048 ]
 "36174
 [v _OSCCON2 OSCCON2 `VEuc  1 e 1 @4050 ]
 "36246
 [v _OSCCON OSCCON `VEuc  1 e 1 @4051 ]
 "36323
 [v _T0CON T0CON `VEuc  1 e 1 @4053 ]
-[s S2257 . 1 `uc 1 T0PS 1 0 :3:0 
+[s S1542 . 1 `uc 1 T0PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -929,20 +931,20 @@
 `uc 1 TMR0ON 1 0 :1:7 
 ]
 "36343
-[s S2264 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S1549 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 ]
 "36343
-[u S2268 . 1 `S2257 1 . 1 0 `S2264 1 . 1 0 ]
+[u S1553 . 1 `S1542 1 . 1 0 `S1549 1 . 1 0 ]
 "36343
 "36343
-[v _T0CONbits T0CONbits `VES2268  1 e 1 @4053 ]
+[v _T0CONbits T0CONbits `VES1553  1 e 1 @4053 ]
 "36400
 [v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
 "36420
 [v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
-[s S1348 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S1353 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -952,7 +954,7 @@
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "37234
-[s S1357 . 1 `uc 1 . 1 0 :1:0 
+[s S1362 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -962,22 +964,22 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "37234
-[s S1366 . 1 `uc 1 . 1 0 :6:0 
+[s S1371 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "37234
-[u S1370 . 1 `S1348 1 . 1 0 `S1357 1 . 1 0 `S1366 1 . 1 0 ]
+[u S1375 . 1 `S1353 1 . 1 0 `S1362 1 . 1 0 `S1371 1 . 1 0 ]
 "37234
 "37234
-[v _INTCONbits INTCONbits `VES1370  1 e 1 @4082 ]
+[v _INTCONbits INTCONbits `VES1375  1 e 1 @4082 ]
 "6 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\FT800.c
 [v _cmd_offset cmd_offset `us  1 e 2 0 ]
-[s S710 . 14 `uc 1 idType 1 0 `ul 1 id 4 1 `uc 1 dlc 1 5 `uc 1 data0 1 6 `uc 1 data1 1 7 `uc 1 data2 1 8 `uc 1 data3 1 9 `uc 1 data4 1 10 `uc 1 data5 1 11 `uc 1 data6 1 12 `uc 1 data7 1 13 ]
-"17 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
-[u S722 . 14 `S710 1 frame 14 0 `[14]uc 1 array 14 0 ]
-[v _canMessage canMessage `S722  1 e 14 0 ]
-"18
+[s S715 . 14 `uc 1 idType 1 0 `ul 1 id 4 1 `uc 1 dlc 1 5 `uc 1 data0 1 6 `uc 1 data1 1 7 `uc 1 data2 1 8 `uc 1 data3 1 9 `uc 1 data4 1 10 `uc 1 data5 1 11 `uc 1 data6 1 12 `uc 1 data7 1 13 ]
+"19 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
+[u S727 . 14 `S715 1 frame 14 0 `[14]uc 1 array 14 0 ]
+[v _canMessage canMessage `S727  1 e 14 0 ]
+"20
 [v _refresh_screen refresh_screen `uc  1 e 1 0 ]
 "57 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\mcc_generated_files/tmr0.c
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
@@ -987,38 +989,65 @@
 [v _timer1ReloadVal timer1ReloadVal `VEui  1 e 2 0 ]
 "57
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
-"38 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
+"42 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-[s S1784 . 22 `i 1 current 2 0 `i 1 current_number 2 2 `i 1 current_int 2 4 `i 1 current_dec 2 6 `i 1 last 2 8 `i 1 last_int 2 10 `i 1 last_dec 2 12 `i 1 best 2 14 `i 1 best_number 2 16 `i 1 best_int 2 18 `i 1 best_dec 2 20 ]
-"39
-[v main@lap_time lap_time `S1784  1 a 22 23 ]
-"42
-[v main@rpm rpm `i  1 a 2 21 ]
-[v main@battVolts battVolts `i  1 a 2 19 ]
-[v main@oilTemp oilTemp `i  1 a 2 17 ]
-[v main@engTemp engTemp `i  1 a 2 15 ]
-[v main@gear gear `i  1 a 2 13 ]
-[v main@speed speed `i  1 a 2 11 ]
-[v main@tp tp `i  1 a 2 9 ]
-[v main@oilP oilP `i  1 a 2 7 ]
-[v main@fuelP fuelP `i  1 a 2 4 ]
-"41
-[v main@message message `*.2uc  1 a 2 2 ]
-"40
-[v main@timer_started timer_started `uc  1 a 1 6 ]
-"39
-[v main@F15312 F15312 `S1784  1 s 22 F15312 ]
-"171
+[s S1910 . 22 `i 1 current 2 0 `i 1 current_number 2 2 `i 1 current_int 2 4 `i 1 current_dec 2 6 `i 1 last 2 8 `i 1 last_int 2 10 `i 1 last_dec 2 12 `i 1 best 2 14 `i 1 best_number 2 16 `i 1 best_int 2 18 `i 1 best_dec 2 20 ]
+"43
+[v main@lap_time lap_time `S1910  1 a 22 48 ]
+"46
+[v main@message message `[20]uc  1 a 20 2 ]
+"47
+[v main@rpm rpm `i  1 a 2 46 ]
+[v main@battVolts battVolts `i  1 a 2 44 ]
+[v main@oilTemp oilTemp `i  1 a 2 42 ]
+[v main@engTemp engTemp `i  1 a 2 40 ]
+[v main@gear gear `i  1 a 2 38 ]
+[v main@speed speed `i  1 a 2 36 ]
+[v main@tp tp `i  1 a 2 34 ]
+[v main@bias bias `i  1 a 2 30 ]
+[v main@fuelP fuelP `i  1 a 2 28 ]
+[v main@oilP oilP `i  1 a 2 26 ]
+"44
+[v main@timer_started timer_started `uc  1 a 1 33 ]
+"45
+[v main@radio radio `uc  1 a 1 32 ]
+[v main@drs drs `uc  1 a 1 25 ]
+[v main@clutch clutch `uc  1 a 1 24 ]
+[v main@autoShift autoShift `uc  1 a 1 23 ]
+[v main@launch launch `uc  1 a 1 22 ]
+"43
+[v main@F15405 F15405 `S1910  1 s 22 F15405 ]
+"45
+[v main@F15413 F15413 `[20]uc  1 s 20 F15413 ]
+"175
 } 0
-"25
+"27
 [v _wait2secs wait2secs `(v  1 e 1 0 ]
 {
-"27
+"29
 } 0
-"72 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\display.c
+"67 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\display.c
+[v _display_status display_status `(v  1 e 1 0 ]
+{
+[v display_status@launch launch `uc  1 a 1 wreg ]
+[v display_status@launch launch `uc  1 a 1 wreg ]
+[v display_status@autoShift autoShift `uc  1 p 1 36 ]
+[v display_status@clutch clutch `uc  1 p 1 37 ]
+[v display_status@drs drs `uc  1 p 1 38 ]
+[v display_status@radio radio `uc  1 p 1 39 ]
+"74
+[v display_status@launch launch `uc  1 a 1 43 ]
+"145
+} 0
+"147
 [v _display_laptime display_laptime `(v  1 e 1 0 ]
 {
+"157
+[v display_laptime@time_difference_integer time_difference_integer `i  1 a 2 57 ]
+"158
+[v display_laptime@time_difference_decimal time_difference_decimal `i  1 a 2 55 ]
+"147
 [v display_laptime@current_int current_int `i  1 p 2 36 ]
 [v display_laptime@current_dec current_dec `i  1 p 2 38 ]
 [v display_laptime@best_int best_int `i  1 p 2 40 ]
@@ -1027,7 +1056,13 @@
 [v display_laptime@last_dec last_dec `i  1 p 2 46 ]
 [v display_laptime@lap lap `i  1 p 2 48 ]
 [v display_laptime@best_lap best_lap `i  1 p 2 50 ]
-"117
+"188
+} 0
+"228
+[v _display_brake_bias display_brake_bias `(v  1 e 1 0 ]
+{
+[v display_brake_bias@bias bias `i  1 p 2 36 ]
+"231
 } 0
 "3
 [v _display display `(v  1 e 1 0 ]
@@ -1041,43 +1076,43 @@
 [v display@engTemp engTemp `i  1 p 2 59 ]
 [v display@oilTemp oilTemp `i  1 p 2 61 ]
 [v display@battVolts battVolts `i  1 p 2 63 ]
-"17
+"15
 } 0
-"119
+"190
 [v _display_waterTemp display_waterTemp `(v  1 e 1 0 ]
 {
 [v display_waterTemp@temp temp `i  1 p 2 36 ]
-"122
+"194
 } 0
-"142
+"218
 [v _display_tp display_tp `(v  1 e 1 0 ]
 {
 [v display_tp@tp tp `i  1 p 2 36 ]
-"144
+"221
 } 0
-"19
+"17
 [v _display_start display_start `(v  1 e 1 0 ]
 {
-"23
+"21
 } 0
-"146
+"223
 [v _display_speed display_speed `(v  1 e 1 0 ]
 {
 [v display_speed@speed speed `i  1 p 2 36 ]
-"148
+"226
 } 0
-"150
+"233
 [v _display_rpm display_rpm `(v  1 e 1 0 ]
 {
-"162
+"255
 [v display_rpm@val val `i  1 a 2 41 ]
-"151
+"234
 [v display_rpm@first_digit first_digit `i  1 a 2 45 ]
-"152
+"235
 [v display_rpm@second_digit second_digit `i  1 a 2 43 ]
-"150
+"233
 [v display_rpm@rpm rpm `i  1 p 2 36 ]
-"184
+"277
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.42\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -1089,53 +1124,40 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 17 ]
 "53
 } 0
-"124 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\display.c
+"196 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\display.c
 [v _display_oilTemp display_oilTemp `(v  1 e 1 0 ]
 {
 [v display_oilTemp@temp temp `i  1 p 2 36 ]
-"126
+"199
 } 0
-"138
-[v _display_oilPress display_oilPress `(v  1 e 1 0 ]
-{
-[v display_oilPress@pressure pressure `i  1 p 2 36 ]
-"140
-} 0
-"63
-[v _display_message display_message `(v  1 e 1 0 ]
-{
-[v display_message@message message `*.32uc  1 p 2 36 ]
-"70
-} 0
-"31
+"29
 [v _display_labels display_labels `(v  1 e 1 0 ]
 {
-"32
+"30
 [v display_labels@y_start y_start `i  1 a 2 39 ]
-"61
+"65
 } 0
-"186
+"279
 [v _display_gear display_gear `(v  1 e 1 0 ]
 {
 [v display_gear@gear gear `i  1 p 2 36 ]
-"265
+"358
 } 0
-"128
-[v _display_fuel display_fuel `(v  1 e 1 0 ]
-{
-[v display_fuel@level level `i  1 p 2 36 ]
-"130
-} 0
-"25
+"23
 [v _display_end display_end `(v  1 e 1 0 ]
 {
-"29
+"27
 } 0
-"132
+"360
+[v _display_bottom_section display_bottom_section `(v  1 e 1 0 ]
+{
+"378
+} 0
+"205
 [v _display_battery display_battery `(v  1 e 1 0 ]
 {
 [v display_battery@volts volts `i  1 p 2 36 ]
-"136
+"212
 } 0
 "43 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\FT800.c
 [v _wr8s wr8s `(uc  1 e 1 0 ]
@@ -1221,11 +1243,11 @@
 {
 "99
 } 0
-"176
+"183
 [v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
 {
 [v TMR1_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 15 ]
-"178
+"185
 } 0
 "66 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\mcc_generated_files/tmr0.c
 [v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
@@ -1325,10 +1347,10 @@
 {
 "240
 [v CAN_receive@returnValue returnValue `uc  1 a 1 36 ]
-[s S710 . 14 `uc 1 idType 1 0 `ul 1 id 4 1 `uc 1 dlc 1 5 `uc 1 data0 1 6 `uc 1 data1 1 7 `uc 1 data2 1 8 `uc 1 data3 1 9 `uc 1 data4 1 10 `uc 1 data5 1 11 `uc 1 data6 1 12 `uc 1 data7 1 13 ]
+[s S715 . 14 `uc 1 idType 1 0 `ul 1 id 4 1 `uc 1 dlc 1 5 `uc 1 data0 1 6 `uc 1 data1 1 7 `uc 1 data2 1 8 `uc 1 data3 1 9 `uc 1 data4 1 10 `uc 1 data5 1 11 `uc 1 data6 1 12 `uc 1 data7 1 13 ]
 "239
-[u S722 . 14 `S710 1 frame 14 0 `[14]uc 1 array 14 0 ]
-[v CAN_receive@tempCanMsg tempCanMsg `*.39S722  1 p 2 34 ]
+[u S727 . 14 `S715 1 frame 14 0 `[14]uc 1 array 14 0 ]
+[v CAN_receive@tempCanMsg tempCanMsg `*.39S727  1 p 2 34 ]
 "305
 } 0
 "385
@@ -1373,27 +1395,32 @@
 "160 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\mcc_generated_files/tmr1.c
 [v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
 {
-"173
+"172
 } 0
-"180
+"174
+[v _TMR1_CallBack TMR1_CallBack `(v  1 e 1 0 ]
+{
+"181
+} 0
+"187
 [v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
 {
-"183
+"190
 } 0
-"29 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
+"31 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
 [v _refresh refresh `(v  1 e 1 0 ]
 {
-"31
+"33
 } 0
 "134 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\mcc_generated_files/tmr0.c
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
 {
 "151
 } 0
-"33 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
+"35 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\main.c
 [v _LED_blink LED_blink `(v  1 e 1 0 ]
 {
-"36
+"40
 } 0
 "158 C:\Users\FSAE\Desktop\R18_driver-display\R18_dashboard.X\mcc_generated_files/tmr0.c
 [v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]

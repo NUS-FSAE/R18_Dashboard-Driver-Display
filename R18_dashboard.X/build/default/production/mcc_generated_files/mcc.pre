@@ -18006,85 +18006,6 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
-# 67 "mcc_generated_files/ecan.h"
-typedef union {
-
-struct {
-unsigned char idType;
-unsigned long id;
-unsigned char dlc;
-unsigned char data0;
-unsigned char data1;
-unsigned char data2;
-unsigned char data3;
-unsigned char data4;
-unsigned char data5;
-unsigned char data6;
-unsigned char data7;
-} frame;
-unsigned char array[14];
-} uCAN_MSG;
-
-# 117
-void ECAN_Initialize(void);
-
-# 139
-void CAN_sleep(void);
-
-# 160
-unsigned char CAN_transmit(uCAN_MSG *tempCanMsg);
-
-# 184
-unsigned char CAN_receive(uCAN_MSG *tempCanMsg);
-
-# 206
-unsigned char CAN_messagesInBuffer(void);
-
-# 230
-unsigned char CAN_isBusOff(void);
-
-# 254
-unsigned char CAN_isRXErrorPassive(void);
-
-# 278
-unsigned char CAN_isTXErrorPassive(void);
-
-# 99 "mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-
-# 128
-void TMR1_StartTimer(void);
-
-# 160
-void TMR1_StopTimer(void);
-
-# 195
-uint16_t TMR1_ReadTimer(void);
-
-# 234
-void TMR1_WriteTimer(uint16_t timerVal);
-
-# 270
-void TMR1_Reload(void);
-
-# 309
-void TMR1_StartSinglePulseAcquisition(void);
-
-# 348
-uint8_t TMR1_CheckGateValueStatus(void);
-
-# 366
-void TMR1_ISR(void);
-
-# 384
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 402
-extern void (*TMR1_InterruptHandler)(void);
-
-# 420
-void TMR1_DefaultInterruptHandler(void);
-
 # 99 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
@@ -18138,6 +18059,88 @@ bool SPI_HasWriteCollisionOccured(void);
 
 # 263
 void SPI_ClearWriteCollisionStatus(void);
+
+# 67 "mcc_generated_files/ecan.h"
+typedef union {
+
+struct {
+unsigned char idType;
+unsigned long id;
+unsigned char dlc;
+unsigned char data0;
+unsigned char data1;
+unsigned char data2;
+unsigned char data3;
+unsigned char data4;
+unsigned char data5;
+unsigned char data6;
+unsigned char data7;
+} frame;
+unsigned char array[14];
+} uCAN_MSG;
+
+# 117
+void ECAN_Initialize(void);
+
+# 139
+void CAN_sleep(void);
+
+# 160
+unsigned char CAN_transmit(uCAN_MSG *tempCanMsg);
+
+# 184
+unsigned char CAN_receive(uCAN_MSG *tempCanMsg);
+
+# 206
+unsigned char CAN_messagesInBuffer(void);
+
+# 230
+unsigned char CAN_isBusOff(void);
+
+# 254
+unsigned char CAN_isRXErrorPassive(void);
+
+# 278
+unsigned char CAN_isTXErrorPassive(void);
+
+# 100 "mcc_generated_files/tmr1.h"
+void TMR1_Initialize(void);
+
+# 129
+void TMR1_StartTimer(void);
+
+# 161
+void TMR1_StopTimer(void);
+
+# 196
+uint16_t TMR1_ReadTimer(void);
+
+# 235
+void TMR1_WriteTimer(uint16_t timerVal);
+
+# 271
+void TMR1_Reload(void);
+
+# 310
+void TMR1_StartSinglePulseAcquisition(void);
+
+# 349
+uint8_t TMR1_CheckGateValueStatus(void);
+
+# 367
+void TMR1_ISR(void);
+
+# 384
+void TMR1_CallBack(void);
+
+# 402
+void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 420
+extern void (*TMR1_InterruptHandler)(void);
+
+# 438
+void TMR1_DefaultInterruptHandler(void);
 
 # 72 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);

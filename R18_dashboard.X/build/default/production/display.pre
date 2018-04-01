@@ -17944,85 +17944,6 @@ void interrupt INTERRUPT_InterruptManager(void);
 # 122
 void INTERRUPT_Initialize (void);
 
-# 67 "mcc_generated_files/ecan.h"
-typedef union {
-
-struct {
-unsigned char idType;
-unsigned long id;
-unsigned char dlc;
-unsigned char data0;
-unsigned char data1;
-unsigned char data2;
-unsigned char data3;
-unsigned char data4;
-unsigned char data5;
-unsigned char data6;
-unsigned char data7;
-} frame;
-unsigned char array[14];
-} uCAN_MSG;
-
-# 117
-void ECAN_Initialize(void);
-
-# 139
-void CAN_sleep(void);
-
-# 160
-unsigned char CAN_transmit(uCAN_MSG *tempCanMsg);
-
-# 184
-unsigned char CAN_receive(uCAN_MSG *tempCanMsg);
-
-# 206
-unsigned char CAN_messagesInBuffer(void);
-
-# 230
-unsigned char CAN_isBusOff(void);
-
-# 254
-unsigned char CAN_isRXErrorPassive(void);
-
-# 278
-unsigned char CAN_isTXErrorPassive(void);
-
-# 99 "mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-
-# 128
-void TMR1_StartTimer(void);
-
-# 160
-void TMR1_StopTimer(void);
-
-# 195
-uint16_t TMR1_ReadTimer(void);
-
-# 234
-void TMR1_WriteTimer(uint16_t timerVal);
-
-# 270
-void TMR1_Reload(void);
-
-# 309
-void TMR1_StartSinglePulseAcquisition(void);
-
-# 348
-uint8_t TMR1_CheckGateValueStatus(void);
-
-# 366
-void TMR1_ISR(void);
-
-# 384
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 402
-extern void (*TMR1_InterruptHandler)(void);
-
-# 420
-void TMR1_DefaultInterruptHandler(void);
-
 # 99 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
@@ -18076,6 +17997,88 @@ bool SPI_HasWriteCollisionOccured(void);
 
 # 263
 void SPI_ClearWriteCollisionStatus(void);
+
+# 67 "mcc_generated_files/ecan.h"
+typedef union {
+
+struct {
+unsigned char idType;
+unsigned long id;
+unsigned char dlc;
+unsigned char data0;
+unsigned char data1;
+unsigned char data2;
+unsigned char data3;
+unsigned char data4;
+unsigned char data5;
+unsigned char data6;
+unsigned char data7;
+} frame;
+unsigned char array[14];
+} uCAN_MSG;
+
+# 117
+void ECAN_Initialize(void);
+
+# 139
+void CAN_sleep(void);
+
+# 160
+unsigned char CAN_transmit(uCAN_MSG *tempCanMsg);
+
+# 184
+unsigned char CAN_receive(uCAN_MSG *tempCanMsg);
+
+# 206
+unsigned char CAN_messagesInBuffer(void);
+
+# 230
+unsigned char CAN_isBusOff(void);
+
+# 254
+unsigned char CAN_isRXErrorPassive(void);
+
+# 278
+unsigned char CAN_isTXErrorPassive(void);
+
+# 100 "mcc_generated_files/tmr1.h"
+void TMR1_Initialize(void);
+
+# 129
+void TMR1_StartTimer(void);
+
+# 161
+void TMR1_StopTimer(void);
+
+# 196
+uint16_t TMR1_ReadTimer(void);
+
+# 235
+void TMR1_WriteTimer(uint16_t timerVal);
+
+# 271
+void TMR1_Reload(void);
+
+# 310
+void TMR1_StartSinglePulseAcquisition(void);
+
+# 349
+uint8_t TMR1_CheckGateValueStatus(void);
+
+# 367
+void TMR1_ISR(void);
+
+# 384
+void TMR1_CallBack(void);
+
+# 402
+void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 420
+extern void (*TMR1_InterruptHandler)(void);
+
+# 438
+void TMR1_DefaultInterruptHandler(void);
 
 # 72 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -18157,7 +18160,7 @@ inline void FT800_Init();
 # 318
 void off_display();
 
-# 23 "display.h"
+# 29 "display.h"
 void display(int rpm, int oilP, int fuelP, int tp, int speed, int gear, int engTemp, int oilTemp, int battVolts);
 void display_start();
 void display_labels();
@@ -18172,22 +18175,22 @@ void display_end();
 void display_speed(int speed);
 void display_tp(int tp);
 void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap);
-void display_message(char* message);
+void display_status(bool launch, bool autoShift, bool clutch, bool drs, bool radio);
+void display_bottom_section();
+void display_brake_bias(int bias);
 
 # 3 "display.c"
 void display(int rpm, int oilP, int fuelP, int tp, int speed, int gear, int engTemp, int oilTemp, int battVolts) {
 display_start();
+display_rpm(rpm);
+display_bottom_section();
 display_labels();
+display_speed(speed);
 display_waterTemp(engTemp);
 display_oilTemp(oilTemp);
-display_fuel(4.3);
-display_battery(battVolts);
-display_oilPress(oilP);
 display_gear(gear);
-display_rpm(rpm);
-display_speed(speed);
+display_battery(battVolts);
 display_tp(tp);
-display_message("hello");
 display_end();
 }
 
@@ -18206,23 +18209,173 @@ wr16(1058024UL, cmd_offset);
 void display_labels() {
 int y_start = 5;
 
-
 cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "WATER"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "TEMP"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 25);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "OIL"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "TEMP"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 25);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "FUEL"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "PRESS"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 25);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "BATT"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "VOLTS"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 25);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "OIL"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, y_start += 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "PRESS"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 360);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "SPEED"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 360);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130 + 15);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "KPH"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 380);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 180);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 26);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "TP"));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 459);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 174);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "%"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 22);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "KPH"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 60);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "Gain/Loss"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 135);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "Coolant"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 167);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 20);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "o"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 85);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 170);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "C"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 475);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 135);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "Oil Temp"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 455);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 167);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 20);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "o"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 472);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 170);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "C"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 65);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "Bias"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 45);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "%"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 270);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "V"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 370);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "TP"));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 459);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 245);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "%"));
 
+# 65
+}
+
+void display_status(bool launch, bool autoShift, bool clutch, bool drs, bool radio) {
+
+# 74
+cmd(((31UL<<24)|(((9UL)&15UL)<<0)));
+if(launch) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+}
+cmd(((2UL<<30)|(((90)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((10)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+
+if (autoShift) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+}
+cmd(((2UL<<30)|(((175)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((125)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+
+if (clutch) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+}
+cmd(((2UL<<30)|(((275)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((210)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+
+if (drs) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+}
+cmd(((2UL<<30)|(((367)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((325)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+
+if (radio) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
+}
+cmd(((2UL<<30)|(((465)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((405)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+
+if (launch) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+}
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 10);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "Launch"));
+if (autoShift) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+}
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 127);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "Auto"));
+if (clutch) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+}
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "Clutch"));
+if (drs) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+}
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 325);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "DRS"));
+if (radio) {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+} else {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+}
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 405);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 208);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "Radio"));
+}
+
+void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap) {
+
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((125)&255UL)<<8)|(((0)&255UL)<<0)));
+
+
+
+
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 165);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "LAP"));
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 190);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(lap+1);
+
+int time_difference_integer = last_int - best_int;
+int time_difference_decimal = last_dec - best_dec;
+
+if(time_difference_integer > 0) {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "+"));
+} else {
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((255)&255UL)<<8)|(((0)&255UL)<<0)));
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "-"));
+}
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 53);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "."));
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(time_difference_integer);
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 62);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 80);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(time_difference_decimal);
+
+# 188
+}
+
+void display_waterTemp(int temp) {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 155);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(temp);
+}
+
+void display_oilTemp(int temp) {
+
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 450);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 155);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(temp);
+}
+
+void display_fuel(int level) {
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 89);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(level);
+}
+
+void display_battery(int volts) {
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(volts/10);
+cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "."));
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 248);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(volts%10);
+
+
+
+}
+
+void display_oilPress(int pressure) {
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 171);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(pressure);
+}
+
+void display_tp(int tp) {
+
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 455);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(tp);
+}
+
+void display_speed(int speed) {
+
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 75);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(speed);
+}
+
+void display_brake_bias(int bias) {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
+cmd(4294967086UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 236);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(bias);
+}
+
+void display_rpm(int rpm) {
+int first_digit = rpm/1000;
+int second_digit = (rpm/100)%10;
 
 
 cmd(((31UL<<24)|(((2UL)&15UL)<<0)));
@@ -18233,98 +18386,6 @@ cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
 cmd(((13UL<<24)|(((1650)&8191UL)<<0)));
 cmd(((2UL<<30)|(((240)&511UL)<<21)|(((115)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
 
-}
-
-void display_message(char* message) {
-cmd(((31UL<<24)|(((9UL)&15UL)<<0)));
-cmd(((4UL<<24)|(((60)&255UL)<<16)|(((60)&255UL)<<8)|(((60)&255UL)<<0)));
-cmd(((2UL<<30)|(((350)&511UL)<<21)|(((215)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((134)&511UL)<<21)|(((230)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, message));
-}
-
-void display_laptime(int current_int, int current_dec, int best_int, int best_dec, int last_int, int last_dec, int lap, int best_lap) {
-cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
-cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
-cmd(((2UL<<30)|(((0)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((187)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((216)&511UL)<<21)|(((173)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((263)&511UL)<<21)|(((173)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((292)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((480)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-
-cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
-cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
-cmd(((2UL<<30)|(((0)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((189)&511UL)<<21)|(((204)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((217)&511UL)<<21)|(((177)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((261)&511UL)<<21)|(((177)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((289)&511UL)<<21)|(((204)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-cmd(((2UL<<30)|(((483)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
-
-
-cmd(((4UL<<24)|(((255)&255UL)<<16)|(((125)&255UL)<<8)|(((0)&255UL)<<0)));
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 5);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "LAST"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 217);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(lap);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 448);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "BEST"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 475);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 207);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(best_lap);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 165);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 27);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "LAP"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 190);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 29);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd(lap+1);
-
-
-cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 36);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(last_int);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 39);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 238);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 42);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(last_dec);
-
-
-
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 434);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(best_int);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 437);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 239);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 440);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 222);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(best_dec);
-
-
-
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 233);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 235);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(current_int);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 237);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 252);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 1536UL);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, ":"));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 240);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 235);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2UL);cmd_incrementn(2);cmd(current_dec);
-}
-
-void display_waterTemp(int temp) {
-cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 64);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 7);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(temp);
-}
-
-void display_oilTemp(int temp) {
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 48);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(temp);
-}
-
-void display_fuel(int level) {
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 89);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(level);
-}
-
-void display_battery(int volts) {
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(volts/10);
-cmd(4294967052UL);wr16(1081344UL+cmd_offset, 90);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 131);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd_incrementn(wr8s(1081344UL+cmd_offset, "."));
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 96);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(volts%10);
-}
-
-void display_oilPress(int pressure) {
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 66);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 171);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 28);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 0);cmd_incrementn(2);cmd(pressure);
-}
-
-void display_tp(int tp) {
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 455);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 166);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 30);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(tp);
-}
-
-void display_speed(int speed) {
-cmd(4294967086UL);wr16(1081344UL+cmd_offset, 360 + 115);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 130 - 10);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 31);cmd_incrementn(2);wr16(1081344UL+cmd_offset, 2048UL);cmd_incrementn(2);cmd(speed);
-}
-
-void display_rpm(int rpm) {
-int first_digit = rpm/1000;
-int second_digit = (rpm/100)%10;
 cmd(((4UL<<24)|(((255)&255UL)<<16)|(((255)&255UL)<<8)|(((255)&255UL)<<0)));
 
 cmd(4294967049UL);cmd(0x323232);
@@ -18437,4 +18498,24 @@ default:
 
 break;
 }
+}
+
+void display_bottom_section() {
+cmd(((4UL<<24)|(((255)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
+cmd(((2UL<<30)|(((0)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((187)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((216)&511UL)<<21)|(((173)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((263)&511UL)<<21)|(((173)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((292)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((480)&511UL)<<21)|(((200)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+
+cmd(((4UL<<24)|(((0)&255UL)<<16)|(((0)&255UL)<<8)|(((0)&255UL)<<0)));
+cmd(((31UL<<24)|(((8UL)&15UL)<<0)));
+cmd(((2UL<<30)|(((0)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((189)&511UL)<<21)|(((204)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((217)&511UL)<<21)|(((177)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((261)&511UL)<<21)|(((177)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((289)&511UL)<<21)|(((204)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
+cmd(((2UL<<30)|(((483)&511UL)<<21)|(((205)&511UL)<<12)|(((0)&31UL)<<7)|(((0)&127UL)<<0)));
 }
